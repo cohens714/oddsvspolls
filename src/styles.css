@@ -119,16 +119,27 @@ h1 {
   letter-spacing: -0.01em;
 }
 
-.race-figure {
+/* Two figures per race, market then polls, colour-coded to match the bar
+   below so the eye connects number to marker without a legend lookup. */
+.race-figures {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.9rem;
+}
+
+.figure {
   font-family: var(--mono);
   font-size: 1.5rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
-  color: var(--market);
   line-height: 1;
 }
 
-.pct { font-size: 0.8rem; margin-left: 0.1em; color: var(--ink-faint); }
+.figure-market { color: var(--market); }
+.figure-poll { color: var(--poll); }
+.figure-none { color: var(--ink-faint); font-size: 1.1rem; }
+
+.pct { font-size: 0.8rem; margin-left: 0.1em; opacity: 0.55; }
 
 /* ---------- the gap bar ---------- */
 
@@ -203,6 +214,10 @@ h1 {
 
 .flag { color: var(--flag); }
 
+footer a { color: var(--ink-soft); text-decoration: underline; }
+footer a:hover { color: var(--ink); }
+footer strong { color: var(--ink-soft); font-weight: 550; }
+
 /* ---------- footer ---------- */
 
 footer {
@@ -224,7 +239,9 @@ footer p { margin: 0 0 0.7rem; }
   #root { padding: 2.5rem 1.1rem 3.5rem; }
   .gap { flex-direction: column; align-items: stretch; gap: 0.5rem; }
   .gap-value { text-align: left; min-width: 0; }
-  .race-figure { font-size: 1.3rem; }
+  .figure { font-size: 1.25rem; }
+  .race-figures { gap: 0.65rem; }
+  .race-head { flex-wrap: wrap; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
