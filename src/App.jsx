@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import GapBar from './GapBar.jsx'
+import History from './History.jsx'
 import { parseCsv, combine } from './data.js'
 
 async function loadCsv(path) {
@@ -34,9 +35,10 @@ export default function App() {
       loadCsv('/snapshots.csv'),
       loadCsv('/poll_probabilities.csv'),
       loadJson('/race_meta.json'),
+      loadCsv('/poll_history.csv').catch(() => []),
     ])
-      .then(([marketRows, pollRows, meta]) => {
-        const races = combine(marketRows, pollRows, meta)
+      .then(([marketRows, pollRows, meta, historyRows]) => {
+        const races = combine(marketRows, pollRows, meta, historyRows)
         const asOf = marketRows.reduce(
           (l, r) => (r.fetched_at > l ? r.fetched_at : l), '')
         setState({ status: races.length ? 'ready' : 'empty', races, asOf })
@@ -74,9 +76,10 @@ export default function App() {
         {state.status === 'ready' && (
           <>
             <div className="legend">
-              <span className="key"><i className="swatch swatch-market" /> market</span>
+              <span className="key"><i className="swatch swatch-market" /> polymarket</span>
+              <span className="key"><i className="swatch swatch-kalshi" /> kalshi</span>
               <span className="key"><i className="swatch swatch-poll" /> polls</span>
-              <span className="key key-muted">bar shows chance the Democrat wins</span>
+              <span className="key key-muted">chance the Democrat wins</span>
             </div>
 
             <ol className="races">
@@ -127,6 +130,9 @@ export default function App() {
 
                     <GapBar market={race.market} poll={race.poll} />
 
+                    <History series={race.series}
+                             label={race.label || race.race_id} />
+
                     <div className="race-meta">
                       {race.margin !== null && (
                         <span>
@@ -146,8 +152,18 @@ export default function App() {
                           ? `$${Math.round(race.volume).toLocaleString()} volume`
                           : 'volume unreported'}
                       </span>
+                      {race.kalshi !== null && (
+                        <span>
+                          kalshi {(race.kalshi * 100).toFixed(0)}%
+                          {race.venueGap !== null &&
+                            ` (${race.venueGap > 0 ? '+' : ''}${race.venueGap.toFixed(1)} vs polymarket)`}
+                        </span>
+                      )}
                       {race.thinPolls && <span className="flag">thin polling</span>}
                       {race.thinMarket && <span className="flag">thin market</span>}
+                      {race.venueDisagree && (
+                        <span className="flag">venues disagree</span>
+                      )}
                       {race.n_partisan > 0 && (
                         <span className="flag">
                           {race.n_partisan} partisan poll
@@ -206,6 +222,23 @@ export default function App() {
           How much error grows at longer horizons is also still an
           assumption, because the archive we fitted to contains only polls
           from the final three weeks.
+        </p>
+        <p className="caveat">
+          <strong>Two venues, and why both are shown.</strong> Polymarket and
+          Kalshi are quoting the same question, so their prices should agree.
+          When they diverge by more than a few points it is usually a data
+          problem rather than a trading opportunity: a gap of eight points in
+          New Hampshire turned out to be a Kalshi contract on the Democratic
+          nomination rather than the general election. Races still showing a
+          wide gap are flagged and should be read sceptically.
+        </p>
+        <p className="caveat">
+          <strong>Where the history comes from.</strong> Market lines before
+          August 2026 are backfilled from each venue&rsquo;s own price
+          history rather than recorded by us at the time. Polling lines are
+          recomputed from the individual polls available on each date, using
+          the same averaging rule applied live, so no point reflects a poll
+          published after it.
         </p>
         <p className="caveat">
           {withPolls.length} of {state.races.length} races have poll data.

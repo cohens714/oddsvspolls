@@ -48,22 +48,84 @@ function num(v) {
   return Number.isFinite(n) ? n : null
 }
 
-// Latest row per race from the market snapshots.
+// Venue strings carry a '-backfill' suffix for rows pulled from a venue's
+// own history rather than observed live. Split them so the two can be told
+// apart: backfilled rows are the venue's aggregation, not a request we made
+// and timestamped, and they arrive daily where live rows arrive four times
+// a day.
+function splitVenue(venue) {
+  const raw = venue || ''
+  const backfill = raw.endsWith('-backfill')
+  return { venue: backfill ? raw.slice(0, -9) : raw, backfill }
+}
+
+// Latest LIVE row per race per venue. Backfilled rows are deliberately
+// excluded from "current": they stop at yesterday, and a stale backfill
+// point would otherwise outrank a fresh observation on sort order alone.
 function latestMarkets(rows) {
   const byRace = new Map()
   for (const row of rows) {
     if (row.note) continue        // failed fetches carry no price
     const prob = num(row.prob)
     if (prob === null) continue
-    const prev = byRace.get(row.race_id)
+    const { venue, backfill } = splitVenue(row.venue)
+    if (backfill) continue
+
+    if (!byRace.has(row.race_id)) byRace.set(row.race_id, {})
+    const race = byRace.get(row.race_id)
+    const prev = race[venue]
     if (!prev || row.fetched_at > prev.fetched_at) {
-      byRace.set(row.race_id, {
+      race[venue] = {
         fetched_at: row.fetched_at,
         prob,
         volume: num(row.volume) ?? 0,
         days_out: num(row.days_out),
-      })
+      }
     }
+  }
+  return byRace
+}
+
+// Full time series per race per venue, live and backfilled together, since
+// for a chart the distinction does not change what the line means.
+export function marketSeries(rows) {
+  const byRace = new Map()
+  for (const row of rows) {
+    if (row.note) continue
+    const prob = num(row.prob)
+    const days = num(row.days_out)
+    if (prob === null || days === null) continue
+    const { venue } = splitVenue(row.venue)
+
+    if (!byRace.has(row.race_id)) byRace.set(row.race_id, {})
+    const race = byRace.get(row.race_id)
+    if (!race[venue]) race[venue] = []
+    race[venue].push({ days_out: days, prob })
+  }
+
+  for (const race of byRace.values()) {
+    for (const key of Object.keys(race)) {
+      // One point per day, most recent reading wins, ordered from the
+      // furthest horizon toward election day.
+      const byDay = new Map()
+      for (const p of race[key]) byDay.set(p.days_out, p)
+      race[key] = [...byDay.values()].sort((a, b) => b.days_out - a.days_out)
+    }
+  }
+  return byRace
+}
+
+export function pollSeries(rows) {
+  const byRace = new Map()
+  for (const row of rows) {
+    const prob = num(row.prob)
+    const days = num(row.days_out)
+    if (prob === null || days === null) continue
+    if (!byRace.has(row.race_id)) byRace.set(row.race_id, [])
+    byRace.get(row.race_id).push({ days_out: days, prob })
+  }
+  for (const [k, v] of byRace) {
+    byRace.set(k, v.sort((a, b) => b.days_out - a.days_out))
   }
   return byRace
 }
@@ -90,20 +152,36 @@ function latestPolls(rows) {
   return byRace
 }
 
-export function combine(marketRows, pollRows, meta = {}) {
+export function combine(marketRows, pollRows, meta = {}, historyRows = []) {
   const markets = latestMarkets(marketRows)
   const polls = latestPolls(pollRows)
+  const mSeries = marketSeries(marketRows)
+  const pSeries = pollSeries(historyRows)
 
   const ids = new Set([...markets.keys(), ...polls.keys()])
   const out = []
 
   for (const race_id of ids) {
-    const m = markets.get(race_id)
+    const venues = markets.get(race_id) || {}
+    // Polymarket is the reference venue: it covers every race, while Kalshi
+    // covers most. Kalshi stands in where Polymarket is missing.
+    const m = venues.polymarket || venues.kalshi
     const p = polls.get(race_id)
     if (!m) continue              // no market price means nothing to compare
 
     const volume = m.volume ?? 0
     const info = meta[race_id] || FALLBACK_META
+
+    // Two venues quoting the same contract should agree. A wide gap is a
+    // data-quality alarm before it is a market signal: it caught a New
+    // Hampshire ticker that pointed at the primary rather than the general.
+    const both = venues.polymarket && venues.kalshi
+    const venueGap = both
+      ? (venues.polymarket.prob - venues.kalshi.prob) * 100
+      : null
+
+    const series = mSeries.get(race_id) || {}
+    series.poll = pSeries.get(race_id) || []
 
     // Who each source favours. Both probabilities are P(Democrat wins), so
     // a source favours the Republican whenever it sits below 0.5.
@@ -124,6 +202,11 @@ export function combine(marketRows, pollRows, meta = {}) {
       // than a numeric gap and far more interesting, so it is computed
       // here rather than left for the component to infer.
       splitCall: pollFavours !== null && marketFavours !== pollFavours,
+      polymarket: venues.polymarket ? venues.polymarket.prob : null,
+      kalshi: venues.kalshi ? venues.kalshi.prob : null,
+      venueGap,
+      venueDisagree: venueGap !== null && Math.abs(venueGap) > 5,
+      series,
       market: m.prob,
       poll: p ? p.prob : null,
       gap: p ? (m.prob - p.prob) * 100 : null,
