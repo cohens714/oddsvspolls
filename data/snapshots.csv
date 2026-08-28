@@ -1,3 +1,5 @@
 fetched_at,snapshot_date,race_id,cycle,venue,yes_side,prob,days_out,raw_price,inverted,volume,liquidity,spread,note
 2026-08-28T16:09:01+00:00,2026-08-28,2026-senate-control,2026,polymarket,DEM,0.505,67,0.505,False,2379519.660877999,179755.2973,0.01,
 2026-08-28T16:09:02+00:00,2026-08-28,2026-senate-GA,2026,polymarket,DEM,0.935,67,0.935,False,48337.454263999985,33830.6029,0.01,
+2026-08-28T16:24:37+00:00,2026-08-28,2026-senate-control,2026,polymarket,DEM,0.505,67,0.505,False,2379519.660877999,178932.8608,0.01,
+2026-08-28T16:24:37+00:00,2026-08-28,2026-senate-GA,2026,polymarket,DEM,0.935,67,0.935,False,48337.454264,34326.6943,0.01,
