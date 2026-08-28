@@ -18,6 +18,7 @@ const FILES = [
    'fetched_at,snapshot_date,race_id,cycle,venue,yes_side,prob,days_out,raw_price,inverted,volume,liquidity,spread,note'],
   ['data/poll_probabilities.csv',
    'computed_at,race_id,as_of_date,days_out,margin,prob,sigma,sigma_systematic,sigma_sampling,n_polls,effective_n,n_partisan,partisan_lean,excluded_partisan,sigma_final_assumed'],
+  ['data/race_meta.json', '{}'],
 ]
 
 for (const [rel, header] of FILES) {

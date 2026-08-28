@@ -57,18 +57,37 @@ PROB_OUT = DATA / "poll_probabilities.csv"
 # --------------------------------------------------------------------------
 
 # Standard deviation of the final polling error in a Senate race margin,
-# in percentage points. Published analyses of recent cycles put the mean
-# absolute error of late Senate polls in the mid-single digits; for a normal
-# distribution, sigma is roughly MAE / 0.8, which lands near 6.
+# in percentage points.
 #
-# PROVISIONAL. This is read off other people's published error estimates,
-# not fitted to data in this repository. Replace it with a value derived
-# from historical races and say so on the site when you do.
-SIGMA_FINAL = 6.0
+# FITTED, not borrowed. Chosen by running candidate values against 379
+# Senate races from the 538 pollster-ratings archive, 2000 to 2022, and
+# picking the best calibrated rather than the best scoring. See
+# check_calibration.py to reproduce.
+#
+# Why not the two numbers that look more obvious:
+#
+#   6.5  is the measured standard deviation of race-average error, but it
+#        is inflated by a few enormous misses. Used as sigma it is
+#        systematically underconfident: its 70-80% forecasts won 97% of
+#        the time. It also scored worst in 2020, so the vagueness bought
+#        no protection in the year it would have mattered.
+#
+#   3.2  scores best on log score across all races, but is overconfident
+#        where it counts: its 70-80% forecasts won 62% of the time. Log
+#        score treats races as independent, and they are not, so it never
+#        sees the risk of every race missing the same way at once.
+#
+# 4.5 is the best calibrated of the three, largest bucket miss 2 points,
+# and had the best worst-cycle score. Revisit after 2026 resolves.
+SIGMA_FINAL = 4.5
 
 # Variance doubles this many days out. Captures that a poll in August tells
-# you less about November than a poll in late October does, because the race
-# has more time left to move.
+# you less about November than a poll in late October does.
+#
+# STILL AN ASSUMPTION. The 538 archive contains only polls within 21 days
+# of the election, so it can measure election-eve error but says nothing
+# about how error grows at longer horizons. Nothing in this repository
+# constrains this number yet.
 VARIANCE_DOUBLING_DAYS = 120
 
 # Typical sample size of a single state poll, used to turn effective_n

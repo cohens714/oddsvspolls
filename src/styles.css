@@ -119,27 +119,60 @@ h1 {
   letter-spacing: -0.01em;
 }
 
-/* Two figures per race, market then polls, colour-coded to match the bar
-   below so the eye connects number to marker without a legend lookup. */
-.race-figures {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.9rem;
+.race-title { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.matchup {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.01em;
 }
 
-.figure {
+/* Each source names a candidate and a confidence. Naming the candidate
+   matters more than the number: a bare "94%" does not say for whom, and
+   when the two sources disagree about the winner the names are the story. */
+.calls {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 1.4rem;
+  text-align: right;
+}
+
+.call { display: flex; flex-direction: column; gap: 0.15rem; align-items: flex-end; }
+
+.call-name {
   font-family: var(--mono);
-  font-size: 1.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.call-pct {
+  font-family: var(--mono);
+  font-size: 1.45rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
 
-.figure-market { color: var(--market); }
-.figure-poll { color: var(--poll); }
-.figure-none { color: var(--ink-faint); font-size: 1.1rem; }
+.call-market { color: var(--market); }
+.call-poll { color: var(--poll); }
+.call-none { color: var(--ink-faint); font-size: 0.8rem; font-style: italic; }
 
-.pct { font-size: 0.8rem; margin-left: 0.1em; opacity: 0.55; }
+.pct { font-size: 0.78rem; margin-left: 0.08em; opacity: 0.55; }
+
+/* A race where the two sources name different winners is the most
+   interesting thing this site can show, so it gets the one accent on the
+   page. Everything else stays quiet. */
+.race-split { border-left: 2px solid var(--flag); padding-left: 1rem; }
+
+.split-note {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--flag);
+  margin: 0 0 0.7rem;
+}
 
 /* ---------- the gap bar ---------- */
 
@@ -239,9 +272,10 @@ footer p { margin: 0 0 0.7rem; }
   #root { padding: 2.5rem 1.1rem 3.5rem; }
   .gap { flex-direction: column; align-items: stretch; gap: 0.5rem; }
   .gap-value { text-align: left; min-width: 0; }
-  .figure { font-size: 1.25rem; }
-  .race-figures { gap: 0.65rem; }
-  .race-head { flex-wrap: wrap; }
+  .call-pct { font-size: 1.2rem; }
+  .calls { gap: 1rem; }
+  .race-head { flex-wrap: wrap; gap: 0.6rem; }
+  .race-split { padding-left: 0.7rem; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
