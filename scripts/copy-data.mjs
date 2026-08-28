@@ -12,6 +12,16 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const destDir = resolve(root, 'public')
 mkdirSync(destDir, { recursive: true })
 
+// public/_headers is committed source, not generated data. It sets the
+// cache rules that stop a stale index.html from loading an old JS bundle,
+// so a build that dropped it would reintroduce exactly the caching problem
+// it exists to prevent.
+const headers = resolve(destDir, '_headers')
+if (!existsSync(headers)) {
+  console.warn('copy-data: WARNING public/_headers missing; cache headers '
+    + 'will not be applied and stale pages may be served')
+}
+
 // [source file, header to write if it is missing]
 const FILES = [
   ['data/snapshots.csv',

@@ -3,14 +3,21 @@ import GapBar from './GapBar.jsx'
 import History from './History.jsx'
 import { parseCsv, combine } from './data.js'
 
+// The data files are rewritten several times a day under constant
+// filenames, so a cached copy is silently stale rather than merely old.
+// no-store on the request pairs with the _headers rules on the response;
+// either alone is usually enough, and the combination survives a proxy or
+// browser that ignores one of them.
+const FETCH_OPTS = { cache: 'no-store' }
+
 async function loadCsv(path) {
-  const res = await fetch(path)
+  const res = await fetch(path, FETCH_OPTS)
   if (!res.ok) throw new Error(`${path} returned ${res.status}`)
   return parseCsv(await res.text())
 }
 
 async function loadJson(path) {
-  const res = await fetch(path)
+  const res = await fetch(path, FETCH_OPTS)
   if (!res.ok) return {}
   try { return await res.json() } catch { return {} }
 }

@@ -5,4 +5,9 @@ __pycache__/
 .venv/
 .DS_Store
 .env
-echo '!public/_headers' >> .gitignore
+
+public/snapshots.csv
+public/poll_probabilities.csv
+public/poll_history.csv
+public/race_meta.json
+!public/_headers

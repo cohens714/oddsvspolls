@@ -1,0 +1,34 @@
+# Cloudflare Pages reads this file from the build output and applies these
+# headers to matching paths.
+#
+# Vite fingerprints JS and CSS filenames, so those can be cached hard: a new
+# build produces new names and the browser fetches them automatically. Two
+# things carry no fingerprint and must not be cached that way.
+#
+#   index.html   names which fingerprinted bundle to load. A cached copy
+#                keeps loading the OLD bundle no matter how many times the
+#                site is rebuilt, which is the failure that looked like a
+#                broken deploy.
+#
+#   *.csv/json   the data itself, rewritten several times a day under a
+#                constant filename.
+#
+# must-revalidate means the browser may keep its copy but has to ask whether
+# it is still current. When nothing changed the server answers 304 and no
+# data moves, so this is cheap.
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.csv
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fingerprinted assets are safe to cache indefinitely.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
