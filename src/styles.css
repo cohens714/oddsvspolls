@@ -1,8 +1,23 @@
+/* Colour encodes the SOURCE, not the party. Teal is the market, ochre the
+   polls. Partisan red and blue are deliberately absent: this site compares
+   two methods of forecasting, and colouring by party would invite readers to
+   see a rooting interest where there is only a measurement. */
+
 :root {
-  --ink: #16181d;
-  --muted: #6b7280;
-  --paper: #fbfbf9;
-  --rule: #d9d9d4;
+  --ink: #14161a;
+  --ink-soft: #4a4f58;
+  --ink-faint: #878d97;
+  --paper: #faf9f7;
+  --rule: #e2dfd9;
+  --rule-strong: #c9c5bd;
+
+  --market: #0f6e6e;
+  --poll: #b3711a;
+  --span: rgba(15, 110, 110, 0.13);
+  --flag: #9a3412;
+
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -11,46 +26,222 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 
-main {
-  max-width: 34rem;
+#root {
+  max-width: 52rem;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 3.5rem 1.5rem 5rem;
 }
 
+/* ---------- header ---------- */
+
 .eyebrow {
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 2.5rem;
+  color: var(--ink-faint);
+  margin: 0 0 2rem;
 }
 
 h1 {
-  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-size: clamp(1.7rem, 4.5vw, 2.5rem);
   font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  margin: 0 0 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin: 0 0 1rem;
+  max-width: 20ch;
   text-wrap: balance;
 }
 
 .lede {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.6;
-  color: #3f434b;
-  margin: 0 0 3rem;
+  color: var(--ink-soft);
+  max-width: 58ch;
+  margin: 0 0 2.5rem;
 }
 
-.status {
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 0.8rem;
-  color: var(--muted);
+.note {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  padding: 1.25rem 0;
   border-top: 1px solid var(--rule);
-  padding-top: 1rem;
-  margin: 0;
+}
+
+/* ---------- legend ---------- */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.key { display: inline-flex; align-items: center; gap: 0.45rem; }
+.key-muted { color: var(--ink-faint); text-transform: none; letter-spacing: 0; }
+
+.swatch { width: 0.7rem; height: 0.7rem; border-radius: 50%; display: block; }
+.swatch-market { background: var(--market); }
+.swatch-poll { background: var(--poll); }
+
+/* ---------- race rows ---------- */
+
+.races { list-style: none; margin: 0; padding: 0; }
+
+.race {
+  padding: 1.4rem 0 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.race-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.race-name {
+  font-size: 1.05rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+}
+
+.race-figure {
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--market);
+  line-height: 1;
+}
+
+.pct { font-size: 0.8rem; margin-left: 0.1em; color: var(--ink-faint); }
+
+/* ---------- the gap bar ---------- */
+
+.gap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gap-track {
+  position: relative;
+  flex: 1;
+  height: 1.6rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+/* The 50% line. Everything on this site is a distance from a coin flip. */
+.gap-mid {
+  position: absolute;
+  left: 50%;
+  top: 0.25rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule-strong);
+}
+
+.gap-span {
+  position: absolute;
+  top: 0.55rem;
+  height: 0.65rem;
+  background: var(--span);
+  border-left: 1px solid var(--market);
+  border-right: 1px solid var(--poll);
+}
+
+.gap-mark {
+  position: absolute;
+  bottom: -0.3rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 2px solid var(--paper);
+}
+
+.gap-mark-market { background: var(--market); }
+.gap-mark-poll { background: var(--poll); }
+
+.gap-value {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+  min-width: 7.5rem;
+  text-align: right;
+}
+
+.gap-value-empty { color: var(--ink-faint); font-style: italic; }
+
+/* ---------- meta ---------- */
+
+.race-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.flag { color: var(--flag); }
+
+/* ---------- footer ---------- */
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule-strong);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+  max-width: 62ch;
+}
+
+footer p { margin: 0 0 0.7rem; }
+.caveat { color: var(--ink-faint); }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 34rem) {
+  #root { padding: 2.5rem 1.1rem 3.5rem; }
+  .gap { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+  .gap-value { text-align: left; min-width: 0; }
+  .race-figure { font-size: 1.3rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .race { animation: rise 0.4s ease-out backwards; }
+  .race:nth-child(1) { animation-delay: 0.02s; }
+  .race:nth-child(2) { animation-delay: 0.05s; }
+  .race:nth-child(3) { animation-delay: 0.08s; }
+  .race:nth-child(4) { animation-delay: 0.11s; }
+  .race:nth-child(n + 5) { animation-delay: 0.14s; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0.4rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--market);
+  outline-offset: 2px;
 }

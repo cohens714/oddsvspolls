@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run copy-data && vite",
+    "copy-data": "node scripts/copy-data.mjs",
+    "prebuild": "npm run copy-data",
     "build": "vite build",
     "preview": "vite preview"
   },
