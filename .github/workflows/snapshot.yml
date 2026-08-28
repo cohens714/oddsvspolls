@@ -1,0 +1,66 @@
+name: Snapshot markets
+
+# Four times a day. The site shows daily figures, but intraday resolution
+# cannot be reconstructed later, so capture more than you display.
+#
+# GitHub's scheduler is best-effort and frequently runs late, sometimes by
+# 30 minutes or more during peak load. That is fine: every row records its
+# own fetched_at, so analysis uses the real time rather than the intended
+# one. Never treat the cron time as the observation time.
+on:
+  schedule:
+    - cron: "0 2,8,14,20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify parsers before touching the network
+        working-directory: analysis
+        run: python3 ingest_markets.py --self-test
+
+      - name: Fetch snapshot
+        working-directory: analysis
+        run: python3 ingest_markets.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name  "oddsvspolls-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          if git diff --quiet -- data/; then
+            echo "No change to data/, nothing to commit."
+            exit 0
+          fi
+
+          git add data/
+          git commit -m "Snapshot $(date -u '+%Y-%m-%d %H:%M UTC')"
+
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            sleep 5
+          done
+
+          echo "Push failed after 3 attempts." >&2
+          exit 1
