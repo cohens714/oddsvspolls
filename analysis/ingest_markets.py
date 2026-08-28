@@ -37,6 +37,9 @@ CONFIG = Path(__file__).resolve().parent / "races.json"
 SNAPSHOT_FILE = ROOT / "data" / "snapshots.csv"
 
 POLYMARKET_GAMMA = "https://gamma-api.polymarket.com/markets"
+# Single-market endpoint: /markets/{ticker}. The list endpoint's `tickers`
+# filter is ignored, and an ignored filter returns an arbitrary market
+# rather than an error, which is worse than failing.
 KALSHI_API = "https://api.elections.kalshi.com/trade-api/v2/markets"
 
 USER_AGENT = "oddsvspolls.com data collector (+https://oddsvspolls.com)"
@@ -145,46 +148,93 @@ def parse_polymarket(payload: object, wanted_outcome: str) -> dict:
     }
 
 
-def parse_kalshi(payload: object) -> dict:
+def parse_kalshi(payload: object, expect_ticker: str = None) -> dict:
     """Mid-price of the YES contract, in [0, 1], plus depth.
 
     Kalshi quotes in cents. Uses the bid/ask midpoint when both sides are
     quoted, since last_price can be stale for hours in a thin market. Falls
     back to last_price only when the book is one-sided.
+
+    Verifies the returned ticker matches the one requested. This is not
+    paranoia: a filter parameter that the API silently ignores returns
+    somebody else's market, and every downstream check would pass. The
+    price would be real, the row would look fine, and it would belong to
+    the wrong race.
     """
-    markets = payload.get("markets") if isinstance(payload, dict) else None
-    if not markets:
-        raise ValueError("no market returned for ticker")
-    m = markets[0]
-
-    bid, ask = m.get("yes_bid"), m.get("yes_ask")
-    spread = ""
-    if bid is not None and ask is not None and 0 < bid and ask < 100:
-        cents = (float(bid) + float(ask)) / 2.0
-        spread = (float(ask) - float(bid)) / 100.0
-    elif m.get("last_price"):
-        cents = float(m["last_price"])
+    if isinstance(payload, dict) and payload.get("market"):
+        m = payload["market"]                      # /markets/{ticker}
+    elif isinstance(payload, dict) and payload.get("markets"):
+        m = payload["markets"][0]                  # /markets?tickers=
     else:
-        raise ValueError("no usable price: empty book and no last trade")
+        raise ValueError("no market returned for ticker")
 
-    price = cents / 100.0
+    if expect_ticker and m.get("ticker") != expect_ticker:
+        raise ValueError(
+            f"got {m.get('ticker')!r}, asked for {expect_ticker!r}; "
+            f"the ticker filter was ignored")
+
+    def dollars(*keys):
+        """Read a *_dollars field. Kalshi returns these as decimal strings
+        already in [0, 1], not the integer cents the older docs describe."""
+        for k in keys:
+            v = m.get(k)
+            if v in (None, ""):
+                continue
+            try:
+                return float(v)
+            except (TypeError, ValueError):
+                continue
+        return None
+
+    def cents(*keys):
+        """Legacy integer-cent fields, kept so a rollback on their side
+        does not break collection."""
+        for k in keys:
+            v = m.get(k)
+            if v in (None, ""):
+                continue
+            try:
+                return float(v) / 100.0
+            except (TypeError, ValueError):
+                continue
+        return None
+
+    bid = dollars("yes_bid_dollars")
+    ask = dollars("yes_ask_dollars")
+
+    # Only one side of the book is always published. A NO quote is a YES
+    # quote reflected: the best price to buy NO at X implies YES is
+    # available at 1-X, and the sides swap because a bid on one is an ask
+    # on the other.
+    if bid is None:
+        no_ask = dollars("no_ask_dollars")
+        bid = (1.0 - no_ask) if no_ask is not None else cents("yes_bid")
+    if ask is None:
+        no_bid = dollars("no_bid_dollars")
+        ask = (1.0 - no_bid) if no_bid is not None else cents("yes_ask")
+
+    spread = ""
+    if bid is not None and ask is not None and 0.0 < bid <= ask < 1.0:
+        price = (bid + ask) / 2.0
+        spread = round(ask - bid, 4)
+    else:
+        # last_price can be hours stale in a thin market, so it is the
+        # fallback rather than the default.
+        price = dollars("last_price_dollars", "previous_price_dollars")
+        if price is None:
+            price = cents("last_price")
+        if price is None:
+            raise ValueError("no usable price: empty book and no last trade")
+
     if not 0.0 <= price <= 1.0:
         raise ValueError(f"price out of range: {price}")
 
-    def num(*keys):
-        for k in keys:
-            v = m.get(k)
-            if v is not None:
-                try:
-                    return float(v)
-                except (TypeError, ValueError):
-                    continue
-        return ""
-
     return {
         "price": price,
-        "volume": num("volume", "volume_24h"),
-        "liquidity": num("open_interest", "liquidity"),
+        "volume": dollars("volume_dollars") or m.get("volume") or "",
+        "liquidity": dollars("liquidity_dollars")
+                     or (float(m["open_interest_fp"])
+                         if m.get("open_interest_fp") else ""),
         "spread": spread,
     }
 
@@ -231,8 +281,9 @@ def fetch_race(race: dict, cycle: int, election_day: date) -> list[dict]:
         row = dict(base, venue="kalshi", prob="", raw_price="",
                    inverted="", volume="", liquidity="", spread="", note="")
         try:
-            payload = get_json(KALSHI_API, {"tickers": race["kalshi_ticker"]})
-            res = parse_kalshi(payload)
+            ticker = race["kalshi_ticker"]
+            payload = get_json(f"{KALSHI_API}/{ticker}", {})
+            res = parse_kalshi(payload, ticker)
             prob, flipped = orient(res["price"], race["kalshi_yes_means"],
                                    race["yes_side"])
             row.update(prob=round(prob, 6), raw_price=round(res["price"], 6),
@@ -293,18 +344,52 @@ def self_test() -> int:
     except ValueError:
         pass
 
-    kalshi = {"markets": [{"yes_bid": 40, "yes_ask": 44, "last_price": 99,
-                           "volume": 1234, "open_interest": 500}]}
-    res = parse_kalshi(kalshi)
-    assert abs(res["price"] - 0.42) < 1e-9, "midpoint, not stale last"
-    assert abs(res["spread"] - 0.04) < 1e-9
-    assert res["volume"] == 1234.0
+    # Real shape: decimal dollar strings, and only the NO side quoted.
+    kalshi = {"market": {"ticker": "SENATEGA-26-D",
+                         "no_bid_dollars": "0.0730",
+                         "no_ask_dollars": "0.0790",
+                         "last_price_dollars": "0.9270",
+                         "liquidity_dollars": "0.0000",
+                         "open_interest_fp": "202351.97"}}
+    res = parse_kalshi(kalshi, "SENATEGA-26-D")
+    # no_ask 0.079 -> yes_bid 0.921; no_bid 0.073 -> yes_ask 0.927
+    assert abs(res["price"] - 0.924) < 1e-9, res["price"]
+    assert abs(res["spread"] - 0.006) < 1e-9, res["spread"]
 
-    thin = {"markets": [{"yes_bid": None, "yes_ask": None, "last_price": 55}]}
+    # Explicit YES quotes win over derived ones.
+    both = {"market": {"ticker": "T", "yes_bid_dollars": "0.4000",
+                       "yes_ask_dollars": "0.4400",
+                       "no_bid_dollars": "0.9000", "no_ask_dollars": "0.9500"}}
+    assert abs(parse_kalshi(both)["price"] - 0.42) < 1e-9
+
+    # A mismatched ticker must fail loudly rather than return a real price
+    # belonging to a different race.
+    try:
+        parse_kalshi(kalshi, "SENATETX-26-D")
+        raise AssertionError("should have rejected a mismatched ticker")
+    except ValueError as exc:
+        assert "ignored" in str(exc)
+
+    # Both response shapes must work.
+    listed = {"markets": [{"ticker": "X", "yes_bid_dollars": "0.4000",
+                           "yes_ask_dollars": "0.4400"}]}
+    assert abs(parse_kalshi(listed)["price"] - 0.42) < 1e-9
+
+    # Legacy integer cents must still parse, in case they revert.
+    legacy = {"market": {"ticker": "T", "yes_bid": 40, "yes_ask": 44}}
+    assert abs(parse_kalshi(legacy)["price"] - 0.42) < 1e-9
+
+    # The book must beat last_price: on the Georgia fixture the last trade
+    # was 0.9270 while the book implies 0.924, and a thin market's last
+    # trade can be hours old.
+    assert abs(res["price"] - 0.924) < 1e-9, "book midpoint, not last trade"
+    assert res["liquidity"] == 202351.97
+
+    thin = {"market": {"ticker": "T", "last_price_dollars": "0.5500"}}
     assert abs(parse_kalshi(thin)["price"] - 0.55) < 1e-9
 
     try:
-        parse_kalshi({"markets": [{"yes_bid": None, "yes_ask": None}]})
+        parse_kalshi({"market": {"ticker": "T"}})
         raise AssertionError("should have rejected empty book")
     except ValueError:
         pass
