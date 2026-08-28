@@ -1,0 +1,86 @@
+name: Update polls
+
+# Once a day. Polls arrive a few a week, so more frequent runs would burn
+# minutes for nothing. Markets move constantly and have their own workflow
+# at four times a day; the two cadences are deliberately different.
+#
+# This runs the whole poll chain in order, because each step reads the
+# previous step's output:
+#
+#   fetch_polls_votehub  raw polls + today's averages
+#   to_probability       averages -> win probabilities (the site's figures)
+#   replay_polls         recomputes the full history from raw polls
+#   race_meta            candidate names for the frontend
+#
+# Skipping any one leaves the site showing a stale version of that layer
+# while the others move, which looks like working software and is not.
+on:
+  schedule:
+    - cron: "30 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: polls
+  cancel-in-progress: false
+
+jobs:
+  polls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch polls
+        working-directory: analysis
+        run: python3 fetch_polls_votehub.py
+
+      - name: Convert margins to probabilities
+        working-directory: analysis
+        run: python3 to_probability.py
+
+      # Derived from raw_polls.csv rather than accumulated, so rerunning is
+      # always safe and always correct.
+      - name: Rebuild poll history
+        working-directory: analysis
+        run: python3 replay_polls.py
+
+      # Cheap, and catches the case where a nominee changed in the config
+      # but the site kept showing the old name.
+      - name: Refresh race metadata
+        working-directory: analysis
+        run: python3 race_meta.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name  "oddsvspolls-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          if git diff --quiet -- data/; then
+            echo "No change to data/, nothing to commit."
+            exit 0
+          fi
+
+          git add data/
+          git commit -m "Poll update $(date -u '+%Y-%m-%d')"
+
+          # The market workflow may have pushed while this was running.
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            sleep 5
+          done
+
+          echo "Push failed after 3 attempts." >&2
+          exit 1
