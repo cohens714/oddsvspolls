@@ -1,0 +1,47 @@
+{
+  "_comment": [
+    "Maps each contest to its identifier on every venue. Hand-maintained; there",
+    "is no way to generate this automatically.",
+    "",
+    "Polymarket structures these as separate binary markets per party rather",
+    "than one multi-outcome market, so polymarket_outcome is always 'Yes' and",
+    "the slug identifies which party. Pick the slug matching yes_side.",
+    "",
+    "'yes_side' names the outcome every source's probability refers to. Every",
+    "venue for a race must resolve to P(yes_side wins). Getting this wrong",
+    "silently inverts a race, so ingest verifies the named outcome exists",
+    "rather than trusting position.",
+    "",
+    "Kalshi tickers still to be filled in. Kalshi appears to name series per",
+    "state per cycle (SENATEGA, SENATEAL) rather than one control series, so",
+    "the 2026 tickers need confirming with:",
+    "    python3 discover.py --kseries SENATEGA",
+    "Leave kalshi_ticker null until confirmed; ingest skips null venues."
+  ],
+
+  "cycle": 2026,
+  "election_date": "2026-11-03",
+
+  "races": [
+    {
+      "race_id": "2026-senate-control",
+      "office": "senate-control",
+      "state": null,
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democratic-party-control-the-senate-after-the-2026-midterm-elections",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": null,
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-senate-GA",
+      "office": "senate",
+      "state": "GA",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-georgia-senate-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": null,
+      "kalshi_yes_means": "DEM"
+    }
+  ]
+}
