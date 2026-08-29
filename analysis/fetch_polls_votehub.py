@@ -92,8 +92,39 @@ RAW_FIELDS = [
     "poll_id", "race_id", "subject", "poll_type", "pollster", "sponsors",
     "start_date", "end_date", "sample_size", "population",
     "dem_name", "rep_name", "dem_pct", "rep_pct", "margin",
-    "internal", "partisan", "url", "fetched_at",
+    "internal", "partisan", "url", "fetched_at", "first_seen",
 ]
+
+
+def load_first_seen():
+    """When each poll was first observed in the API.
+
+    A poll's field dates are not when it became public. A survey fielded
+    1-3 August might be published on the 5th, and a market can only react
+    to publication. VoteHub carries no publication timestamp, so the first
+    time we see a poll is the closest available proxy.
+
+    This file is rewritten in full on every run, so without carrying these
+    values forward they are lost each time. And unlike everything else here
+    they cannot be recovered later: a poll observed for the first time next
+    month gets next month's timestamp regardless of when it actually
+    appeared. Which makes this the one field worth starting today.
+    """
+    seen = {}
+    if not RAW_OUT.exists():
+        return seen
+    try:
+        with RAW_OUT.open(newline="", encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                pid = row.get("poll_id")
+                first = row.get("first_seen") or row.get("fetched_at")
+                if pid and first:
+                    # Keep the earliest if a poll somehow appears twice.
+                    if pid not in seen or first < seen[pid]:
+                        seen[pid] = first
+    except (OSError, csv.Error):
+        pass
+    return seen
 
 AVG_FIELDS = [
     "computed_at", "race_id", "as_of_date", "days_out",
@@ -170,11 +201,13 @@ def parse_answers(answers, dem_name=None, rep_name=None):
     return dem, rep
 
 
-def fetch_race(race_id, subject, dem_name, rep_name, poll_type, from_date):
+def fetch_race(race_id, subject, dem_name, rep_name, poll_type, from_date,
+               first_seen=None):
     payload = get_json("/polls", {"poll_type": poll_type, "subject": subject,
                                   "from_date": from_date})
     polls = poll_list(payload)
     fetched = datetime.utcnow().isoformat(timespec="seconds")
+    first_seen = first_seen or {}
 
     rows, unmatched = [], 0
     for p in polls:
@@ -203,6 +236,8 @@ def fetch_race(race_id, subject, dem_name, rep_name, poll_type, from_date):
             "partisan": p.get("partisan") or "",
             "url": p.get("url", ""),
             "fetched_at": fetched,
+            # Preserved across runs; only a genuinely new poll gets now.
+            "first_seen": first_seen.get(p.get("id", ""), fetched),
         })
 
     return rows, unmatched, len(polls)
@@ -376,6 +411,11 @@ def main():
     today = datetime.utcnow().date()
     from_date = (today - timedelta(days=args.lookback)).isoformat()
 
+    first_seen = load_first_seen()
+    if first_seen:
+        print(f"carrying forward first-seen times for "
+              f"{len(first_seen):,} known polls\n")
+
     targets = [(rid, subj, d, r, "us-senator")
                for rid, (subj, d, r) in RACES.items()]
     targets.append((GENERIC[0], GENERIC[1], None, None, "generic-ballot"))
@@ -389,7 +429,8 @@ def main():
             continue
 
         rows, unmatched, total = fetch_race(
-            race_id, subject, dem_name, rep_name, poll_type, from_date)
+            race_id, subject, dem_name, rep_name, poll_type, from_date,
+            first_seen)
         all_rows.extend(rows)
 
         avg = average(rows, today, args.no_partisan)
@@ -419,7 +460,9 @@ def main():
             half_life_days=HALF_LIFE_DAYS,
         ))
 
-    print(f"\n{len(all_rows)} polls, {len(avg_rows)} averages")
+    fresh = sum(1 for r in all_rows if r["first_seen"] == r["fetched_at"])
+    print(f"\n{len(all_rows)} polls, {len(avg_rows)} averages, "
+          f"{fresh} newly seen")
 
     if args.dry_run:
         print("dry run, nothing written")
