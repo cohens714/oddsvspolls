@@ -138,7 +138,9 @@ export default function App() {
                     <GapBar market={race.market} poll={race.poll} />
 
                     <History series={race.series}
-                             label={race.label || race.race_id} />
+                             label={race.label || race.race_id}
+                             demShort={race.demShort}
+                             repShort={race.repShort} />
 
                     <div className="race-meta">
                       {race.margin !== null && (

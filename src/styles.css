@@ -238,12 +238,98 @@ h1 {
 
 .history { margin: 0.9rem 0 0; }
 
+/* The plot wrapper is the hover target and the positioning context for the
+   HTML markers and tooltip drawn over the svg. */
+.history-plot {
+  position: relative;
+  cursor: crosshair;
+  /* Stops a touch-drag along the chart from scrolling the page, so reading
+     values on a phone works the way it does on a desktop. */
+  touch-action: none;
+}
+
 .history svg {
   width: 100%;
   height: 4.5rem;
   display: block;
   overflow: visible;
 }
+
+.h-cross { stroke: var(--ink-faint); stroke-width: 1; }
+
+/* Markers are HTML because the svg has a non-uniform aspect ratio, which
+   would squash an svg circle into an ellipse. */
+.h-dot {
+  position: absolute;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid var(--paper);
+  pointer-events: none;
+}
+
+.h-dot-market { background: var(--market); }
+.h-dot-kalshi { background: var(--kalshi); }
+.h-dot-poll   { background: var(--poll); }
+
+.h-tip {
+  position: absolute;
+  top: -0.4rem;
+  transform: translateX(0.6rem);
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  padding: 0.45rem 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(20, 22, 26, 0.09);
+  z-index: 2;
+}
+
+/* Past roughly two thirds across, the tooltip would overflow the row, so
+   it flips to the other side of the crosshair. */
+.h-tip-left { transform: translateX(calc(-100% - 0.6rem)); }
+
+.h-tip-date {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.9rem;
+  color: var(--ink);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.h-tip-days { color: var(--ink-faint); }
+
+.h-tip-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.h-tip-label { color: var(--ink-soft); min-width: 5rem; }
+
+.h-tip-value {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.h-tip-foot {
+  color: var(--ink-faint);
+  font-size: 0.62rem;
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+  border-top: 1px solid var(--rule);
+}
+
+.h-tip .swatch { width: 0.5rem; height: 0.5rem; }
+.swatch-market { background: var(--market); }
 
 .h-mid { stroke: var(--rule-strong); stroke-width: 1; stroke-dasharray: 2 3; }
 
@@ -318,6 +404,8 @@ footer p { margin: 0 0 0.7rem; }
 
 @media (max-width: 34rem) {
   #root { padding: 2.5rem 1.1rem 3.5rem; }
+  .h-tip { font-size: 0.62rem; padding: 0.35rem 0.45rem; }
+  .h-tip-label { min-width: 4.2rem; }
   .gap { flex-direction: column; align-items: stretch; gap: 0.5rem; }
   .gap-value { text-align: left; min-width: 0; }
   .call-pct { font-size: 1.2rem; }
