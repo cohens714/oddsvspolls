@@ -1,0 +1,20 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+.env
+
+# Generated from data/ at build time by scripts/copy-data.mjs. Committing
+# these would create two copies that silently drift apart.
+public/snapshots.csv
+public/poll_probabilities.csv
+public/race_meta.json
+public/poll_history.csv
+
+# _headers must reach the build output; it is not generated data.
+!public/_headers
+
+# Copied from assets/ at build time.
+public/og.png

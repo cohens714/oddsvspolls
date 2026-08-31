@@ -60,17 +60,27 @@ jobs:
         working-directory: analysis
         run: python3 race_meta.py
 
+      # The social card names specific races, so it has to be rebuilt with
+      # them. A card claiming a disagreement that resolved last month is
+      # worse than a generic one.
+      - name: Install Pillow
+        run: pip install pillow
+
+      - name: Rebuild the social card
+        working-directory: analysis
+        run: python3 make_og_image.py
+
       - name: Commit if anything changed
         run: |
           git config user.name  "oddsvspolls-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          if git diff --quiet -- data/; then
-            echo "No change to data/, nothing to commit."
+          if git diff --quiet -- data/ assets/; then
+            echo "No change to data/ or assets/, nothing to commit."
             exit 0
           fi
 
-          git add data/
+          git add data/ assets/
           git commit -m "Poll update $(date -u '+%Y-%m-%d')"
 
           # The market workflow may have pushed while this was running.
