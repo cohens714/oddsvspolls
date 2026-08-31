@@ -71,9 +71,10 @@ def build():
         code = race_id.split("-")[-1]
         state = STATE_NAMES.get(code, code)
         kind = "governor" if poll_type == "governor" else "senate"
-        # Georgia has both a Senate and a governor race, so the state name
-        # alone is ambiguous once governors are collected.
-        label = f"{state} governor" if kind == "governor" else state
+        # The page groups by office and heads each group, so repeating the
+        # office in every row would be noise. `kind` travels with the race
+        # for anything that needs to disambiguate out of context.
+        label = state
         meta[race_id] = {
             "label": label,
             "kind": kind,

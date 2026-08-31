@@ -98,20 +98,49 @@ h1 {
 .swatch-poll { background: var(--poll); }
 .swatch-kalshi { background: var(--kalshi); }
 
+/* Matches the marker drawn beside a split-call race, so the key is the
+   same shape as the thing it explains. */
+.swatch-rule {
+  display: block;
+  width: 2px;
+  height: 0.85rem;
+  border-radius: 1px;
+  background: var(--flag);
+}
+
 /* ---------- office sections ---------- */
 
-.office + .office { margin-top: 2.5rem; }
+.office + .office { margin-top: 3.5rem; }
 
+/* Sections carry the office, so they have to read as headings rather than
+   as another line of small print. Sticky keeps the office visible while
+   scrolling a long list, which is the case where a Georgia governor row and
+   a Georgia Senate row are easiest to confuse. */
 .office-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 1.75rem 0 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid var(--ink);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 3;
+}
+
+.office-count {
   font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: var(--ink-faint);
-  margin: 1.5rem 0 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--rule-strong);
+  text-transform: uppercase;
 }
 
 .office:first-child .office-title { margin-top: 1.25rem; }
@@ -158,6 +187,24 @@ h1 {
   text-align: right;
 }
 
+/* When both sources favour the same candidate, the name belongs above the
+   pair rather than repeated over each number. Printing "Crowley 81%
+   Crowley 69%" reads as a duplication bug even though both figures are
+   right. */
+.calls-agree { flex-direction: column; align-items: flex-end; gap: 0.15rem; }
+.calls-agree .agreed-name {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.calls-agree .agreed-figures {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1.1rem;
+}
+
 .call { display: flex; flex-direction: column; gap: 0.15rem; align-items: flex-end; }
 
 .call-name {
@@ -185,8 +232,25 @@ h1 {
 
 /* A race where the two sources name different winners is the most
    interesting thing this site can show, so it gets the one accent on the
-   page. Everything else stays quiet. */
-.race-split { border-left: 2px solid var(--flag); padding-left: 1rem; }
+   page. Everything else stays quiet.
+
+   It was a full-height left border, which worked when a row was three lines
+   tall. With a chart in the row it became a long vertical line running from
+   under the sticky heading to the floor, reading as a rendering artefact
+   rather than an accent. A short rule beside the race name marks the row
+   without drawing a shape the length of the viewport. */
+.race-split { padding-left: 1rem; position: relative; }
+
+.race-split::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  width: 2px;
+  height: 2.4rem;
+  background: var(--flag);
+  border-radius: 1px;
+}
 
 .split-note {
   font-family: var(--mono);

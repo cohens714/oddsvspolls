@@ -3,7 +3,7 @@
     "dem": "Katie Hobbs",
     "dem_short": "Hobbs",
     "kind": "governor",
-    "label": "Arizona governor",
+    "label": "Arizona",
     "rep": "Andy Biggs",
     "rep_short": "Biggs"
   },
@@ -11,7 +11,7 @@
     "dem": "Xavier Becerra",
     "dem_short": "Becerra",
     "kind": "governor",
-    "label": "California governor",
+    "label": "California",
     "rep": "Steve Hilton",
     "rep_short": "Hilton"
   },
@@ -19,7 +19,7 @@
     "dem": "David Jolly",
     "dem_short": "Jolly",
     "kind": "governor",
-    "label": "Florida governor",
+    "label": "Florida",
     "rep": "Byron Donalds",
     "rep_short": "Donalds"
   },
@@ -27,7 +27,7 @@
     "dem": "Keisha Lance Bottoms",
     "dem_short": "Bottoms",
     "kind": "governor",
-    "label": "Georgia governor",
+    "label": "Georgia",
     "rep": "Rick Jackson",
     "rep_short": "Jackson"
   },
@@ -35,7 +35,7 @@
     "dem": "JB Pritzker",
     "dem_short": "Pritzker",
     "kind": "governor",
-    "label": "Illinois governor",
+    "label": "Illinois",
     "rep": "Darren Bailey",
     "rep_short": "Bailey"
   },
@@ -43,7 +43,7 @@
     "dem": "Hannah Pingree",
     "dem_short": "Pingree",
     "kind": "governor",
-    "label": "Maine governor",
+    "label": "Maine",
     "rep": "Bobby Charles",
     "rep_short": "Charles"
   },
@@ -51,7 +51,7 @@
     "dem": "Jocelyn Benson",
     "dem_short": "Benson",
     "kind": "governor",
-    "label": "Michigan governor",
+    "label": "Michigan",
     "rep": "John James",
     "rep_short": "James"
   },
@@ -59,7 +59,7 @@
     "dem": "Amy Klobuchar",
     "dem_short": "Klobuchar",
     "kind": "governor",
-    "label": "Minnesota governor",
+    "label": "Minnesota",
     "rep": "Lisa Demuth",
     "rep_short": "Demuth"
   },
@@ -67,7 +67,7 @@
     "dem": "Cinde Warmington",
     "dem_short": "Warmington",
     "kind": "governor",
-    "label": "New Hampshire governor",
+    "label": "New Hampshire",
     "rep": "Kelly Ayotte",
     "rep_short": "Ayotte"
   },
@@ -75,7 +75,7 @@
     "dem": "Deb Haaland",
     "dem_short": "Haaland",
     "kind": "governor",
-    "label": "New Mexico governor",
+    "label": "New Mexico",
     "rep": "Greg Hull",
     "rep_short": "Hull"
   },
@@ -83,7 +83,7 @@
     "dem": "Aaron Ford",
     "dem_short": "Ford",
     "kind": "governor",
-    "label": "Nevada governor",
+    "label": "Nevada",
     "rep": "Joe Lombardo",
     "rep_short": "Lombardo"
   },
@@ -91,7 +91,7 @@
     "dem": "Kathy Hochul",
     "dem_short": "Hochul",
     "kind": "governor",
-    "label": "New York governor",
+    "label": "New York",
     "rep": "Bruce Blakeman",
     "rep_short": "Blakeman"
   },
@@ -99,7 +99,7 @@
     "dem": "Amy Acton",
     "dem_short": "Acton",
     "kind": "governor",
-    "label": "Ohio governor",
+    "label": "Ohio",
     "rep": "Vivek Ramaswamy",
     "rep_short": "Ramaswamy"
   },
@@ -107,7 +107,7 @@
     "dem": "Josh Shapiro",
     "dem_short": "Shapiro",
     "kind": "governor",
-    "label": "Pennsylvania governor",
+    "label": "Pennsylvania",
     "rep": "Stacy Garrity",
     "rep_short": "Garrity"
   },
@@ -115,7 +115,7 @@
     "dem": "Gina Hinojosa",
     "dem_short": "Hinojosa",
     "kind": "governor",
-    "label": "Texas governor",
+    "label": "Texas",
     "rep": "Greg Abbott",
     "rep_short": "Abbott"
   },
@@ -123,7 +123,7 @@
     "dem": "David Crowley",
     "dem_short": "Crowley",
     "kind": "governor",
-    "label": "Wisconsin governor",
+    "label": "Wisconsin",
     "rep": "Tom Tiffany",
     "rep_short": "Tiffany"
   },

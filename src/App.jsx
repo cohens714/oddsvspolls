@@ -83,8 +83,9 @@ export default function App() {
         <p className="eyebrow">oddsvspolls.com</p>
         <h1>Where the markets and the polls disagree</h1>
         <p className="lede">
-          Prediction market prices for the 2026 Senate races, next to what the
-          polling implies. Updated daily, sorted by disagreement.
+          Prediction market prices for the 2026 Senate and governor races,
+          next to what the polling implies. Updated daily, sorted by
+          disagreement.
           {splits.length > 0 && (
             <> Right now the two sources name{' '}
               <strong>different winners in {splits.length}{' '}
@@ -107,14 +108,23 @@ export default function App() {
               <span className="key"><i className="swatch swatch-market" /> polymarket</span>
               <span className="key"><i className="swatch swatch-kalshi" /> kalshi</span>
               <span className="key"><i className="swatch swatch-poll" /> polls</span>
+              {/* The split marker is only decodable with a key. Without one
+                  a red rule appears beside some races and not others with
+                  nothing on the page explaining why. */}
+              <span className="key">
+                <i className="swatch-rule" /> sources name different winners
+              </span>
               <span className="key key-muted">chance the Democrat wins</span>
             </div>
 
             {groups.map((group) => (
             <section key={group.key} className="office">
-              {groups.length > 1 && (
-                <h2 className="office-title">{group.title}</h2>
-              )}
+              <h2 className="office-title">
+                <span>{group.title}</span>
+                <span className="office-count">
+                  {group.races.length} races
+                </span>
+              </h2>
             <ol className="races">
               {group.races.map((race) => {
                 const m = call(race.market, race)
@@ -133,27 +143,48 @@ export default function App() {
                           </span>
                         )}
                       </div>
-                      <div className="calls">
-                        <span className="call">
-                          <span className="call-name">{m.name}</span>
-                          <span className="call-pct call-market">
-                            {m.pct.toFixed(0)}<span className="pct">%</span>
+                      {p && p.name === m.name ? (
+                        // Both sources favour the same candidate, so the
+                        // name goes above the pair. Printing "Crowley 81%
+                        // Crowley 69%" reads as a duplication bug even
+                        // though both figures are right.
+                        <div className="calls calls-agree">
+                          <span className="agreed-name">{m.name}</span>
+                          <span className="agreed-figures">
+                            <span className="call-pct call-market">
+                              {m.clamped && <span className="gt">&gt;</span>}
+                              {m.pct.toFixed(0)}<span className="pct">%</span>
+                            </span>
+                            <span className="call-pct call-poll">
+                              {p.clamped && <span className="gt">&gt;</span>}
+                              {p.pct.toFixed(0)}<span className="pct">%</span>
+                            </span>
                           </span>
-                        </span>
-                        <span className="call">
-                          {p ? (
-                            <>
-                              <span className="call-name">{p.name}</span>
-                              <span className="call-pct call-poll">
-                                {p.clamped && <span className="gt">&gt;</span>}
-                                {p.pct.toFixed(0)}<span className="pct">%</span>
-                              </span>
-                            </>
-                          ) : (
-                            <span className="call-none">no polls</span>
-                          )}
-                        </span>
-                      </div>
+                        </div>
+                      ) : (
+                        <div className="calls">
+                          <span className="call">
+                            <span className="call-name">{m.name}</span>
+                            <span className="call-pct call-market">
+                              {m.clamped && <span className="gt">&gt;</span>}
+                              {m.pct.toFixed(0)}<span className="pct">%</span>
+                            </span>
+                          </span>
+                          <span className="call">
+                            {p ? (
+                              <>
+                                <span className="call-name">{p.name}</span>
+                                <span className="call-pct call-poll">
+                                  {p.clamped && <span className="gt">&gt;</span>}
+                                  {p.pct.toFixed(0)}<span className="pct">%</span>
+                                </span>
+                              </>
+                            ) : (
+                              <span className="call-none">no polls</span>
+                            )}
+                          </span>
+                        </div>
+                      )}
                     </div>
 
                     {race.splitCall && (
