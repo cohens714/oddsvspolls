@@ -203,6 +203,20 @@ export default function App() {
                               {p.pct.toFixed(0)}<span className="pct">%</span>
                             </span>
                           </span>
+                          {race.poll !== null && (
+                            <span className="gap-line">
+                              {/* On a split call the two figures above name
+                                  different candidates, so no arithmetic on
+                                  them yields this number. Naming the
+                                  candidate it is measured on makes it
+                                  checkable rather than looking wrong. */}
+                              {Math.abs(race.gap)} pt
+                              {Math.abs(race.gap) === 1 ? '' : 's'} apart
+                              {race.splitCall && race.demShort
+                                ? ` on ${race.demShort}`
+                                : ''}
+                            </span>
+                          )}
                         </div>
                       ) : (
                         <div className="calls">
@@ -226,6 +240,20 @@ export default function App() {
                               <span className="call-none">no polls</span>
                             )}
                           </span>
+                          {race.poll !== null && (
+                            <span className="gap-line">
+                              {/* On a split call the two figures above name
+                                  different candidates, so no arithmetic on
+                                  them yields this number. Naming the
+                                  candidate it is measured on makes it
+                                  checkable rather than looking wrong. */}
+                              {Math.abs(race.gap)} pt
+                              {Math.abs(race.gap) === 1 ? '' : 's'} apart
+                              {race.splitCall && race.demShort
+                                ? ` on ${race.demShort}`
+                                : ''}
+                            </span>
+                          )}
                         </div>
                       )}
                     </div>
@@ -236,19 +264,7 @@ export default function App() {
                       </p>
                     )}
 
-                    {race.poll !== null && (
-                      <p className="gap-line">
-                        {/* On a split call the two figures above name
-                            different candidates, so no arithmetic on them
-                            yields this number. Naming the candidate it is
-                            measured on makes it checkable. */}
-                        {Math.abs(race.gap)} pt
-                        {Math.abs(race.gap) === 1 ? '' : 's'} apart
-                        {race.splitCall && race.demShort
-                          ? ` on ${race.demShort}`
-                          : ''}
-                      </p>
-                    )}
+
 
                     <History series={race.series}
                              label={race.label || race.race_id}
