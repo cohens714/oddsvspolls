@@ -1,4 +1,132 @@
 {
+  "2026-gov-AZ": {
+    "dem": "Katie Hobbs",
+    "dem_short": "Hobbs",
+    "kind": "governor",
+    "label": "Arizona governor",
+    "rep": "Andy Biggs",
+    "rep_short": "Biggs"
+  },
+  "2026-gov-CA": {
+    "dem": "Xavier Becerra",
+    "dem_short": "Becerra",
+    "kind": "governor",
+    "label": "California governor",
+    "rep": "Steve Hilton",
+    "rep_short": "Hilton"
+  },
+  "2026-gov-FL": {
+    "dem": "David Jolly",
+    "dem_short": "Jolly",
+    "kind": "governor",
+    "label": "Florida governor",
+    "rep": "Byron Donalds",
+    "rep_short": "Donalds"
+  },
+  "2026-gov-GA": {
+    "dem": "Keisha Lance Bottoms",
+    "dem_short": "Bottoms",
+    "kind": "governor",
+    "label": "Georgia governor",
+    "rep": "Rick Jackson",
+    "rep_short": "Jackson"
+  },
+  "2026-gov-IL": {
+    "dem": "JB Pritzker",
+    "dem_short": "Pritzker",
+    "kind": "governor",
+    "label": "Illinois governor",
+    "rep": "Darren Bailey",
+    "rep_short": "Bailey"
+  },
+  "2026-gov-ME": {
+    "dem": "Hannah Pingree",
+    "dem_short": "Pingree",
+    "kind": "governor",
+    "label": "Maine governor",
+    "rep": "Bobby Charles",
+    "rep_short": "Charles"
+  },
+  "2026-gov-MI": {
+    "dem": "Jocelyn Benson",
+    "dem_short": "Benson",
+    "kind": "governor",
+    "label": "Michigan governor",
+    "rep": "John James",
+    "rep_short": "James"
+  },
+  "2026-gov-MN": {
+    "dem": "Amy Klobuchar",
+    "dem_short": "Klobuchar",
+    "kind": "governor",
+    "label": "Minnesota governor",
+    "rep": "Lisa Demuth",
+    "rep_short": "Demuth"
+  },
+  "2026-gov-NH": {
+    "dem": "Cinde Warmington",
+    "dem_short": "Warmington",
+    "kind": "governor",
+    "label": "New Hampshire governor",
+    "rep": "Kelly Ayotte",
+    "rep_short": "Ayotte"
+  },
+  "2026-gov-NM": {
+    "dem": "Deb Haaland",
+    "dem_short": "Haaland",
+    "kind": "governor",
+    "label": "New Mexico governor",
+    "rep": "Greg Hull",
+    "rep_short": "Hull"
+  },
+  "2026-gov-NV": {
+    "dem": "Aaron Ford",
+    "dem_short": "Ford",
+    "kind": "governor",
+    "label": "Nevada governor",
+    "rep": "Joe Lombardo",
+    "rep_short": "Lombardo"
+  },
+  "2026-gov-NY": {
+    "dem": "Kathy Hochul",
+    "dem_short": "Hochul",
+    "kind": "governor",
+    "label": "New York governor",
+    "rep": "Bruce Blakeman",
+    "rep_short": "Blakeman"
+  },
+  "2026-gov-OH": {
+    "dem": "Amy Acton",
+    "dem_short": "Acton",
+    "kind": "governor",
+    "label": "Ohio governor",
+    "rep": "Vivek Ramaswamy",
+    "rep_short": "Ramaswamy"
+  },
+  "2026-gov-PA": {
+    "dem": "Josh Shapiro",
+    "dem_short": "Shapiro",
+    "kind": "governor",
+    "label": "Pennsylvania governor",
+    "rep": "Stacy Garrity",
+    "rep_short": "Garrity"
+  },
+  "2026-gov-TX": {
+    "dem": "Gina Hinojosa",
+    "dem_short": "Hinojosa",
+    "kind": "governor",
+    "label": "Texas governor",
+    "rep": "Greg Abbott",
+    "rep_short": "Abbott"
+  },
+  "2026-gov-WI": {
+    "dem": "David Crowley",
+    "dem_short": "Crowley",
+    "kind": "governor",
+    "label": "Wisconsin governor",
+    "rep": "Tom Tiffany",
+    "rep_short": "Tiffany"
+  },
   "2026-house-control": {
     "dem": "Democrats",
     "dem_short": "Dem",

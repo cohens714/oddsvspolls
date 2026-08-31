@@ -30,9 +30,12 @@ RACES_JSON = HERE / "races.json"
 OUT = DATA / "race_meta.json"
 
 STATE_NAMES = {
-    "AK": "Alaska", "GA": "Georgia", "IA": "Iowa", "KS": "Kansas",
+    "AK": "Alaska", "AZ": "Arizona", "CA": "California", "FL": "Florida",
+    "GA": "Georgia", "IA": "Iowa", "IL": "Illinois", "KS": "Kansas",
     "ME": "Maine", "MI": "Michigan", "MN": "Minnesota", "NC": "North Carolina",
-    "NE": "Nebraska", "NH": "New Hampshire", "OH": "Ohio", "TX": "Texas",
+    "NE": "Nebraska", "NH": "New Hampshire", "NM": "New Mexico",
+    "NV": "Nevada", "NY": "New York", "OH": "Ohio", "PA": "Pennsylvania",
+    "TX": "Texas", "WI": "Wisconsin",
 }
 
 # Races that are not a two-candidate contest, so they carry a label but no
@@ -64,11 +67,16 @@ def build():
             "rep_short": "Rep",
         }
 
-    for race_id, (subject, dem, rep) in RACES.items():
+    for race_id, (subject, dem, rep, poll_type) in RACES.items():
         code = race_id.split("-")[-1]
+        state = STATE_NAMES.get(code, code)
+        kind = "governor" if poll_type == "governor" else "senate"
+        # Georgia has both a Senate and a governor race, so the state name
+        # alone is ambiguous once governors are collected.
+        label = f"{state} governor" if kind == "governor" else state
         meta[race_id] = {
-            "label": STATE_NAMES.get(code, code),
-            "kind": "senate",
+            "label": label,
+            "kind": kind,
             "dem": dem,
             "rep": rep,
             "dem_short": surname(dem),

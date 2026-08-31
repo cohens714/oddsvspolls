@@ -26,7 +26,13 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from fetch_polls_votehub import RACES as POLL_RACES  # noqa: E402
+
 GAMMA_EVENTS = "https://gamma-api.polymarket.com/events"
+# Governor races are looked up per market rather than per event, because
+# their markets name candidates rather than parties.
+GAMMA_MARKETS = "https://gamma-api.polymarket.com/markets"
 USER_AGENT = "oddsvspolls.com data collector (+https://oddsvspolls.com)"
 TIMEOUT = 30
 OUT = Path(__file__).resolve().parent / "races.json"
@@ -52,6 +58,32 @@ DEFAULT_STATES = {
     "NE": "nebraska",
     "KS": "kansas",
 }
+
+# Governor races. Polymarket names these events the same way as Senate
+# races, substituting the office, so the same discovery works for both.
+#
+# Worth collecting because sigma was fitted on Senate races alone. If the
+# calibration holds for governors too the claim is far stronger, and if it
+# does not, that is a finding rather than a failure.
+GOVERNOR_STATES = {
+    "GA": "georgia",
+    "AZ": "arizona",
+    "NV": "nevada",
+    "WI": "wisconsin",
+    "PA": "pennsylvania",
+    "MI": "michigan",
+    "ME": "maine",
+    "NH": "new-hampshire",
+    "OH": "ohio",
+    "TX": "texas",
+    "FL": "florida",
+    "MN": "minnesota",
+    "NM": "new-mexico",
+    "IL": "illinois",
+    "NY": "new-york",
+    "CA": "california",
+}
+
 
 # Control markets, which live under their own event slugs.
 CONTROL = [
@@ -85,6 +117,49 @@ def get_json(url, params=None):
         return None
 
 
+def slugify(name: str) -> str:
+    """Polymarket's slug form of a candidate name: lowercase, hyphenated,
+    punctuation dropped. 'Keisha Lance Bottoms' -> keisha-lance-bottoms."""
+    out = []
+    for ch in name.lower():
+        if ch.isalnum():
+            out.append(ch)
+        elif ch in " -":
+            out.append("-")
+        # apostrophes and periods vanish rather than becoming hyphens:
+        # O'Rourke is orourke, not o-rourke.
+    slug = "".join(out)
+    while "--" in slug:
+        slug = slug.replace("--", "-")
+    return slug.strip("-")
+
+
+def find_market_by_slug(slug: str):
+    """Fetch one market directly by its slug. Returns (slug, price) or None.
+
+    Governor races need this because they are structured per candidate
+    rather than per party: California alone carries twenty markets, one for
+    each person who might win, most sitting at 0.001. There is no "will the
+    Democrats win" market to look for, so the nominee's own market is the
+    party's probability.
+    """
+    payload = get_json(GAMMA_MARKETS, {"slug": slug})
+    if not isinstance(payload, list) or not payload:
+        return None
+    m = payload[0]
+    if m.get("closed"):
+        return None
+    prices = m.get("outcomePrices")
+    if isinstance(prices, str):
+        try:
+            prices = json.loads(prices)
+        except json.JSONDecodeError:
+            return None
+    if not prices:
+        return None
+    return m.get("slug"), float(prices[0])
+
+
 def find_market(event_slug: str, needle: str):
     """Return (market_slug, price) for the market whose question contains
     needle. Returns None if the event or market does not exist."""
@@ -112,8 +187,9 @@ def find_market(event_slug: str, needle: str):
     return None
 
 
-def build(states: dict) -> tuple[list, list]:
+def build(states: dict, governors: dict = None) -> tuple[list, list]:
     found, missing = [], []
+    governors = governors or {}
 
     for spec in CONTROL:
         print(f"  {spec['race_id']:<22}", end=" ")
@@ -140,6 +216,26 @@ def build(states: dict) -> tuple[list, list]:
         print(f"  {race_id:<22}", end=" ")
         hit = find_market(f"{name}-senate-election-winner",
                           f"democrats win the {name.replace('-', ' ')} senate")
+        # Event slugs are not uniform, so try the party market slug directly.
+        if not hit:
+            for pattern in (
+                f"will-the-democrats-win-the-{name}-senate-race-in-{CYCLE}",
+                f"will-the-democrat-win-the-{name}-senate-race-in-{CYCLE}",
+            ):
+                hit = find_market_by_slug(pattern)
+                if hit:
+                    break
+
+        # Some races are listed per candidate rather than per party. Alaska
+        # is the example: ranked-choice voting means there is no clean
+        # two-party question, so every candidate gets a market and the
+        # nominee's own price is the party's probability.
+        if not hit:
+            entry = POLL_RACES.get(race_id)
+            dem = entry[1] if entry else None
+            if dem:
+                hit = find_market_by_slug(
+                    f"will-{slugify(dem)}-win-the-{name}-senate-race-in-{CYCLE}")
         if not hit:
             print("not found")
             missing.append(race_id)
@@ -157,6 +253,63 @@ def build(states: dict) -> tuple[list, list]:
             "kalshi_yes_means": "DEM",
         })
 
+    for code, name in governors.items():
+        race_id = f"{CYCLE}-gov-{code}"
+        print(f"  {race_id:<22}", end=" ")
+
+        readable = name.replace("-", " ")
+
+        # Most governor races use the same party-based structure as Senate
+        # races, with the event slug '<state>-governor-winner-2026'. The
+        # market slug mirrors the Senate one with the office swapped.
+        hit = find_market_by_slug(
+            f"will-the-democrats-win-the-{name}-governor-race-in-{CYCLE}")
+
+        # Arizona uses the singular. Note its slug says "democrat" while
+        # the question text says "Democrats", so the two do not agree even
+        # within one market and neither can be derived from the other.
+        if not hit:
+            for pattern in (
+                f"will-the-democrat-win-the-{name}-governor-race-in-{CYCLE}",
+                f"will-the-democratic-party-win-the-{name}-governor-race-in-{CYCLE}",
+            ):
+                hit = find_market_by_slug(pattern)
+                if hit:
+                    break
+
+        # A handful of open seats with crowded fields are listed per
+        # candidate instead, California being the example. There the
+        # nominee's own market is the party's probability.
+        if not hit:
+            entry = POLL_RACES.get(race_id)
+            dem = entry[1] if entry else None
+            if dem:
+                for pattern in (
+                    f"will-{slugify(dem)}-win-the-{name}-governor-race-in-{CYCLE}",
+                    f"will-{slugify(dem)}-win-the-{name}-governor-election-in-{CYCLE}",
+                ):
+                    hit = find_market_by_slug(pattern)
+                    if hit:
+                        break
+
+        if not hit:
+            print("not found")
+            missing.append(race_id)
+            continue
+
+        slug, price = hit
+        print(f"{price:.3f}")
+        found.append({
+            "race_id": race_id,
+            "office": "governor",
+            "state": code,
+            "yes_side": "DEM",
+            "polymarket_slug": slug,
+            "polymarket_outcome": "Yes",
+            "kalshi_ticker": None,
+            "kalshi_yes_means": "DEM",
+        })
+
     return found, missing
 
 
@@ -164,6 +317,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true", help="overwrite races.json")
     ap.add_argument("--states", nargs="*", help="state codes, e.g. GA MI NC")
+    ap.add_argument("--no-governors", action="store_true",
+                    help="Senate races only")
     args = ap.parse_args()
 
     states = DEFAULT_STATES
@@ -174,8 +329,10 @@ def main():
                      f"DEFAULT_STATES with their Polymarket slug name.")
         states = {s.upper(): DEFAULT_STATES[s.upper()] for s in args.states}
 
-    print(f"Discovering {len(states)} states plus {len(CONTROL)} control markets\n")
-    found, missing = build(states)
+    governors = {} if args.no_governors else GOVERNOR_STATES
+    print(f"Discovering {len(states)} Senate, {len(governors)} governor, "
+          f"{len(CONTROL)} control markets\n")
+    found, missing = build(states, governors)
 
     print(f"\n{len(found)} found, {len(missing)} missing")
     if missing:

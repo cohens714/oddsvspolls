@@ -158,9 +158,12 @@ def markets_in(series_ticker, status=None):
 # State names as they appear in Kalshi series titles, keyed by the race_id
 # suffix used everywhere else in this project.
 STATE_NAMES = {
-    "AK": "alaska", "GA": "georgia", "IA": "iowa", "KS": "kansas",
+    "AK": "alaska", "AZ": "arizona", "CA": "california", "FL": "florida",
+    "GA": "georgia", "IA": "iowa", "IL": "illinois", "KS": "kansas",
     "ME": "maine", "MI": "michigan", "MN": "minnesota", "NC": "north carolina",
-    "NE": "nebraska", "NH": "new hampshire", "OH": "ohio", "TX": "texas",
+    "NE": "nebraska", "NH": "new hampshire", "NM": "new mexico",
+    "NV": "nevada", "NY": "new york", "OH": "ohio", "PA": "pennsylvania",
+    "TX": "texas", "WI": "wisconsin",
 }
 
 
@@ -185,6 +188,58 @@ def write_config(mapping):
     return changed
 
 
+CYCLE_SUFFIX = "26"
+
+
+def cycle_matches(ticker, close_time):
+    """True if this market belongs to the 2026 cycle.
+
+    Checks the ticker's cycle segment first, and falls back to the close
+    time for tickers that do not carry one. A 2026 race settles once the
+    winner is sworn in, so close dates land in late 2026 or 2027.
+    """
+    parts = str(ticker).upper().split("-")
+    for part in parts[1:]:
+        # Segments look like 26, 28, 26NOV03, 26AUG18.
+        if len(part) >= 2 and part[:2].isdigit():
+            return part[:2] == CYCLE_SUFFIX
+
+    close = str(close_time or "")[:4]
+    return close in ("2026", "2027") if close.isdigit() else True
+
+
+def resolves_on_general(ticker):
+    """True only if the market settles on winning the seat.
+
+    Title matching is not enough and has now failed twice on the same
+    contract. KXSENATENHD is titled "New Hampshire Democratic Senate
+    nominee": it names the state, the office and the right candidate, and
+    reads as a race market. Its rules say it resolves on winning the
+    nomination.
+
+    rules_primary states the resolution condition in plain language and is
+    the only field that distinguishes these reliably. One extra request per
+    candidate market is worth it to avoid silently collecting a primary as
+    though it were a general.
+    """
+    if not ticker:
+        return False
+    payload = get(f"/markets/{ticker}", quiet=True)
+    m = (payload or {}).get("market") or {}
+    rules = str(m.get("rules_primary", "")).lower()
+    if not rules:
+        return True          # nothing to judge on; fall back to the title
+
+    # Reject only on known-bad wording. An earlier version also required a
+    # whitelist phrase ("sworn in", "elected") and rejected fifteen valid
+    # races whose rules simply worded it differently. The asymmetry matters:
+    # a missed market costs one race's data, while a wrongly accepted one
+    # silently publishes a primary as though it were a general election.
+    disqualifying = ("nomination", "nominee", "primary", "endorse",
+                     "convention", "caucus", "lieutenant")
+    return not any(w in rules for w in disqualifying)
+
+
 def map_races(write=False):
     """Find the Kalshi ticker for each race's Democratic candidate.
 
@@ -207,9 +262,10 @@ def map_races(write=False):
     print(f"scanning {len(series)} series\n")
 
     results = {}
-    for race_id, (subject, dem, rep) in sorted(RACES.items()):
+    for race_id, (subject, dem, rep, poll_type) in sorted(RACES.items()):
         code = race_id.split("-")[-1]
         state = STATE_NAMES.get(code)
+        office = "governor" if poll_type == "governor" else "senate"
         if not state or not dem:
             print(f"  {race_id:<22} skipped (no state or nominee configured)")
             continue
@@ -220,17 +276,24 @@ def map_races(write=False):
         for s in series:
             title = str(s.get("title", "")).lower()
             tick = str(s.get("ticker", ""))
-            if state not in title or "senate" not in title:
+            if state not in title or office not in title:
                 continue
             # Reject anything that is not "who wins this seat". Alaska
             # matched an endorsement market on the first pass: its title
             # named the state, the chamber and the candidate, and looked
             # identical in structure to a real race market.
+            # "lieutenant" and "lt gov" matter because "governor" is a
+            # substring of both: Georgia matched KXLTGOVGA, the Lieutenant
+            # Governor series, on the office check.
             if any(w in title for w in (
                     "primary", "combo", "margin", "advancer", "nomination",
-                    "round", "matchup", "outright", "endorse", "approval",
-                    "poll", "concede", "recount", "turnout", "call",
-                    "resign", "retire", "run for", "announce")):
+                    "nominee", "round", "matchup", "outright", "endorse",
+                    "approval", "poll", "concede", "recount", "turnout",
+                    "call", "resign", "retire", "run for", "announce",
+                    "lieutenant", "lt gov", "lt. gov")):
+                continue
+            # Same trap in the ticker, which the title check cannot see.
+            if "LTGOV" in tick.upper():
                 continue
             cands.append((tick, s.get("title")))
 
@@ -245,12 +308,33 @@ def map_races(write=False):
                        quiet=True)
             for m in (resp or {}).get("markets") or []:
                 sub = str(m.get("yes_sub_title", "")).lower()
-                if surname not in sub:
+                mticker = str(m.get("ticker", ""))
+
+                # Most series name the candidate in yes_sub_title, but some
+                # name the party instead: New Hampshire's SENATENH-26-D
+                # reads "Democratic party" where Georgia's reads "Jon
+                # Ossoff". Accept either, and for the party form require the
+                # ticker's own -D suffix so the Republican market with its
+                # mirror-image wording cannot match.
+                by_name = surname in sub
+                by_party = (("democrat" in sub or "democratic" in sub)
+                            and mticker.upper().endswith("-D"))
+                if not (by_name or by_party):
+                    continue
+
+                # A series can hold several cycles at once: SENATENH carries
+                # -26- and -28- side by side, and the party wording is
+                # identical in both. Without this the 2028 contract is as
+                # good a match as the 2026 one, and which you get depends on
+                # response ordering.
+                if not cycle_matches(mticker, m.get("close_time")):
                     continue
                 # A market for a race two months out must still be trading.
                 # Anything already finalised is a different question that
                 # happens to mention the same candidate.
                 if str(m.get("status")) in ("finalized", "determined"):
+                    continue
+                if not resolves_on_general(m.get("ticker")):
                     continue
                 hit = (m.get("ticker"), m.get("yes_sub_title"), tick,
                        m.get("status"))

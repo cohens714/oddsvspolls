@@ -48,7 +48,7 @@
       "yes_side": "DEM",
       "polymarket_slug": "will-the-democrats-win-the-michigan-senate-race-in-2026",
       "polymarket_outcome": "Yes",
-      "kalshi_ticker": "SENATEMI-26-D",
+      "kalshi_ticker": "KXMISENATE-26-AELS",
       "kalshi_yes_means": "DEM"
     },
     {
@@ -98,7 +98,7 @@
       "yes_side": "DEM",
       "polymarket_slug": "will-the-democrats-win-the-iowa-senate-race-in-2026",
       "polymarket_outcome": "Yes",
-      "kalshi_ticker": "SENATEIA-26-D",
+      "kalshi_ticker": "KXIASENATE-26-JTUR",
       "kalshi_yes_means": "DEM"
     },
     {
@@ -108,7 +108,7 @@
       "yes_side": "DEM",
       "polymarket_slug": "will-the-democrats-win-the-new-hampshire-senate-race-in-2026",
       "polymarket_outcome": "Yes",
-      "kalshi_ticker": "KXSENATENHD-26-CPAP",
+      "kalshi_ticker": "SENATENH-26-D",
       "kalshi_yes_means": "DEM"
     },
     {
@@ -119,6 +119,16 @@
       "polymarket_slug": "will-the-democrats-win-the-minnesota-senate-race-in-2026",
       "polymarket_outcome": "Yes",
       "kalshi_ticker": "SENATEMN-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-senate-AK",
+      "office": "senate",
+      "state": "AK",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-mary-peltola-win-the-alaska-senate-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "SENATEAK-26-D",
       "kalshi_yes_means": "DEM"
     },
     {
@@ -139,6 +149,166 @@
       "polymarket_slug": "will-the-democrats-win-the-kansas-senate-race-in-2026",
       "polymarket_outcome": "Yes",
       "kalshi_ticker": "SENATEKS-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-GA",
+      "office": "governor",
+      "state": "GA",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-georgia-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYGA-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-AZ",
+      "office": "governor",
+      "state": "AZ",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrat-win-the-arizona-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYAZ-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-NV",
+      "office": "governor",
+      "state": "NV",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-nevada-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYNV-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-WI",
+      "office": "governor",
+      "state": "WI",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-wisconsin-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYWI-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-PA",
+      "office": "governor",
+      "state": "PA",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-pennsylvania-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYPA-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-MI",
+      "office": "governor",
+      "state": "MI",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-michigan-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYMI-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-ME",
+      "office": "governor",
+      "state": "ME",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-maine-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYME-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-NH",
+      "office": "governor",
+      "state": "NH",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-new-hampshire-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": null,
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-OH",
+      "office": "governor",
+      "state": "OH",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-ohio-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYOH-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-TX",
+      "office": "governor",
+      "state": "TX",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-texas-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYTX-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-FL",
+      "office": "governor",
+      "state": "FL",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-florida-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYFL-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-MN",
+      "office": "governor",
+      "state": "MN",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-minnesota-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYMN-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-NM",
+      "office": "governor",
+      "state": "NM",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-new-mexico-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYNM-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-IL",
+      "office": "governor",
+      "state": "IL",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-illinois-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYIL-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-NY",
+      "office": "governor",
+      "state": "NY",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-new-york-governor-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "GOVPARTYNY-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
+      "race_id": "2026-gov-CA",
+      "office": "governor",
+      "state": "CA",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-xavier-becerra-win-the-california-governor-election-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "KXGOVCA-26-XBEC",
       "kalshi_yes_means": "DEM"
     }
   ]

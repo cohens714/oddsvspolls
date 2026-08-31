@@ -48,6 +48,19 @@ function num(v) {
   return Number.isFinite(n) ? n : null
 }
 
+// No forecast should display as 0% or 100%. Those are claims of certainty,
+// and a model resting on a handful of polls two months out has no business
+// making one. Pennsylvania at 99.96% rounds to 100% and reads as "this
+// cannot happen", which is both wrong and the kind of number people
+// screenshot. The stored value is untouched; only the display is clamped.
+export const DISPLAY_FLOOR = 0.01
+export const DISPLAY_CEIL = 0.99
+
+export function forDisplay(p) {
+  if (p === null || p === undefined) return p
+  return Math.min(Math.max(p, DISPLAY_FLOOR), DISPLAY_CEIL)
+}
+
 // Venue strings carry a '-backfill' suffix for rows pulled from a venue's
 // own history rather than observed live. Split them so the two can be told
 // apart: backfilled rows are the venue's aggregation, not a request we made

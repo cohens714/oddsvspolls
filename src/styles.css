@@ -98,6 +98,24 @@ h1 {
 .swatch-poll { background: var(--poll); }
 .swatch-kalshi { background: var(--kalshi); }
 
+/* ---------- office sections ---------- */
+
+.office + .office { margin-top: 2.5rem; }
+
+.office-title {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 1.5rem 0 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.office:first-child .office-title { margin-top: 1.25rem; }
+
 /* ---------- race rows ---------- */
 
 .races { list-style: none; margin: 0; padding: 0; }
@@ -163,6 +181,7 @@ h1 {
 .call-none { color: var(--ink-faint); font-size: 0.8rem; font-style: italic; }
 
 .pct { font-size: 0.78rem; margin-left: 0.08em; opacity: 0.55; }
+.gt { font-size: 0.78rem; margin-right: 0.04em; opacity: 0.55; }
 
 /* A race where the two sources name different winners is the most
    interesting thing this site can show, so it gets the one accent on the

@@ -1,0 +1,83 @@
+name: Check config drift
+
+# Weekly. The configuration this checks is hand-maintained: nominee names,
+# Polymarket slugs, Kalshi tickers. All of it goes stale silently, because a
+# wrong nominee still produces a plausible-looking number rather than an
+# error.
+#
+# Two real failures in one afternoon motivated this. Maine kept polling a
+# candidate who had withdrawn, and New Hampshire pointed at a Kalshi market
+# on the Democratic nomination rather than the general election. Both were
+# found by eye. Neither would have been caught by any test.
+#
+# Deliberately: this NEVER edits configuration. It opens an issue and a
+# person decides. An automated fix here would pick the most-polled
+# candidates, which in Maine means picking the man who dropped out.
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run drift check
+        id: check
+        working-directory: analysis
+        run: |
+          set +e
+          python3 check_drift.py --markdown > "$RUNNER_TEMP/drift.md"
+          echo "found=$?" >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/drift.md"
+
+      - name: Open or update an issue
+        if: steps.check.outputs.found == '1'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const body = fs.readFileSync(process.env.RUNNER_TEMP + '/drift.md', 'utf8')
+            const title = 'Config drift detected'
+
+            // Reuse one open issue rather than filing a new one weekly.
+            // Nothing gets ignored faster than a repeating notification.
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'drift',
+            })
+
+            const stamped = `_Checked ${new Date().toISOString().slice(0, 16)} UTC_\n\n${body}`
+
+            if (existing.data.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body: stamped,
+              })
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: stamped,
+                labels: ['drift'],
+              })
+            }

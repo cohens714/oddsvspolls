@@ -55,35 +55,85 @@ SAMPLE_CAP = 1500
 # wrong or missing name means the poll is skipped rather than mis-assigned.
 # Verify each against --sample output before trusting a race, and update
 # when a nominee changes.
+# race_id -> (VoteHub subject, Democratic nominee, Republican nominee, poll_type)
+#
+# The candidate names are load-bearing. Answers are labelled by name, so a
+# wrong name means the poll is skipped, and a name belonging to someone no
+# longer running means polls of a race that will never happen get averaged
+# in as though they were real.
+#
+# Do NOT pick the two most-polled names. Maine is the standing example:
+# Platner had 20 polls to Jackson's 3, but Platner won the June primary and
+# withdrew in July, and Jackson replaced him. The most recent field date is
+# the reliable signal, not the count.
+#
+# Governor races share every mechanism with Senate races and differ only in
+# poll_type, so they live in the same table. Leave a race's candidates as
+# None until both nominees are settled: it will skip itself rather than
+# collect a matchup that never happens. Fill them in with
+#     python3 fetch_polls_votehub.py --labels
 RACES = {
-    # (VoteHub subject, Democratic nominee, Republican nominee)
+    # --- Senate ---
+    "2026-senate-GA": ("2026 Georgia", "Jon Ossoff", "Mike Collins", "us-senator"),
+    "2026-senate-MI": ("2026 Michigan", "Abdul El-Sayed", "Mike Rogers", "us-senator"),
+    "2026-senate-NC": ("2026 North Carolina", "Roy Cooper", "Michael Whatley", "us-senator"),
+    "2026-senate-ME": ("2026 Maine", "Troy Jackson", "Susan Collins", "us-senator"),
+    "2026-senate-OH": ("2026 Ohio", "Sherrod Brown", "Jon Husted", "us-senator"),
+    "2026-senate-TX": ("2026 Texas", "James Talarico", "Ken Paxton", "us-senator"),
+    "2026-senate-IA": ("2026 Iowa", "Josh Turek", "Ashley Hinson", "us-senator"),
+    "2026-senate-NH": ("2026 New Hampshire", "Chris Pappas", "John Sununu", "us-senator"),
+    "2026-senate-MN": ("2026 Minnesota", "Peggy Flanagan", "Michele Tafoya", "us-senator"),
+    "2026-senate-AK": ("2026 Alaska", "Mary Peltola", "Dan Sullivan", "us-senator"),
+    "2026-senate-KS": ("2026 Kansas", "Adam Hamilton", "Roger Marshall", "us-senator"),
+
+    # --- Governor ---
     #
-    # Names are load-bearing. Answers are labelled by candidate, so a wrong
-    # name means polls are skipped, and a name belonging to a candidate who
-    # is no longer running means polls of a race that will never happen get
-    # averaged in as though they were real.
+    # Worth collecting for a reason beyond volume: sigma was fitted on
+    # Senate races, and gubernatorial polling has its own error profile. If
+    # the calibration holds across both offices that is a much stronger
+    # claim than Senate alone, and if it does not, that is worth knowing
+    # before November rather than after.
     #
-    # Do NOT pick the two most-polled names. Maine is the cautionary case:
-    # Platner has 20 polls to Jackson's 3, but Platner won the June primary
-    # and withdrew in July, and Jackson was named as the replacement. The
-    # most recent field date is the reliable signal, not the count.
+    # Candidates are unset until confirmed. Run --labels to see who is
+    # actually being polled in each.
+    # Unambiguous: both candidates lead their race's polling by a wide
+    # margin and share the most recent field date.
+    "2026-gov-AZ": ("2026 Arizona", "Katie Hobbs", "Andy Biggs", "governor"),
+    "2026-gov-PA": ("2026 Pennsylvania", "Josh Shapiro", "Stacy Garrity", "governor"),
+    "2026-gov-MI": ("2026 Michigan", "Jocelyn Benson", "John James", "governor"),
+    "2026-gov-OH": ("2026 Ohio", "Amy Acton", "Vivek Ramaswamy", "governor"),
+    "2026-gov-TX": ("2026 Texas", "Gina Hinojosa", "Greg Abbott", "governor"),
+    "2026-gov-FL": ("2026 Florida", "David Jolly", "Byron Donalds", "governor"),
+    "2026-gov-NY": ("2026 New York", "Kathy Hochul", "Bruce Blakeman", "governor"),
+    "2026-gov-NV": ("2026 Nevada", "Aaron Ford", "Joe Lombardo", "governor"),
+    "2026-gov-CA": ("2026 California", "Xavier Becerra", "Steve Hilton", "governor"),
+    "2026-gov-NM": ("2026 New Mexico", "Deb Haaland", "Greg Hull", "governor"),
+    "2026-gov-IL": ("2026 Illinois", "JB Pritzker", "Darren Bailey", "governor"),
+
+    # Worth re-checking. Each was chosen on recency, but the margin over
+    # the next candidate is narrow enough that a withdrawal or a late
+    # primary result could have been missed. The weekly drift check will
+    # flag any of these if polls stop matching.
     #
-    # Recheck after every primary and whenever a candidate exits.
-    "2026-senate-GA": ("2026 Georgia", "Jon Ossoff", "Mike Collins"),
-    "2026-senate-MI": ("2026 Michigan", "Abdul El-Sayed", "Mike Rogers"),
-    "2026-senate-NC": ("2026 North Carolina", "Roy Cooper", "Michael Whatley"),
-    "2026-senate-ME": ("2026 Maine", "Troy Jackson", "Susan Collins"),
-    "2026-senate-OH": ("2026 Ohio", "Sherrod Brown", "Jon Husted"),
-    "2026-senate-TX": ("2026 Texas", "James Talarico", "Ken Paxton"),
-    "2026-senate-IA": ("2026 Iowa", "Josh Turek", "Ashley Hinson"),
-    "2026-senate-NH": ("2026 New Hampshire", "Chris Pappas", "John Sununu"),
-    "2026-senate-MN": ("2026 Minnesota", "Peggy Flanagan", "Michele Tafoya"),
-    "2026-senate-AK": ("2026 Alaska", "Mary Peltola", "Dan Sullivan"),
-    # Kansas has one poll, from January, so it will fall outside any sane
-    # window. Configured so it starts collecting the moment polling picks up.
-    "2026-senate-KS": ("2026 Kansas", "Adam Hamilton", "Roger Marshall"),
-    # Nebraska returns no polls at all. Left out rather than configured with
-    # guesses; add it when --labels shows candidates.
+    # GA: Rick Jackson leads Republican mentions and shares the latest
+    #     field date, but Burt Jones was the better-known contender and
+    #     stopped appearing after June.
+    "2026-gov-GA": ("2026 Georgia", "Keisha Lance Bottoms", "Rick Jackson", "governor"),
+    # WI: Crowley has 9 mentions to Barnes's 7 and a later date, which is a
+    #     thin basis. Verify before trusting Wisconsin figures.
+    "2026-gov-WI": ("2026 Wisconsin", "David Crowley", "Tom Tiffany", "governor"),
+    # ME: Rick Bennett polls at 3 alongside these two and may be running as
+    #     an independent, in which case a two-way margin overstates the
+    #     Democrat. "Robert Charles" in the data is the same person as
+    #     Bobby Charles.
+    "2026-gov-ME": ("2026 Maine", "Hannah Pingree", "Bobby Charles", "governor"),
+    # NH: appears in the data as both "Cinde" and "Cindy" Warmington. The
+    #     matcher works on surname, so either spelling matches.
+    "2026-gov-NH": ("2026 New Hampshire", "Cinde Warmington", "Kelly Ayotte", "governor"),
+    # MN: Klobuchar leading a governor poll is surprising for a sitting
+    #     senator. If she is not actually running this is a hypothetical
+    #     matchup and the race should be dropped rather than collected.
+"2026-gov-MN": ("2026 Minnesota", "Amy Klobuchar", "Lisa Demuth", "governor"),
 }
 
 GENERIC = ("2026-generic-ballot", "2026", None, None)
@@ -319,19 +369,22 @@ def probe():
     print(f"  {get_json('/poll-types')}\n")
 
     subjects = get_json("/subjects")
-    senate = [s for s in (subjects or [])
-              if "us-senator" in (s.get("poll_types") or [])]
-    print(f"=== {len(senate)} subject(s) with us-senator polls ===")
-    for s in sorted(senate, key=lambda x: str(x.get("subject"))):
-        print(f"  {s.get('subject')}")
-    print()
+    for ptype in ("us-senator", "governor"):
+        hits = [s for s in (subjects or [])
+                if ptype in (s.get("poll_types") or [])]
+        print(f"=== {len(hits)} subject(s) with {ptype} polls ===")
+        for s in sorted(hits, key=lambda x: str(x.get("subject"))):
+            print(f"  {s.get('subject')}")
+        print()
     return 0
 
 
 def sample(code):
-    entry = RACES.get(f"2026-senate-{code.upper()}")
+    """Accepts a race_id (2026-gov-GA) or a bare state code (GA)."""
+    entry = RACES.get(code) or RACES.get(f"2026-senate-{code.upper()}")
     subject = entry[0] if entry else code
-    payload = get_json("/polls", {"poll_type": "us-senator", "subject": subject})
+    poll_type = entry[3] if entry else "us-senator"
+    payload = get_json("/polls", {"poll_type": poll_type, "subject": subject})
     polls = poll_list(payload)
     print(f"{len(polls)} poll(s) for {subject!r}\n")
     for p in polls[:3]:
@@ -351,8 +404,8 @@ def labels():
     pairing rather than assuming: an unopposed-primary candidate can out-
     appear an eventual nominee early in a cycle.
     """
-    for race_id, (subject, dem, rep) in RACES.items():
-        payload = get_json("/polls", {"poll_type": "us-senator",
+    for race_id, (subject, dem, rep, poll_type) in RACES.items():
+        payload = get_json("/polls", {"poll_type": poll_type,
                                       "subject": subject})
         polls = poll_list(payload)
         counts, recent = {}, {}
@@ -366,9 +419,9 @@ def labels():
                 if end > recent.get(name, ""):
                     recent[name] = end
 
-        state = race_id.split("-")[-1]
         configured = f"  [configured: {dem} vs {rep}]" if dem and rep else ""
-        print(f"\n{state}  {subject}  ({len(polls)} polls){configured}")
+        print(f"\n{race_id}  {subject} / {poll_type}  "
+              f"({len(polls)} polls){configured}")
         if not counts:
             print("    no polls returned")
             continue
@@ -416,15 +469,15 @@ def main():
         print(f"carrying forward first-seen times for "
               f"{len(first_seen):,} known polls\n")
 
-    targets = [(rid, subj, d, r, "us-senator")
-               for rid, (subj, d, r) in RACES.items()]
+    targets = [(rid, subj, d, r, ptype)
+               for rid, (subj, d, r, ptype) in RACES.items()]
     targets.append((GENERIC[0], GENERIC[1], None, None, "generic-ballot"))
 
     all_rows, avg_rows = [], []
     print(f"Fetching polls since {from_date}\n")
 
     for race_id, subject, dem_name, rep_name, poll_type in targets:
-        if poll_type == "us-senator" and not (dem_name and rep_name):
+        if poll_type != "generic-ballot" and not (dem_name and rep_name):
             print(f"  {race_id:<24} skipped, candidates not configured")
             continue
 

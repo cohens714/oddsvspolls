@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import GapBar from './GapBar.jsx'
 import History from './History.jsx'
-import { parseCsv, combine } from './data.js'
+import { parseCsv, combine, forDisplay, DISPLAY_CEIL, DISPLAY_FLOOR }
+  from './data.js'
 
 // The data files are rewritten several times a day under constant
 // filenames, so a cached copy is silently stale rather than merely old.
@@ -27,11 +28,21 @@ async function loadJson(path) {
 // the Republican and has to be flipped for display.
 function call(prob, race) {
   if (prob === null || prob === undefined) return null
+  // The favourite is decided on the true value; only the number shown is
+  // clamped, so a 99.7% forecast still reads as its candidate's race.
   const dem = prob >= 0.5
+  const shown = forDisplay(prob)
   const name = dem
     ? race.demShort || (race.kind === 'control' ? 'Dem' : 'Democrat')
     : race.repShort || (race.kind === 'control' ? 'Rep' : 'Republican')
-  return { name, party: dem ? 'D' : 'R', pct: (dem ? prob : 1 - prob) * 100 }
+  return {
+    name,
+    party: dem ? 'D' : 'R',
+    pct: (dem ? shown : 1 - shown) * 100,
+    // Marks a forecast that hit the clamp, so the site can say "greater
+    // than 99" rather than implying an exact figure it does not have.
+    clamped: prob > DISPLAY_CEIL || prob < DISPLAY_FLOOR,
+  }
 }
 
 export default function App() {
@@ -55,6 +66,16 @@ export default function App() {
 
   const withPolls = state.races.filter((r) => r.poll !== null)
   const splits = state.races.filter((r) => r.splitCall)
+
+  // Group by office. Without this a Georgia Senate row and a Georgia
+  // governor row sit adjacent with only a word of label between them, and
+  // the sort by disagreement can easily interleave them.
+  const groups = [
+    { key: 'senate', title: 'Senate',
+      races: state.races.filter((r) => r.kind !== 'governor') },
+    { key: 'governor', title: 'Governor',
+      races: state.races.filter((r) => r.kind === 'governor') },
+  ].filter((g) => g.races.length)
 
   return (
     <>
@@ -89,8 +110,13 @@ export default function App() {
               <span className="key key-muted">chance the Democrat wins</span>
             </div>
 
+            {groups.map((group) => (
+            <section key={group.key} className="office">
+              {groups.length > 1 && (
+                <h2 className="office-title">{group.title}</h2>
+              )}
             <ol className="races">
-              {state.races.map((race) => {
+              {group.races.map((race) => {
                 const m = call(race.market, race)
                 const p = call(race.poll, race)
                 return (
@@ -119,6 +145,7 @@ export default function App() {
                             <>
                               <span className="call-name">{p.name}</span>
                               <span className="call-pct call-poll">
+                                {p.clamped && <span className="gt">&gt;</span>}
                                 {p.pct.toFixed(0)}<span className="pct">%</span>
                               </span>
                             </>
@@ -184,6 +211,8 @@ export default function App() {
                 )
               })}
             </ol>
+            </section>
+            ))}
           </>
         )}
       </main>
