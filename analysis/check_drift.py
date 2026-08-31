@@ -64,6 +64,21 @@ MATCH_THRESHOLD = 0.5
 # Venue prices further apart than this are a data problem, not a trade.
 VENUE_GAP = 5.0
 
+# Races knowingly missing a market on one venue. Without this the check
+# reports the same non-problem every week, and a report that always
+# contains the same items is one nobody reads. Remove an entry when the
+# venue lists the race, which rerunning the mappers will reveal.
+KNOWN_GAPS = {
+    "2026-gov-NH": "Kalshi lists only the 2028 New Hampshire governor "
+                   "contract; the 2026 race is Polymarket-only",
+    "2026-senate-NE": "no Kalshi ticker mapped",
+    # The mapper only walks state races, so chamber control was never
+    # offered a Kalshi ticker even though KXSENATE and KXHOUSE exist. Worth
+    # mapping by hand rather than reporting weekly.
+    "2026-senate-control": "mapper covers state races only; KXSENATE exists",
+    "2026-house-control": "mapper covers state races only; KXHOUSE exists",
+}
+
 
 class Findings:
     def __init__(self):
@@ -150,9 +165,13 @@ def check_markets(findings):
 
         slug = race.get("polymarket_slug")
         if slug:
-            payload = get_json_abs(
+            payload, err = get_json_abs(
                 "https://gamma-api.polymarket.com/markets", {"slug": slug})
-            if not payload:
+            if err:
+                findings.add("low", race_id, "Polymarket check failed",
+                             f"{err}; could not verify, not necessarily "
+                             f"a problem with the market")
+            elif not payload:
                 findings.add("high", race_id, "Polymarket market missing",
                              f"no market for slug {slug}")
             else:
@@ -170,11 +189,19 @@ def check_markets(findings):
                     prices["polymarket"] = float(raw[0])
 
         ticker = race.get("kalshi_ticker")
+        if not ticker and race_id not in KNOWN_GAPS:
+            findings.add("low", race_id, "no Kalshi market",
+                         "tracked on Polymarket only; rerun "
+                         "fetch_markets_kalshi.py --map-races to check")
         if ticker:
-            payload = get_json_abs(
+            payload, err = get_json_abs(
                 f"https://api.elections.kalshi.com/trade-api/v2/markets/{ticker}")
-            m = (payload or {}).get("market")
-            if not m:
+            m = (payload or {}).get("market") if payload else None
+            if err:
+                findings.add("low", race_id, "Kalshi check failed",
+                             f"{err}; could not verify, not necessarily "
+                             f"a problem with the market")
+            elif not m:
                 findings.add("high", race_id, "Kalshi market missing",
                              f"no market for ticker {ticker}")
             else:
@@ -196,46 +223,94 @@ def check_markets(findings):
                     f"market.")
 
 
+_last_request = [0.0]
+REQUEST_DELAY = 0.35
+
+
 def get_json_abs(url, params=None):
-    """get_json in the poll module is relative to the VoteHub base."""
+    """Fetch an absolute URL, distinguishing failure from absence.
+
+    Returns (payload, error). A throttled or timed-out request returns an
+    error string; a successful request that found nothing returns (None,
+    None). Collapsing those two into one value produced a false "Kalshi
+    market missing" on Arizona while the market was open and trading,
+    because this walks every race in quick succession and Kalshi
+    rate-limits it.
+
+    A check that reports problems which are not real is worse than no
+    check: it trains you to skim past the report, and the week it finds
+    something true you skim past that too.
+    """
     import json as _json
+    import time as _time
     from urllib.error import HTTPError, URLError
     from urllib.parse import quote
     from urllib.request import Request, urlopen
 
+    wait = REQUEST_DELAY - (_time.time() - _last_request[0])
+    if wait > 0:
+        _time.sleep(wait)
+    _last_request[0] = _time.time()
+
     params = params or {}
     query = "&".join(f"{k}={quote(str(v))}" for k, v in params.items())
     full = f"{url}?{query}" if query else url
-    try:
-        req = Request(full, headers={"User-Agent": "oddsvspolls.com drift check"})
-        with urlopen(req, timeout=30) as resp:
-            return _json.loads(resp.read().decode("utf-8"))
-    except (HTTPError, URLError, TimeoutError, _json.JSONDecodeError):
-        return None
+
+    for attempt in range(3):
+        try:
+            req = Request(full, headers={
+                "User-Agent": "oddsvspolls.com drift check "
+                              "(+https://oddsvspolls.com)"})
+            with urlopen(req, timeout=30) as resp:
+                return _json.loads(resp.read().decode("utf-8")), None
+        except HTTPError as exc:
+            if exc.code == 404:
+                return None, None          # genuinely absent
+            if exc.code in (429, 503) and attempt < 2:
+                _time.sleep(2 ** attempt)
+                continue
+            return None, f"HTTP {exc.code}"
+        except (URLError, TimeoutError, _json.JSONDecodeError) as exc:
+            if attempt < 2:
+                _time.sleep(2 ** attempt)
+                continue
+            return None, str(exc)[:60]
+    return None, "gave up after 3 attempts"
 
 
 def check_new_races(findings):
-    """Senate contests with polling that the config does not track."""
+    """Report races with polling that the config does not track.
+
+    Collapsed into a single finding rather than one per race. Most
+    untracked contests are safe seats left out on purpose, so listing each
+    one every week turns the report into wallpaper and buries the items
+    that need a decision. The count is what changes and is worth seeing;
+    the membership is a detail to open when the count moves.
+    """
     subjects = get_json("/subjects") or []
-    # Tracked as (subject, poll_type): Georgia appears for both offices, so
-    # the subject alone would wrongly mark the governor race as covered.
     tracked = {(subject, ptype) for subject, _, _, ptype in RACES.values()}
 
+    missing = []
     for s in subjects:
-        subject = s.get("subject")
-        types = s.get("poll_types") or []
-        for ptype in ("us-senator", "governor"):
-            if ptype in types and (subject, ptype) not in tracked:
-                break
-        else:
-            continue
-        if not str(subject).startswith("2026"):
+        subject = str(s.get("subject") or "")
+        if not subject.startswith("2026"):
             continue
         # Party-specific subjects are primaries, not races.
-        if any(w in str(subject) for w in ("Democratic", "Republican")):
+        if any(w in subject for w in ("Democratic", "Republican")):
             continue
-        findings.add("medium", f"{subject} / {ptype}", "untracked race",
-                     f"{subject} has {ptype} polling but is not in RACES")
+        for ptype in ("us-senator", "governor"):
+            if ptype in (s.get("poll_types") or []) \
+                    and (subject, ptype) not in tracked:
+                missing.append(f"{subject} ({ptype})")
+
+    if not missing:
+        return
+
+    listed = ", ".join(sorted(missing))
+    findings.add(
+        "low", f"{len(missing)} untracked races", "polled but not collected",
+        f"Mostly safe seats excluded on purpose. Add one to RACES in "
+        f"fetch_polls_votehub.py if it becomes competitive. {listed}")
 
 
 def report(findings, markdown=False):
