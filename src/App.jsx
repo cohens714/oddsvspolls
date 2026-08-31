@@ -193,7 +193,9 @@ export default function App() {
                       </p>
                     )}
 
-                    <GapBar market={race.market} poll={race.poll} />
+                    <GapBar market={race.market} poll={race.poll}
+                            gap={race.gap} splitCall={race.splitCall}
+                            demShort={race.demShort} />
 
                     <History series={race.series}
                              label={race.label || race.race_id}

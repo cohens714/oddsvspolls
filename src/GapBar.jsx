@@ -7,14 +7,17 @@
 // decode. Colour encodes the source, never the party, because the comparison
 // being made here is between methods rather than between candidates.
 
-export default function GapBar({ market, poll }) {
+export default function GapBar({ market, poll, gap: gapPts, splitCall,
+                                demShort }) {
   const hasPoll = poll !== null && poll !== undefined
   const marketPct = market * 100
   const pollPct = hasPoll ? poll * 100 : null
 
   const lo = hasPoll ? Math.min(marketPct, pollPct) : null
   const hi = hasPoll ? Math.max(marketPct, pollPct) : null
-  const gap = hasPoll ? Math.abs(marketPct - pollPct) : null
+
+  // Comes in pre-rounded so it matches the figures printed above the bar.
+  const gap = hasPoll ? Math.abs(gapPts) : null
 
   return (
     <div className="gap">
@@ -53,7 +56,14 @@ export default function GapBar({ market, poll }) {
       </div>
 
       <span className={hasPoll ? 'gap-value' : 'gap-value gap-value-empty'}>
-        {hasPoll ? `${gap.toFixed(0)} pt gap` : 'awaiting polls'}
+        {!hasPoll && 'awaiting polls'}
+        {/* On a split call the two figures above name different
+            candidates, so no arithmetic on them yields this number.
+            Naming the candidate the gap is measured on makes it
+            checkable instead of looking like an error. */}
+        {hasPoll && (splitCall && demShort
+          ? <>{gap} pts apart<br /><span className="gap-basis">on {demShort}</span></>
+          : `${gap} pt gap`)}
       </span>
     </div>
   )

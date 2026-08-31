@@ -215,6 +215,12 @@ export function combine(marketRows, pollRows, meta = {}, historyRows = []) {
       // than a numeric gap and far more interesting, so it is computed
       // here rather than left for the component to infer.
       splitCall: pollFavours !== null && marketFavours !== pollFavours,
+      // The gap is derived from the ROUNDED percentages, not the raw
+      // probabilities. Rounding after subtracting produces a figure that
+      // disagrees with the numbers printed above it: 53.5 and 46.9 display
+      // as 54 and 47 but their raw difference rounds to 7 in one direction
+      // and 6 in the other depending on the values. Subtracting what is
+      // shown keeps the arithmetic on screen self-consistent.
       polymarket: venues.polymarket ? venues.polymarket.prob : null,
       kalshi: venues.kalshi ? venues.kalshi.prob : null,
       venueGap,
@@ -222,7 +228,7 @@ export function combine(marketRows, pollRows, meta = {}, historyRows = []) {
       series,
       market: m.prob,
       poll: p ? p.prob : null,
-      gap: p ? (m.prob - p.prob) * 100 : null,
+      gap: p ? Math.round(m.prob * 100) - Math.round(p.prob * 100) : null,
       margin: p ? p.margin : null,
       sigma: p ? p.sigma : null,
       n_polls: p ? p.n_polls : null,
