@@ -367,65 +367,19 @@ h1 {
   margin: 0 0 0.7rem;
 }
 
-/* ---------- the gap bar ---------- */
+/* ---------- gap figure ---------- */
 
-.gap {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.gap-track {
-  position: relative;
-  flex: 1;
-  height: 1.6rem;
-  border-bottom: 1px solid var(--rule-strong);
-}
-
-/* The 50% line. Everything on this site is a distance from a coin flip. */
-.gap-mid {
-  position: absolute;
-  left: 50%;
-  top: 0.25rem;
-  bottom: 0;
-  width: 1px;
-  background: var(--rule-strong);
-}
-
-.gap-span {
-  position: absolute;
-  top: 0.55rem;
-  height: 0.65rem;
-  background: var(--span);
-  border-left: 1px solid var(--market);
-  border-right: 1px solid var(--poll);
-}
-
-.gap-mark {
-  position: absolute;
-  bottom: -0.3rem;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  /* Ringed in the page ground so overlapping markers stay separable. */
-  border: 2px solid var(--paper);
-}
-
-.gap-mark-market { background: var(--market); }
-.gap-mark-poll { background: var(--poll); }
-
-.gap-value {
+/* Was a 0-100 track with a marker per source and the span between them
+   shaded. It restated the two percentages printed directly above it, and
+   readers had to work out what the dots meant before discovering it told
+   them nothing new. The chart below carries what the numbers cannot. */
+.gap-line {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
-  color: var(--ink-soft);
-  min-width: 7.5rem;
-  text-align: right;
+  color: var(--ink-faint);
+  margin: 0.35rem 0 0;
 }
-
-.gap-value-empty { color: var(--ink-faint); font-style: italic; }
-.gap-basis { color: var(--ink-faint); font-size: 0.68rem; }
 
 /* ---------- history chart ---------- */
 
@@ -603,8 +557,6 @@ footer p { margin: 0 0 0.7rem; }
   #root { padding: 2.5rem 1.1rem 3.5rem; }
   .h-tip { font-size: 0.62rem; padding: 0.35rem 0.45rem; }
   .h-tip-label { min-width: 4.2rem; }
-  .gap { flex-direction: column; align-items: stretch; gap: 0.5rem; }
-  .gap-value { text-align: left; min-width: 0; }
   .call-pct { font-size: 1.2rem; }
   .calls { gap: 1rem; }
   .race-head { flex-wrap: wrap; gap: 0.6rem; }

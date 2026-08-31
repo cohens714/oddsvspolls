@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import GapBar from './GapBar.jsx'
 import History from './History.jsx'
 import { parseCsv, combine, forDisplay, DISPLAY_CEIL, DISPLAY_FLOOR }
   from './data.js'
@@ -237,9 +236,19 @@ export default function App() {
                       </p>
                     )}
 
-                    <GapBar market={race.market} poll={race.poll}
-                            gap={race.gap} splitCall={race.splitCall}
-                            demShort={race.demShort} />
+                    {race.poll !== null && (
+                      <p className="gap-line">
+                        {/* On a split call the two figures above name
+                            different candidates, so no arithmetic on them
+                            yields this number. Naming the candidate it is
+                            measured on makes it checkable. */}
+                        {Math.abs(race.gap)} pt
+                        {Math.abs(race.gap) === 1 ? '' : 's'} apart
+                        {race.splitCall && race.demShort
+                          ? ` on ${race.demShort}`
+                          : ''}
+                      </p>
+                    )}
 
                     <History series={race.series}
                              label={race.label || race.race_id}
