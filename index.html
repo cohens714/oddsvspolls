@@ -34,6 +34,18 @@
     <meta name="twitter:image" content="https://oddsvspolls.com/og.png" />
 
     <meta name="theme-color" content="#faf9f7" />
+
+    <!-- Newsreader for display, IBM Plex Mono for data. The pairing is
+         deliberate: a serif headline reads editorial rather than
+         dashboard, which is the right register for a site whose argument
+         is methodological. Mono carries every number, so figures align in
+         columns and a price never shifts width as it changes.
+
+         preconnect first: the fonts are on a different origin and the
+         handshake is most of the latency. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

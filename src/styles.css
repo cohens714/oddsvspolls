@@ -6,19 +6,33 @@
 :root {
   --ink: #14161a;
   --ink-soft: #4a4f58;
-  --ink-faint: #878d97;
-  --paper: #faf9f7;
-  --rule: #e2dfd9;
-  --rule-strong: #c9c5bd;
+  /* Darkened to clear 4.5:1 on the page ground. It carries the meta line
+     under every race at 0.7rem, which is small text, and the old value sat
+     at 3.0 against this background. */
+  --ink-faint: #686e78;
+  /* The page ground is a shade deeper than the cards, so the hero can sit
+     forward on it. At the old #faf9f7 nothing could sit ON the background
+     because white was indistinguishable from it, which is why the page
+     read flat regardless of what was drawn on it. */
+  --paper: #f6f3ed;
+  --raised: #fdfcfa;
+  --rule: #e0dcd3;
+  --rule-strong: #c7c2b7;
 
   --market: #0f6e6e;
-  --kalshi: #4a7fb5;
-  --poll: #b3711a;
-  --span: rgba(15, 110, 110, 0.13);
+  /* Both deepened for the same reason: they label figures, so they have to
+     be legible rather than merely distinguishable. Hue is unchanged, so
+     the market/poll/kalshi coding still reads the same. */
+  --kalshi: #3f6f9f;
+  --poll: #9a5f14;
+  --span: rgba(15, 110, 110, 0.11);
   --flag: #9a3412;
 
-  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Newsreader has an optical size axis, so it stays readable at 0.9rem
+     and gains contrast at display sizes without a second face. */
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
 }
 
 * { box-sizing: border-box; }
@@ -49,22 +63,27 @@ body {
 }
 
 h1 {
-  font-size: clamp(1.7rem, 4.5vw, 2.5rem);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  margin: 0 0 1rem;
-  max-width: 20ch;
+  font-family: var(--display);
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.25rem;
+  max-width: 17ch;
   text-wrap: balance;
 }
 
 .lede {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-family: var(--display);
+  font-size: 1.18rem;
+  line-height: 1.5;
   color: var(--ink-soft);
-  max-width: 58ch;
+  max-width: 52ch;
   margin: 0 0 2.5rem;
 }
+
+.lede strong { color: var(--ink); font-weight: 600; }
 
 .note {
   font-family: var(--mono);
@@ -108,6 +127,83 @@ h1 {
   background: var(--flag);
 }
 
+/* ---------- control markets ---------- */
+
+/* Senate and House control are the numbers most people come for, and they
+   were sitting mid-list sorted by disagreement like any other race. Pulled
+   to the top and given the page's only large figures. */
+.control {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 0 0 3rem;
+  /* Barely-there shadow. Enough to lift the block off the ground without
+     announcing itself; anything stronger would be the loudest thing on a
+     page whose subject is restraint. */
+  box-shadow: 0 1px 2px rgba(20, 22, 26, 0.04),
+              0 6px 20px rgba(20, 22, 26, 0.035);
+}
+
+.control-card {
+  background: var(--raised);
+  padding: 1.5rem 1.4rem 1.3rem;
+}
+
+.control-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 0.9rem;
+}
+
+.control-figure {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.control-pct {
+  font-family: var(--mono);
+  font-size: 2.6rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.95;
+  color: var(--market);
+}
+
+.control-party {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.control-bar {
+  position: relative;
+  height: 5px;
+  background: var(--rule);
+  margin: 0.9rem 0 0.7rem;
+  overflow: hidden;
+}
+
+.control-fill { position: absolute; inset: 0 auto 0 0; background: var(--market); }
+
+.control-meta {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 34rem) {
+  .control { grid-template-columns: 1fr; }
+  .control-pct { font-size: 2.1rem; }
+}
+
 /* ---------- office sections ---------- */
 
 .office + .office { margin-top: 3.5rem; }
@@ -121,8 +217,9 @@ h1 {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--ink);
   margin: 1.75rem 0 0;
@@ -163,9 +260,11 @@ h1 {
 }
 
 .race-name {
-  font-size: 1.05rem;
-  font-weight: 550;
-  letter-spacing: -0.01em;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
 }
 
 .race-title { display: flex; flex-direction: column; gap: 0.2rem; }
@@ -309,6 +408,7 @@ h1 {
   height: 0.55rem;
   border-radius: 50%;
   transform: translateX(-50%);
+  /* Ringed in the page ground so overlapping markers stay separable. */
   border: 2px solid var(--paper);
 }
 
@@ -362,6 +462,7 @@ h1 {
   pointer-events: none;
 }
 
+
 .h-dot-market { background: var(--market); }
 .h-dot-kalshi { background: var(--kalshi); }
 .h-dot-poll   { background: var(--poll); }
@@ -370,7 +471,10 @@ h1 {
   position: absolute;
   top: -0.4rem;
   transform: translateX(0.6rem);
-  background: var(--paper);
+  /* A floating panel, so it takes the raised tone rather than the page
+     ground it overlaps. On the old near-white ground the difference was
+     invisible; now it reads as sitting above the chart. */
+  background: var(--raised);
   border: 1px solid var(--rule-strong);
   border-radius: 3px;
   padding: 0.45rem 0.6rem;

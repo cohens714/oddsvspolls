@@ -67,14 +67,24 @@ export default function App() {
   const withPolls = state.races.filter((r) => r.poll !== null)
   const splits = state.races.filter((r) => r.splitCall)
 
+  // Chamber control is what most people arrive for, so it comes out of the
+  // list and goes to the top. Left in place it sat wherever the
+  // disagreement sort happened to put it, indistinguishable from a single
+  // state race.
+  const control = ['2026-senate-control', '2026-house-control']
+    .map((id) => state.races.find((r) => r.race_id === id))
+    .filter(Boolean)
+  const controlIds = new Set(control.map((r) => r.race_id))
+  const rest = state.races.filter((r) => !controlIds.has(r.race_id))
+
   // Group by office. Without this a Georgia Senate row and a Georgia
   // governor row sit adjacent with only a word of label between them, and
   // the sort by disagreement can easily interleave them.
   const groups = [
     { key: 'senate', title: 'Senate',
-      races: state.races.filter((r) => r.kind !== 'governor') },
+      races: rest.filter((r) => r.kind !== 'governor') },
     { key: 'governor', title: 'Governor',
-      races: state.races.filter((r) => r.kind === 'governor') },
+      races: rest.filter((r) => r.kind === 'governor') },
   ].filter((g) => g.races.length)
 
   return (
@@ -104,6 +114,40 @@ export default function App() {
 
         {state.status === 'ready' && (
           <>
+            {control.length > 0 && (
+              <div className="control">
+                {control.map((race) => {
+                  const dem = race.market >= 0.5
+                  const pct = (dem ? race.market : 1 - race.market) * 100
+                  return (
+                    <div key={race.race_id} className="control-card">
+                      <p className="control-label">{race.label}</p>
+                      <div className="control-figure">
+                        <span className="control-pct">
+                          {pct.toFixed(0)}<span className="pct">%</span>
+                        </span>
+                        <span className="control-party">
+                          {dem ? 'Democrats' : 'Republicans'}
+                        </span>
+                      </div>
+                      <div className="control-bar">
+                        {/* Always fills from the left as the Democratic
+                            share, so the two cards can be read against
+                            each other rather than each against itself. */}
+                        <i className="control-fill"
+                           style={{ width: `${race.market * 100}%` }} />
+                      </div>
+                      <p className="control-meta">
+                        {race.volume
+                          ? `$${Math.round(race.volume).toLocaleString()} volume`
+                          : 'market price'}
+                      </p>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+
             <div className="legend">
               <span className="key"><i className="swatch swatch-market" /> polymarket</span>
               <span className="key"><i className="swatch swatch-kalshi" /> kalshi</span>
