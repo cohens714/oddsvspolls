@@ -55,7 +55,6 @@ DEFAULT_STATES = {
     "NH": "new-hampshire",
     "MN": "minnesota",
     "AK": "alaska",
-    "NE": "nebraska",
     "KS": "kansas",
 }
 

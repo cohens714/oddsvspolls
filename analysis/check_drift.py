@@ -71,7 +71,6 @@ VENUE_GAP = 5.0
 KNOWN_GAPS = {
     "2026-gov-NH": "Kalshi lists only the 2028 New Hampshire governor "
                    "contract; the 2026 race is Polymarket-only",
-    "2026-senate-NE": "no Kalshi ticker mapped",
     # The mapper only walks state races, so chamber control was never
     # offered a Kalshi ticker even though KXSENATE and KXHOUSE exist. Worth
     # mapping by hand rather than reporting weekly.

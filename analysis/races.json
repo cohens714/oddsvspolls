@@ -132,16 +132,6 @@
       "kalshi_yes_means": "DEM"
     },
     {
-      "race_id": "2026-senate-NE",
-      "office": "senate",
-      "state": "NE",
-      "yes_side": "DEM",
-      "polymarket_slug": "will-the-democrats-win-the-nebraska-senate-race-in-2026",
-      "polymarket_outcome": "Yes",
-      "kalshi_ticker": null,
-      "kalshi_yes_means": "DEM"
-    },
-    {
       "race_id": "2026-senate-KS",
       "office": "senate",
       "state": "KS",
