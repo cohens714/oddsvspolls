@@ -175,6 +175,18 @@ export function combine(marketRows, pollRows, meta = {}, historyRows = []) {
   const out = []
 
   for (const race_id of ids) {
+    // A race is shown only if it is still in the metadata. Removing a race
+    // from races.json stops new collection but leaves every row already
+    // recorded, and the page builds its list from the snapshot file, so a
+    // dropped race carries on displaying from history. Nebraska kept
+    // showing "Republican >99%" for days after being removed for exactly
+    // the reason it was removed: an independent held 29.5% and the
+    // two-party framing could not represent it.
+    //
+    // The rows stay in the file. They are valid observations and worth
+    // keeping; they simply stop being published.
+    if (Object.keys(meta).length && !meta[race_id]) continue
+
     const venues = markets.get(race_id) || {}
     // Polymarket is the reference venue: it covers every race, while Kalshi
     // covers most. Kalshi stands in where Polymarket is missing.
