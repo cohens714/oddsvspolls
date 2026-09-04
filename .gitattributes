@@ -1,0 +1,28 @@
+# Append-only data files: keep both sides of a conflict instead of failing.
+#
+# The collector appends a row per race every hour from GitHub Actions, and
+# local runs append too. Git's default merge sees two sets of lines added at
+# the end of the same file and calls it a conflict, so every pull after a
+# local collection needed manual resolution, and the usual fix of taking one
+# side silently discarded the other's rows.
+#
+# union keeps both sets. For a file where every line is an independent
+# observation and order carries no meaning, that is exactly right: two
+# collectors appending different rows should produce a file with all of
+# them.
+#
+# It would be wrong for anything where lines depend on each other, which is
+# why this is scoped to these files rather than to data/ as a whole.
+data/snapshots.csv merge=union
+data/poll_averages.csv merge=union
+
+# Deliberately NOT union-merged: these are regenerated in full on every run
+# rather than appended to, so combining two versions would interleave two
+# complete copies of the same data.
+#   data/raw_polls.csv
+#   data/poll_probabilities.csv
+#   data/poll_history.csv
+#   data/race_meta.json
+
+# Generated binary; never worth a textual merge.
+assets/og.png binary
