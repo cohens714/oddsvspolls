@@ -29,8 +29,9 @@ timestamped, and the venue could revise or lose them. Keeping them
 distinguishable means an analysis can include or exclude them deliberately,
 and a reader can see which is which.
 
-Run this ONCE per venue. It appends without checking for duplicates, so a
-second run doubles every backfilled row.
+Safe to rerun. It skips any race and venue that already has backfilled
+rows, so adding races later and running it again imports only the new ones.
+To redo a race, delete its backfilled rows from snapshots.csv first.
 """
 
 from __future__ import annotations
@@ -230,16 +231,47 @@ def probe():
     return 0
 
 
+def existing_backfill():
+    """Which (race, venue) pairs already hold backfilled rows.
+
+    The old guard refused to run at all if any backfill existed, which was
+    right when every race was added at once and wrong the moment races were
+    added later: the governor races could never be backfilled because the
+    Senate ones already had been.
+
+    Skipping per race keeps the protection that matters. This appends
+    without deduplicating, so re-importing a race would double its history,
+    and duplicates are invisible in a chart while quietly doubling those
+    days' weight in any average.
+    """
+    seen = set()
+    if not SNAPSHOT_FILE.exists():
+        return seen
+    with SNAPSHOT_FILE.open(newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            venue = row.get("venue") or ""
+            if "backfill" in venue:
+                seen.add((row.get("race_id"), venue.replace("-backfill", "")))
+    return seen
+
+
 def backfill(dry_run):
     cfg, election_day = load_config()
     cycle = cfg["cycle"]
     rows = []
 
+    already = existing_backfill()
+    if already:
+        races_done = sorted({r for r, _ in already})
+        print(f"{len(already)} race/venue pairs already backfilled "
+              f"across {len(races_done)} races; skipping those\n")
+
     for race in cfg["races"]:
         race_id = race["race_id"]
         yes_side = race["yes_side"]
 
-        if race.get("polymarket_slug"):
+        if race.get("polymarket_slug") and \
+                (race_id, "polymarket") not in already:
             token = poly_token(race["polymarket_slug"])
             hist = poly_history(token) if token else []
             for when, price in hist:
@@ -255,7 +287,7 @@ def backfill(dry_run):
                 })
             print(f"  {race_id:<24} polymarket {len(hist):>4} points")
 
-        if race.get("kalshi_ticker"):
+        if race.get("kalshi_ticker") and (race_id, "kalshi") not in already:
             hist = kalshi_history(race["kalshi_ticker"])
             flip = race.get("kalshi_yes_means") != yes_side
             for when, price in hist:
@@ -273,8 +305,9 @@ def backfill(dry_run):
             print(f"  {race_id:<24} kalshi     {len(hist):>4} points")
 
     if not rows:
-        print("\nnothing retrieved")
-        return 1
+        print("\nnothing new to backfill; every configured race and venue "
+              "already has history")
+        return 0
 
     dates = sorted(r["snapshot_date"] for r in rows)
     print(f"\n{len(rows)} rows spanning {dates[0]} to {dates[-1]}")
@@ -285,18 +318,6 @@ def backfill(dry_run):
 
     if not SNAPSHOT_FILE.exists():
         print(f"{SNAPSHOT_FILE} missing", file=sys.stderr)
-        return 1
-
-    # Refuse to run twice. Appending again would double every row, and the
-    # duplicates would be invisible in any chart while quietly doubling the
-    # weight of backfilled days in any average.
-    with SNAPSHOT_FILE.open(newline="", encoding="utf-8") as fh:
-        existing = [r for r in csv.DictReader(fh)
-                    if "backfill" in (r.get("venue") or "")]
-    if existing:
-        print(f"\n{len(existing)} backfilled rows already present. Refusing "
-              f"to append again.\nDelete them first if you want to redo it.",
-              file=sys.stderr)
         return 1
 
     with SNAPSHOT_FILE.open("a", newline="", encoding="utf-8") as fh:
