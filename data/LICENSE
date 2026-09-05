@@ -1,0 +1,59 @@
+Data licence: Creative Commons Attribution-NonCommercial 4.0 International
+(CC BY-NC 4.0)
+
+Copyright (c) 2026 Jason Cohen
+Full text: https://creativecommons.org/licenses/by-nc/4.0/
+
+WHAT THIS COVERS
+
+Everything in data/, which is:
+
+  snapshots.csv           market prices recorded by us, with the timestamp
+                          of each request
+  raw_polls.csv           poll records with the time each first appeared
+                          in the source API
+  poll_averages.csv       our trailing weighted averages
+  poll_probabilities.csv  our conversion of those averages to win
+                          probabilities
+  poll_history.csv        those averages recomputed at past dates
+  race_meta.json          race and candidate mapping
+
+You may share and adapt this material for non-commercial purposes with
+attribution. Commercial use requires permission: open an issue on the
+repository or get in touch.
+
+WHAT THIS DOES NOT AND CANNOT COVER
+
+Individual market prices and poll results are facts, and facts are not
+subject to copyright in the United States. This licence applies to the
+compilation, the derived figures, and the accompanying documentation, not
+to any underlying fact. Anyone is free to collect the same prices from the
+same venues.
+
+What is genuinely ours is the combination: market prices and poll-derived
+probabilities on a common basis, computed with a conversion fitted and
+calibrated against historical races, together with the timestamps recording
+when each observation was made and when each poll first became visible.
+That combination is not re-derivable from public sources without repeating
+the work.
+
+UPSTREAM TERMS
+
+Polling data originates from VoteHub and is licensed CC BY 4.0; that
+attribution carries through and is honoured on the site.
+
+Market prices come from public Polymarket and Kalshi endpoints. Their terms
+govern your own collection from those venues.
+
+The historical polling error used to calibrate the conversion comes from
+FiveThirtyEight's pollster-ratings archive, CC BY 4.0.
+
+ATTRIBUTION
+
+  Cohen, J. (2026). oddsvspolls.com prediction market and polling dataset.
+  https://oddsvspolls.com
+
+NO WARRANTY
+
+Provided as is. These are recorded observations and derived estimates, not
+advice, and nothing here is a recommendation to trade.

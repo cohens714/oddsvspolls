@@ -328,7 +328,10 @@ export default function App() {
           <a href="https://votehub.com">VoteHub</a>, used under CC BY 4.0.
           Every figure is a recorded observation, committed to a{' '}
           <a href="https://github.com/cohens714/oddsvspolls">public repository</a>{' '}
-          with its timestamp.
+          with its timestamp. Code MIT, data{' '}
+          <a href="https://creativecommons.org/licenses/by-nc/4.0/">
+            CC BY-NC 4.0
+          </a>.
         </p>
         <p className="caveat">
           <strong>How the poll probability is calculated.</strong>{' '}

@@ -19,10 +19,18 @@ US elections, and scores both against actual outcomes.
 
     cd analysis && python3 test_scoring.py
 
+## Licence
+
+Code is MIT (`LICENSE`). Data is CC BY-NC 4.0 (`data/LICENSE`): share and
+adapt with attribution for non-commercial purposes; commercial use needs
+permission. Individual prices and poll results are facts and not
+copyrightable; the licence covers the compilation and the derived figures.
+
 ## Data sources
 
-Poll data derived from FiveThirtyEight's published datasets, used under
-CC BY 4.0. Market data from public Polymarket and Kalshi endpoints.
+Polling from VoteHub, CC BY 4.0. Historical polling error from
+FiveThirtyEight's pollster-ratings archive, CC BY 4.0. Market prices from
+public Polymarket and Kalshi endpoints.
 
 ## Methodology
 
