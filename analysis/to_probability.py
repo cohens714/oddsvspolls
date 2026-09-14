@@ -187,7 +187,7 @@ def sensitivity(rows):
     """Show how the headline probabilities move with sigma.
 
     Run this before defending any number on the site. If a race swings 20
-    points across a plausible sigma range, the probability is an artefact of
+    points across a plausible sigma range, the probability is an artifact of
     the assumption rather than a finding about the race.
     """
     global SIGMA_FINAL

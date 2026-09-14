@@ -208,8 +208,8 @@ export function combine(marketRows, pollRows, meta = {}, historyRows = []) {
     const series = mSeries.get(race_id) || {}
     series.poll = pSeries.get(race_id) || []
 
-    // Who each source favours. Both probabilities are P(Democrat wins), so
-    // a source favours the Republican whenever it sits below 0.5.
+    // Who each source favors. Both probabilities are P(Democrat wins), so
+    // a source favors the Republican whenever it sits below 0.5.
     const marketFavours = m.prob >= 0.5 ? 'dem' : 'rep'
     const pollFavours = p ? (p.prob >= 0.5 ? 'dem' : 'rep') : null
 

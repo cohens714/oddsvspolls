@@ -19,12 +19,12 @@ US elections, and scores both against actual outcomes.
 
     cd analysis && python3 test_scoring.py
 
-## Licence
+## License
 
 Code is MIT (`LICENSE`). Data is CC BY-NC 4.0 (`data/LICENSE`): share and
 adapt with attribution for non-commercial purposes; commercial use needs
 permission. Individual prices and poll results are facts and not
-copyrightable; the licence covers the compilation and the derived figures.
+copyrightable; the license covers the compilation and the derived figures.
 
 ## Data sources
 

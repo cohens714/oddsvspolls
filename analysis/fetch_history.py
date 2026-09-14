@@ -10,7 +10,7 @@ Standard library only.
 WHAT THIS CAN AND CANNOT SETTLE
 -------------------------------
 The poll side is solid: 538's pollster-ratings archive contains every poll
-they analysed with the actual election result already joined, going back to
+they analyzed with the actual election result already joined, going back to
 1998. That is the single most useful public file for this project, and it is
 frozen, so it will not move under you.
 

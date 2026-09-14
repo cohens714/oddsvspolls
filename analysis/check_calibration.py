@@ -18,7 +18,7 @@ Polling error is shared within a cycle: in 2020 the average Senate poll
 overstated Democrats by nearly 7 points, in every race at once. A sigma
 tuned on independent races will look excellent in a typical year and fail
 catastrophically in a bad one, because the failures arrive together rather
-than cancelling out.
+than canceling out.
 
 So this reports three things per candidate sigma:
 

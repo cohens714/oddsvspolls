@@ -1,4 +1,4 @@
-/* Colour encodes the SOURCE, not the party. Teal is the market, ochre the
+/* Color encodes the SOURCE, not the party. Teal is the market, ochre the
    polls. Partisan red and blue are deliberately absent: this site compares
    two methods of forecasting, and colouring by party would invite readers to
    see a rooting interest where there is only a measurement. */
@@ -288,12 +288,12 @@ h1 {
   text-align: right;
 }
 
-/* When both sources favour the same candidate, the name belongs once
+/* When both sources favor the same candidate, the name belongs once
    rather than over each number. Printing "Crowley 81% Crowley 69%" reads
    as a duplication bug even though both figures are right.
 
    Stacking the name above a right-aligned pair put it over the second
-   figure only, which read as though it labelled that one alone. Setting it
+   figure only, which read as though it labeled that one alone. Setting it
    inline ahead of both makes it govern the pair. */
 .calls-agree {
   flex-direction: row;
@@ -348,7 +348,7 @@ h1 {
 
    It was a full-height left border, which worked when a row was three lines
    tall. With a chart in the row it became a long vertical line running from
-   under the sticky heading to the floor, reading as a rendering artefact
+   under the sticky heading to the floor, reading as a rendering artifact
    rather than an accent. A short rule beside the race name marks the row
    without drawing a shape the length of the viewport. */
 .race-split { padding-left: 1rem; position: relative; }

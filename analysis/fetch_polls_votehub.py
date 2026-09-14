@@ -51,13 +51,13 @@ SAMPLE_CAP = 1500
 
 # race_id -> (VoteHub subject, Democratic candidate, Republican candidate)
 #
-# The candidate names are load-bearing: answers are labelled by name, so a
+# The candidate names are load-bearing: answers are labeled by name, so a
 # wrong or missing name means the poll is skipped rather than mis-assigned.
 # Verify each against --sample output before trusting a race, and update
 # when a nominee changes.
 # race_id -> (VoteHub subject, Democratic nominee, Republican nominee, poll_type)
 #
-# The candidate names are load-bearing. Answers are labelled by name, so a
+# The candidate names are load-bearing. Answers are labeled by name, so a
 # wrong name means the poll is skipped, and a name belonging to someone no
 # longer running means polls of a race that will never happen get averaged
 # in as though they were real.
@@ -305,7 +305,7 @@ def weight(row, as_of: date) -> float:
     caller polls.
 
     No pollster quality adjustment. Rating pollsters is its own project, and
-    an unweighted average is defensible and explainable to a sceptic. House
+    an unweighted average is defensible and explainable to a skeptic. House
     effects can be added later; a black-box weight cannot be un-explained.
     """
     end = date.fromisoformat(row["end_date"])

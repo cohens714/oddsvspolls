@@ -48,7 +48,7 @@ CONTROL = {
 
 def surname(full_name):
     """Last word of a name. Enough to identify a candidate in a tight
-    column, and what a reader recognises anyway."""
+    column, and what a reader recognizes anyway."""
     if not full_name:
         return None
     return full_name.strip().split()[-1]

@@ -187,7 +187,7 @@ export default function App() {
                         )}
                       </div>
                       {p && p.name === m.name ? (
-                        // Both sources favour the same candidate, so the
+                        // Both sources favor the same candidate, so the
                         // name goes above the pair. Printing "Crowley 81%
                         // Crowley 69%" reads as a duplication bug even
                         // though both figures are right.
@@ -260,7 +260,7 @@ export default function App() {
 
                     {race.splitCall && (
                       <p className="split-note">
-                        Market favours {m.name}; polling favours {p.name}.
+                        Market favors {m.name}; polling favors {p.name}.
                       </p>
                     )}
 
@@ -373,7 +373,7 @@ export default function App() {
           problem rather than a trading opportunity: a gap of eight points in
           New Hampshire turned out to be a Kalshi contract on the Democratic
           nomination rather than the general election. Races still showing a
-          wide gap are flagged and should be read sceptically.
+          wide gap are flagged and should be read skeptically.
         </p>
         <p className="caveat">
           <strong>Where the history comes from.</strong> Market lines before
