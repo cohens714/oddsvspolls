@@ -60,7 +60,8 @@ function dateFor(days) {
                                            year: 'numeric', timeZone: 'UTC' })
 }
 
-export default function History({ series, label, demShort, repShort }) {
+export default function History({ series, label, demShort, repShort,
+                                 compact = false }) {
   const wrap = useRef(null)
   const [hover, setHover] = useState(null)
 
@@ -88,6 +89,8 @@ export default function History({ series, label, demShort, repShort }) {
 
   const clear = useCallback(() => setHover(null), [])
 
+  // A control card is half the width of a race row, so the same chart
+  // needs a shorter box and a lighter caption to sit inside one.
   if (all.length < 3) return null
 
   const readings = hover === null ? [] : SERIES
@@ -103,7 +106,7 @@ export default function History({ series, label, demShort, repShort }) {
   const flip = anchorX > W * 0.62
 
   return (
-    <figure className="history">
+    <figure className={compact ? 'history history-compact' : 'history'}>
       <div
         className="history-plot"
         ref={wrap}
@@ -170,7 +173,11 @@ export default function History({ series, label, demShort, repShort }) {
       </div>
 
       <figcaption>
-        <span>{maxDays > 400 ? 'over a year out' : `${maxDays} days out`}</span>
+        <span>
+          {maxDays > 400
+            ? (compact ? 'a year out' : 'over a year out')
+            : `${maxDays} days out`}
+        </span>
         <span>election day</span>
       </figcaption>
     </figure>

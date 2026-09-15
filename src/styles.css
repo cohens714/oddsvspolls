@@ -183,15 +183,14 @@ h1 {
   color: var(--ink-soft);
 }
 
-.control-bar {
-  position: relative;
-  height: 5px;
-  background: var(--rule);
-  margin: 0.9rem 0 0.7rem;
-  overflow: hidden;
-}
-
-.control-fill { position: absolute; inset: 0 auto 0 0; background: var(--market); }
+/* The control cards carry the same chart as a race row, at a smaller
+   size. Kept as a variant rather than a separate component so the two
+   cannot drift apart. */
+.history-compact { margin: 0.7rem 0 0.5rem; }
+.history-compact svg { height: 2.9rem; }
+.history-compact figcaption { font-size: 0.56rem; margin-top: 0.2rem; }
+.history-compact .h-tip { font-size: 0.62rem; padding: 0.35rem 0.45rem; }
+.history-compact .h-tip-label { min-width: 4.2rem; }
 
 .control-meta {
   font-family: var(--mono);

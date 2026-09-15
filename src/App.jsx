@@ -117,7 +117,10 @@ export default function App() {
               <div className="control">
                 {control.map((race) => {
                   const dem = race.market >= 0.5
-                  const pct = (dem ? race.market : 1 - race.market) * 100
+                  // Clamped like every other figure on the page, so a
+                  // control market at 99.6% never displays as certainty.
+                  const shown = forDisplay(race.market)
+                  const pct = (dem ? shown : 1 - shown) * 100
                   return (
                     <div key={race.race_id} className="control-card">
                       <p className="control-label">{race.label}</p>
@@ -129,13 +132,13 @@ export default function App() {
                           {dem ? 'Democrats' : 'Republicans'}
                         </span>
                       </div>
-                      <div className="control-bar">
-                        {/* Always fills from the left as the Democratic
-                            share, so the two cards can be read against
-                            each other rather than each against itself. */}
-                        <i className="control-fill"
-                           style={{ width: `${race.market * 100}%` }} />
-                      </div>
+                      {/* The bar that was here restated the figure
+                          above it. The chart says something the number
+                          cannot: whether this is where the market has sat
+                          all year or somewhere it arrived last week. */}
+                      <History series={race.series}
+                               label={race.label}
+                               compact />
                       <p className="control-meta">
                         {race.volume
                           ? `$${Math.round(race.volume).toLocaleString()} volume`
