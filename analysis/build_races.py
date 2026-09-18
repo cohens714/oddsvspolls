@@ -56,6 +56,7 @@ DEFAULT_STATES = {
     "MN": "minnesota",
     "AK": "alaska",
     "KS": "kansas",
+    "SC": "south-carolina",
 }
 
 # Governor races. Polymarket names these events the same way as Senate

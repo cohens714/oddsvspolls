@@ -85,6 +85,8 @@ RACES = {
     "2026-senate-MN": ("2026 Minnesota", "Peggy Flanagan", "Michele Tafoya", "us-senator"),
     "2026-senate-AK": ("2026 Alaska", "Mary Peltola", "Dan Sullivan", "us-senator"),
     "2026-senate-KS": ("2026 Kansas", "Adam Hamilton", "Roger Marshall", "us-senator"),
+    # Added after the Aug 25 GOP runoff made this competitive.
+    "2026-senate-SC": ("2026 South Carolina", "Annie Andrews", "Darline Graham", "us-senator"),
 
     # --- Governor ---
     #
@@ -442,6 +444,16 @@ def write_csv(path, fields, rows, append=False):
         w.writerows(rows)
 
 
+def upsert_averages(path, fields, new_rows):
+    keys = {(r["race_id"], r["as_of_date"]) for r in new_rows}
+    kept = []
+    if path.exists():
+        with path.open(newline="", encoding="utf-8") as fh:
+            kept = [r for r in csv.DictReader(fh)
+                    if (r["race_id"], r["as_of_date"]) not in keys]
+    write_csv(path, fields, kept + new_rows)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--probe", action="store_true")
@@ -525,7 +537,7 @@ def main():
         return 1
 
     write_csv(RAW_OUT, RAW_FIELDS, all_rows)
-    write_csv(AVG_OUT, AVG_FIELDS, avg_rows, append=True)
+    upsert_averages(AVG_OUT, AVG_FIELDS, avg_rows)
     print(f"wrote {RAW_OUT.name}, appended {AVG_OUT.name}")
     print("\nThese are margins, not probabilities. The conversion needs a"
           "\nhistorical polling-error distribution, which is the next step.")

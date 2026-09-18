@@ -142,6 +142,16 @@
       "kalshi_yes_means": "DEM"
     },
     {
+      "race_id": "2026-senate-SC",
+      "office": "senate",
+      "state": "SC",
+      "yes_side": "DEM",
+      "polymarket_slug": "will-the-democrats-win-the-south-carolina-senate-race-in-2026",
+      "polymarket_outcome": "Yes",
+      "kalshi_ticker": "SENATESC-26-D",
+      "kalshi_yes_means": "DEM"
+    },
+    {
       "race_id": "2026-gov-GA",
       "office": "governor",
       "state": "GA",

@@ -35,6 +35,7 @@ STATE_NAMES = {
     "ME": "Maine", "MI": "Michigan", "MN": "Minnesota", "NC": "North Carolina",
     "NE": "Nebraska", "NH": "New Hampshire", "NM": "New Mexico",
     "NV": "Nevada", "NY": "New York", "OH": "Ohio", "PA": "Pennsylvania",
+    "SC": "South Carolina",
     "TX": "Texas", "WI": "Wisconsin",
 }
 
