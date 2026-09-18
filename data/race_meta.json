@@ -215,6 +215,14 @@
     "rep": "Jon Husted",
     "rep_short": "Husted"
   },
+  "2026-senate-SC": {
+    "dem": "Annie Andrews",
+    "dem_short": "Andrews",
+    "kind": "senate",
+    "label": "South Carolina",
+    "rep": "Darline Graham",
+    "rep_short": "Graham"
+  },
   "2026-senate-TX": {
     "dem": "James Talarico",
     "dem_short": "Talarico",
