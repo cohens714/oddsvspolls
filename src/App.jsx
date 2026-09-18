@@ -336,14 +336,19 @@ export default function App() {
           {state.asOf
             ? `Market data last fetched ${state.asOf.replace('T', ' ').slice(0, 16)} UTC.`
             : ''}{' '}
-          Market prices from Polymarket. Poll data from{' '}
-          <a href="https://votehub.com">VoteHub</a>, used under CC BY 4.0.
+          Market prices from Polymarket and Kalshi. Poll data from{' '}
+          <a href="https://votehub.com">VoteHub</a>, used under CC BY 4.0,
+          and from{' '}
+          <a href="https://en.wikipedia.org">Wikipedia</a> race articles, used
+          under{' '}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
           Every figure is a recorded observation, committed to a{' '}
           <a href="https://github.com/cohens714/oddsvspolls">public repository</a>{' '}
           with its timestamp. Code MIT, data{' '}
           <a href="https://creativecommons.org/licenses/by-nc/4.0/">
             CC BY-NC 4.0
-          </a>.
+          </a>, except poll rows sourced from Wikipedia (IDs beginning{' '}
+          <code>wiki-</code>), which are CC BY-SA 4.0.
         </p>
         <p className="caveat">
           <strong>How the poll probability is calculated.</strong>{' '}
@@ -352,6 +357,15 @@ export default function App() {
           eventual error as normally distributed with a standard deviation of
           4.5 points on election day, widening at longer horizons and
           narrowing where more polls exist.
+        </p>
+        <p className="caveat">
+          <strong>Which polls count.</strong> Every public poll of the
+          general-election matchup, from VoteHub and from Wikipedia&rsquo;s
+          race articles, with polls that appear in both counted once. Polls
+          are weighted by recency and sample size only. There is no
+          adjustment for pollster quality or house effects, so firms with a
+          consistent lean count the same as any other. Polls sponsored by a
+          party or campaign are flagged, and their average lean is shown.
         </p>
         <p className="caveat">
           <strong>Where 4.5 comes from.</strong> We tested candidate values
