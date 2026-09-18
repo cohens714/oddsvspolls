@@ -295,6 +295,91 @@ def fetch_race(race_id, subject, dem_name, rep_name, poll_type, from_date,
     return rows, unmatched, len(polls)
 
 
+
+# --------------------------------------------------------------------------
+# Wikipedia supplement
+# --------------------------------------------------------------------------
+
+# Races where VoteHub coverage is thin enough that the race's Wikipedia poll
+# table fills real gaps. Opt-in per race: the wiki parser reads hand-edited
+# tables, so check `fetch_polls_wiki.py <STATE>` before adding one here.
+# Wikipedia is CC BY-SA; the site must credit it.
+WIKI_SUPPLEMENT = {"2026-senate-KS"}
+
+
+def _pollster_key(name):
+    import re
+    words = re.findall(r"[a-z0-9]+", name.lower())
+    return words[0] if words else ""
+
+
+def _same_poll(a, b):
+    """Same pollster (first word) with end dates within a day. Loose on
+    purpose: the two sources spell pollster names differently."""
+    if _pollster_key(a["pollster"]) != _pollster_key(b["pollster"]):
+        return False
+    da = date.fromisoformat(str(a["end_date"]))
+    db = date.fromisoformat(str(b["end_date"]))
+    return abs((da - db).days) <= 1
+
+
+def wiki_rows(race_id, subject, dem_name, rep_name, poll_type, from_date,
+              first_seen=None):
+    """Polls from the race's Wikipedia article, in RAW_FIELDS form."""
+    import re
+    try:
+        import fetch_polls_wiki as wiki
+    except ImportError:
+        return []
+    state = race_id.rsplit("-", 1)[-1]
+    article = wiki.ARTICLES.get(state)
+    if not article:
+        return []
+    html = wiki.fetch_html(article)
+    if not html:
+        return []
+
+    fetched = datetime.utcnow().isoformat(timespec="seconds")
+    first_seen = first_seen or {}
+    out = []
+    for table in wiki.extract_tables(html):
+        parsed, _ = wiki.parse_table(table, state, article, (dem_name, rep_name))
+        for w in parsed:
+            end = str(w.get("end_date") or "")
+            if not end or end < from_date:
+                continue
+            name = re.sub(r"\[[^\]]*\]", "", w.get("pollster", "")).strip()
+            m = re.search(r"\((D|R)\)\s*$", name)
+            partisan = {"D": "DEM", "R": "REP"}[m.group(1)] if m else ""
+            name = re.sub(r"\s*\((D|R)\)\s*$", "", name)
+            slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+            pid = f"wiki-{state}-{slug}-{end}"
+            dem, rep = float(w["dem_pct"]), float(w["rep_pct"])
+            out.append({
+                "poll_id": pid,
+                "race_id": race_id,
+                "subject": subject,
+                "poll_type": poll_type,
+                "pollster": name,
+                "sponsors": "",
+                "start_date": str(w.get("start_date") or end),
+                "end_date": end,
+                "sample_size": w.get("sample_size") or "",
+                "population": w.get("population") or "",
+                "dem_name": dem_name,
+                "rep_name": rep_name,
+                "dem_pct": dem,
+                "rep_pct": rep,
+                "margin": round(dem - rep, 2),
+                "internal": "",
+                "partisan": partisan,
+                "url": "https://en.wikipedia.org/wiki/" + article.replace(" ", "_"),
+                "fetched_at": fetched,
+                "first_seen": first_seen.get(pid, fetched),
+            })
+    return out
+
+
 # --------------------------------------------------------------------------
 # Averaging
 # --------------------------------------------------------------------------
@@ -496,6 +581,13 @@ def main():
         rows, unmatched, total = fetch_race(
             race_id, subject, dem_name, rep_name, poll_type, from_date,
             first_seen)
+        if race_id in WIKI_SUPPLEMENT:
+            extra = [w for w in wiki_rows(race_id, subject, dem_name, rep_name,
+                                          poll_type, from_date, first_seen)
+                     if not any(_same_poll(w, r) for r in rows)]
+            rows = rows + extra
+            if extra:
+                print(f"  {race_id:<24} +{len(extra)} poll(s) from Wikipedia")
         all_rows.extend(rows)
 
         avg = average(rows, today, args.no_partisan)
