@@ -296,16 +296,46 @@ def looks_like_polls(headers):
     has_pollster = find_column(headers, HEADER_HINTS["pollster"]) is not None
     has_dates = find_column(headers, HEADER_HINTS["dates"]) is not None
     dem, rep = find_party_columns(headers)
+    if any("aggregat" in h.lower() for h in headers):
+        return False  # polling-average table, not individual polls
     return has_pollster and has_dates and (dem is not None or rep is not None)
 
 
-def parse_table(table, state, article):
+def nominees_for(state):
+    """(dem, rep) nominee names for a state's Senate race, from the VoteHub
+    config, so the two sources never disagree about who is running."""
+    try:
+        from fetch_polls_votehub import RACES
+    except ImportError:
+        return None
+    entry = RACES.get(f"2026-senate-{state}")
+    return (entry[1], entry[2]) if entry else None
+
+
+def matches_nominees(headers, nominees):
+    """Reject hypothetical-matchup tables. Race articles keep pre-primary
+    tables pairing the incumbent with candidates who lost or never ran;
+    only the table whose D and R columns name the actual nominees counts."""
+    if not nominees:
+        return True
+    i_dem, i_rep = find_party_columns(headers)
+    if i_dem is None or i_rep is None:
+        return False
+    d = headers[i_dem].lower().replace(" ", "")
+    r = headers[i_rep].lower().replace(" ", "")
+    return (nominees[0].split()[-1].lower() in d
+            and nominees[1].split()[-1].lower() in r)
+
+
+def parse_table(table, state, article, nominees=None):
     """Turn one wikitable into poll rows. Returns (rows, skipped_count)."""
     if len(table) < 2:
         return [], 0
 
     headers = table[0]
     if not looks_like_polls(headers):
+        return [], 0
+    if not matches_nominees(headers, nominees):
         return [], 0
 
     i_pollster = find_column(headers, HEADER_HINTS["pollster"])
@@ -405,9 +435,13 @@ def scrape(states, write):
             print(f"  {state}: fetch failed")
             continue
 
+        noms = nominees_for(state.upper())
         rows, skipped = [], 0
         for table in extract_tables(html):
-            r, s = parse_table(table, state.upper(), article)
+            r, s = parse_table(table, state.upper(), article, noms)
+            for row in r:
+                if row.get("pollster"):
+                    row["pollster"] = re.sub(r"\[[^\]]*\]", "", row["pollster"]).strip()
             rows.extend(r)
             skipped += s
 
