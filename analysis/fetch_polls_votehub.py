@@ -300,45 +300,154 @@ def fetch_race(race_id, subject, dem_name, rep_name, poll_type, from_date,
 # Wikipedia supplement
 # --------------------------------------------------------------------------
 
-# Races where VoteHub coverage is thin enough that the race's Wikipedia poll
-# table fills real gaps. Opt-in per race: the wiki parser reads hand-edited
-# tables, so check `fetch_polls_wiki.py <STATE>` before adding one here.
-# Wikipedia is CC BY-SA; the site must credit it.
-WIKI_SUPPLEMENT = {"2026-senate-KS"}
+# VoteHub's coverage is thin in most races, so every Senate and governor
+# race also reads the poll table from its Wikipedia article. Add a race to
+# WIKI_EXCLUDE if its page misparses. Wikipedia is CC BY-SA; the site must
+# credit it.
+import re
+
+WIKI_EXCLUDE = set()
+
+# First poll end date accepted per race, for races whose matchup changed.
+# Earlier polls measured a different contest, and a last-name nominee
+# check can't tell them apart. South Carolina: Lindsey Graham died
+# July 11, 2026; earlier polls are Andrews vs. Lindsey, not Darline.
+RACE_START = {"2026-senate-SC": "2026-07-12"}
 
 
-def _pollster_key(name):
-    import re
-    words = re.findall(r"[a-z0-9]+", name.lower())
-    return words[0] if words else ""
+def wiki_enabled(race_id):
+    return (race_id.startswith(("2026-senate-", "2026-gov-"))
+            and race_id not in WIKI_EXCLUDE)
+
+
+def article_for(race_id, subject):
+    """Wikipedia article title for a race. ARTICLES in fetch_polls_wiki.py
+    overrides the Senate default (Ohio's race is a special election)."""
+    import fetch_polls_wiki as wiki
+    state = race_id.rsplit("-", 1)[-1]
+    name = subject.split(" ", 1)[1] if " " in subject else ""
+    if race_id.startswith("2026-senate-"):
+        return (wiki.ARTICLES.get(state)
+                or f"2026 United States Senate election in {name}")
+    if race_id.startswith("2026-gov-") and name:
+        return f"2026 {name} gubernatorial election"
+    return None
+
+
+# Words too generic to identify a pollster on their own.
+_STOP = {
+    "the", "and", "for", "university", "college", "research", "group",
+    "polling", "poll", "polls", "strategies", "strategy", "associates",
+    "reports", "insights", "project", "center", "institute", "inc", "llc",
+    "survey", "surveys", "public", "opinion", "data", "news", "media",
+    "partners", "analytics", "consulting", "school",
+}
+
+
+def _name_words(name):
+    words = set(re.findall(r"[a-z0-9]+", str(name).lower()))
+    meaningful = {w for w in words if len(w) >= 3 and w not in _STOP}
+    return meaningful or words
 
 
 def _same_poll(a, b):
-    """Same pollster (first word) with end dates within a day. Loose on
-    purpose: the two sources spell pollster names differently."""
-    if _pollster_key(a["pollster"]) != _pollster_key(b["pollster"]):
+    """The same poll reported by two sources: end dates within a day, and
+    either a shared distinctive word in the pollster name or margins within
+    a point. The margin test catches polls the sources credit to different
+    names (sponsor vs. pollster); the tolerance absorbs Wikipedia's
+    rounding. Errs toward merging near-identical polls, which undercounts
+    slightly rather than double counting."""
+    try:
+        da = date.fromisoformat(str(a["end_date"]))
+        db = date.fromisoformat(str(b["end_date"]))
+    except ValueError:
         return False
-    da = date.fromisoformat(str(a["end_date"]))
-    db = date.fromisoformat(str(b["end_date"]))
+    if abs((da - db).days) > 1:
+        return False
+    if _name_words(a["pollster"]) & _name_words(b["pollster"]):
+        return True
+    try:
+        return abs(float(a["margin"]) - float(b["margin"])) <= 1.0
+    except (TypeError, ValueError):
+        return False
+
+
+def _dates_close(a, b):
+    try:
+        da = date.fromisoformat(str(a["end_date"]))
+        db = date.fromisoformat(str(b["end_date"]))
+    except ValueError:
+        return False
     return abs((da - db).days) <= 1
+
+
+def _margin_close(a, b):
+    try:
+        return abs(float(a["margin"]) - float(b["margin"])) <= 1.0
+    except (TypeError, ValueError):
+        return False
+
+
+def _unmatched(new_rows, existing):
+    """Rows in new_rows not already present in existing. Matching is
+    one-to-one and name-first: every name match is claimed before any
+    margin match is tried, so a poll that is merely numerically similar
+    cannot take a match that belongs to its real counterpart (Michigan:
+    Abacus and EPIC-MRA both ended 08-28 at D+4)."""
+    used, left = set(), []
+    for w in new_rows:
+        j = next((i for i, y in enumerate(existing) if i not in used
+                  and _dates_close(w, y)
+                  and _name_words(w["pollster"]) & _name_words(y["pollster"])),
+                 None)
+        if j is None:
+            left.append(w)
+        else:
+            used.add(j)
+    out = []
+    for w in left:
+        j = next((i for i, y in enumerate(existing) if i not in used
+                  and _dates_close(w, y) and _margin_close(w, y)), None)
+        if j is None:
+            out.append(w)
+        else:
+            used.add(j)
+    return out
+
+
+def _collapse(rows):
+    """Wikipedia often lists one poll several times (likely vs. registered
+    voters, with and without third parties). Keep one row per pollster and
+    end date: the likely-voter version if there is one, else the first
+    listed, which is usually the headline figure."""
+    kept = []
+    for r in rows:
+        i = next((j for j, k in enumerate(kept)
+                  if k["end_date"] == r["end_date"]
+                  and _name_words(k["pollster"]) & _name_words(r["pollster"])),
+                 None)
+        if i is None:
+            kept.append(r)
+        elif kept[i]["population"] != "lv" and r["population"] == "lv":
+            kept[i] = r
+    return kept
 
 
 def wiki_rows(race_id, subject, dem_name, rep_name, poll_type, from_date,
               first_seen=None):
     """Polls from the race's Wikipedia article, in RAW_FIELDS form."""
-    import re
     try:
         import fetch_polls_wiki as wiki
     except ImportError:
         return []
-    state = race_id.rsplit("-", 1)[-1]
-    article = wiki.ARTICLES.get(state)
+    article = article_for(race_id, subject)
     if not article:
         return []
     html = wiki.fetch_html(article)
     if not html:
         return []
 
+    state = race_id.rsplit("-", 1)[-1]
     fetched = datetime.utcnow().isoformat(timespec="seconds")
     first_seen = first_seen or {}
     out = []
@@ -348,12 +457,15 @@ def wiki_rows(race_id, subject, dem_name, rep_name, poll_type, from_date,
             end = str(w.get("end_date") or "")
             if not end or end < from_date:
                 continue
-            name = re.sub(r"\[[^\]]*\]", "", w.get("pollster", "")).strip()
+            name = re.sub(r"\[[^\]]*\]", "", str(w.get("pollster", ""))).strip()
+            # Flag partisan only when the marker ends the name. A marker
+            # mid-name ("Fabrizio Ward (R)/Impact Research") is a bipartisan
+            # pair, not a sponsored poll.
             m = re.search(r"\((D|R)\)\s*$", name)
             partisan = {"D": "DEM", "R": "REP"}[m.group(1)] if m else ""
-            name = re.sub(r"\s*\((D|R)\)\s*$", "", name)
+            name = re.sub(r"\s*\((D|R)\)", "", name).strip()
             slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-            pid = f"wiki-{state}-{slug}-{end}"
+            pid = f"wiki-{race_id}-{slug}-{end}"
             dem, rep = float(w["dem_pct"]), float(w["rep_pct"])
             out.append({
                 "poll_id": pid,
@@ -365,7 +477,7 @@ def wiki_rows(race_id, subject, dem_name, rep_name, poll_type, from_date,
                 "start_date": str(w.get("start_date") or end),
                 "end_date": end,
                 "sample_size": w.get("sample_size") or "",
-                "population": w.get("population") or "",
+                "population": str(w.get("population") or "").lower(),
                 "dem_name": dem_name,
                 "rep_name": rep_name,
                 "dem_pct": dem,
@@ -377,7 +489,7 @@ def wiki_rows(race_id, subject, dem_name, rep_name, poll_type, from_date,
                 "fetched_at": fetched,
                 "first_seen": first_seen.get(pid, fetched),
             })
-    return out
+    return _collapse(out)
 
 
 # --------------------------------------------------------------------------
@@ -581,11 +693,16 @@ def main():
         rows, unmatched, total = fetch_race(
             race_id, subject, dem_name, rep_name, poll_type, from_date,
             first_seen)
-        if race_id in WIKI_SUPPLEMENT:
-            extra = [w for w in wiki_rows(race_id, subject, dem_name, rep_name,
-                                          poll_type, from_date, first_seen)
-                     if not any(_same_poll(w, r) for r in rows)]
-            rows = rows + extra
+        start = RACE_START.get(race_id, "")
+        rows = [r for r in rows if str(r["end_date"]) >= start]
+        if wiki_enabled(race_id):
+            extra = _unmatched(wiki_rows(race_id, subject, dem_name, rep_name,
+                                         poll_type, max(from_date, start),
+                                         first_seen),
+                               rows)
+            # Collapse the combined set: VoteHub also lists some polls
+            # twice (LV and RV). VoteHub rows come first, so they win ties.
+            rows = _collapse(rows + extra)
             if extra:
                 print(f"  {race_id:<24} +{len(extra)} poll(s) from Wikipedia")
         all_rows.extend(rows)

@@ -190,7 +190,7 @@ def find_party_columns(headers):
     dem = rep = None
     for i, h in enumerate(headers):
         low = h.lower()
-        if dem is None and (re.search(r"\(d\)|\bdem", low) or "democrat" in low):
+        if dem is None and (re.search(r"\(d\)|\(dfl\)|\bdem", low) or "democrat" in low):
             dem = i
         elif rep is None and (re.search(r"\(r\)|\brep", low) or "republican" in low):
             rep = i
