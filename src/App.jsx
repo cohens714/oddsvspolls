@@ -293,13 +293,22 @@ export default function App() {
                           ? `$${Math.round(race.volume).toLocaleString()} volume`
                           : 'volume unreported'}
                       </span>
-                      {race.kalshi !== null && (
-                        <span>
-                          kalshi {(race.kalshi * 100).toFixed(0)}%
-                          {race.venueGap !== null &&
-                            ` (${race.venueGap > 0 ? '+' : ''}${race.venueGap.toFixed(1)} vs polymarket)`}
-                        </span>
-                      )}
+                      {race.kalshi !== null && (() => {
+                        // Show Kalshi on the same side as the header (the market favorite).
+                        // venueGap is polymarket - kalshi in Dem terms, so kalshi - polymarket
+                        // on the favorite's side is +venueGap for rep, -venueGap for dem.
+                        const repFav = race.marketFavours === 'rep'
+                        const k = repFav ? 1 - race.kalshi : race.kalshi
+                        const diff = race.venueGap === null ? null
+                          : (repFav ? race.venueGap : -race.venueGap)
+                        return (
+                          <span>
+                            kalshi {(k * 100).toFixed(0)}%
+                            {diff !== null &&
+                              ` (${diff > 0 ? '+' : ''}${diff.toFixed(1)} vs polymarket)`}
+                          </span>
+                        )
+                      })()}
                       {race.thinPolls && <span className="flag">thin polling</span>}
                       {race.thinMarket && <span className="flag">thin market</span>}
                       {race.venueDisagree && (
