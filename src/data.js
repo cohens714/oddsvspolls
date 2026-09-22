@@ -208,6 +208,27 @@ export function combine(marketRows, pollRows, meta = {}, historyRows = []) {
     const series = mSeries.get(race_id) || {}
     series.poll = pSeries.get(race_id) || []
 
+    // Carry the poll line forward to the market's most recent day. Poll
+    // history is weekly and polls are sparse, so without this every poll
+    // line stops days short of the market line and a quiet race looks
+    // broken. The added point uses the current average, the same number
+    // the card shows, and is tagged so the chart can style it later.
+    const pollPts = series.poll
+    if (pollPts.length) {
+      const marketLatest = Math.min(
+        ...Object.entries(series)
+          .filter(([k, v]) => k !== 'poll' && Array.isArray(v) && v.length)
+          .map(([, v]) => v[v.length - 1].days_out))
+      const last = pollPts[pollPts.length - 1]
+      if (Number.isFinite(marketLatest) && marketLatest < last.days_out) {
+        series.poll = [...pollPts, {
+          days_out: marketLatest,
+          prob: p ? p.prob : last.prob,
+          carried: true,
+        }]
+      }
+    }
+
     // Who each source favors. Both probabilities are P(Democrat wins), so
     // a source favors the Republican whenever it sits below 0.5.
     const marketFavours = m.prob >= 0.5 ? 'dem' : 'rep'
