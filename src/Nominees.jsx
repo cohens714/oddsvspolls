@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 const FETCH_OPTS = { cache: 'no-store' }
 
 const BOARDS = [
+  { id: '2028-president', title: 'Presidency' },
   { id: '2028-dem-nominee', title: 'Democratic nominee' },
   { id: '2028-rep-nominee', title: 'Republican nominee' },
 ]
@@ -37,7 +38,7 @@ export function TabNav({ tab }) {
       <a href="#races" className={tab === 'races' ? 'tab tab-on' : 'tab'}
          aria-current={tab === 'races' ? 'page' : undefined}>2026 races</a>
       <a href="#nominees" className={tab === 'nominees' ? 'tab tab-on' : 'tab'}
-         aria-current={tab === 'nominees' ? 'page' : undefined}>2028 nominees</a>
+         aria-current={tab === 'nominees' ? 'page' : undefined}>2028 election</a>
     </nav>
   )
 }
@@ -47,10 +48,11 @@ export function NomineesHeader() {
     <>
       <h1>Who the markets expect in 2028</h1>
       <p className="lede">
-        Polymarket and Kalshi prices for each party&rsquo;s 2028 presidential
-        nomination, side by side and tracked over time. There is no polling
-        column here: primary polls measure a share of the vote, not a chance
-        of winning, so the two can&rsquo;t be compared directly.
+        Polymarket and Kalshi prices for who wins the White House in 2028,
+        and for each party&rsquo;s nomination, side by side and tracked over
+        time. There is no polling column here: this far out, primary polls
+        measure a share of the vote and general-election polls test matchups
+        that may never happen, so neither maps onto a chance of winning.
       </p>
     </>
   )
@@ -368,7 +370,7 @@ export default function Nominees() {
             <div className="legend">
               <span className="key"><i className="swatch swatch-market" /> polymarket</span>
               <span className="key"><i className="swatch swatch-kalshi" /> kalshi</span>
-              <span className="key key-muted">chance of winning the nomination</span>
+              <span className="key key-muted">chance of winning</span>
             </div>
 
             {state.boards.filter((b) => b.cands.length).map((b) => {
@@ -416,12 +418,14 @@ export default function Nominees() {
           <strong>Why there are no polls here.</strong> Primary polls report
           each candidate&rsquo;s share of the vote, and a 30% share in a
           crowded field two years out says little about the chance of winning.
-          Rather than invent a conversion, this page shows the markets alone.
+          General-election polls this early can only test hypothetical
+          matchups. Rather than invent a conversion, this page shows the
+          markets alone.
         </p>
         <p className="caveat">
           <strong>Why the prices don&rsquo;t add to 100%.</strong> Each
           candidate is a separate yes-or-no contract, so nothing forces a
-          party&rsquo;s board to sum to exactly 100%. Scaling everyone up to
+          board to sum to exactly 100%. Scaling everyone up to
           fill the gap would inflate the favorites most, so the raw prices are
           shown as traded.
         </p>
@@ -430,6 +434,14 @@ export default function Nominees() {
           don&rsquo;t settle until 2028, and money tied up that long has a
           cost. That tends to make longshots look a little more likely, and
           favorites a little less, than traders really believe.
+        </p>
+        <p className="caveat">
+          <strong>Reading the presidency board.</strong> A presidency
+          contract only pays if its candidate wins the nomination and then
+          the general election, so each price there should sit at or below
+          the same person&rsquo;s nomination price. Dividing one by the
+          other gives the market&rsquo;s view of how that candidate would do
+          as the nominee.
         </p>
         <p className="caveat">
           <strong>When the venues disagree.</strong> Gaps of {DISAGREE_PTS}{' '}

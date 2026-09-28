@@ -32,6 +32,19 @@ DEFAULT_OUT = os.path.join(HERE, "..", "public", "nominee_snapshots.csv")
 # mistake of pointing at the wrong market: every market's resolution text
 # has to mention the right party's presidential nomination.
 EVENTS = [
+    # Winner board. The guard is inverted from the nominee boards: the
+    # rules must mention the presidency and must NOT mention a
+    # nomination, so a nominee contract can never land here.
+    {
+        "event_id": "2028-president",
+        "party": "ANY",
+        "kalshi_event": "KXPRESPERSON-28",
+        "polymarket_slug": "presidential-election-winner-2028",
+        "kalshi_rules_must_contain": ["presiden"],
+        "kalshi_rules_must_not_contain": ["nominat"],
+        "polymarket_rules_must_contain": ["presiden"],
+        "polymarket_rules_must_not_contain": ["nominat"],
+    },
     {
         "event_id": "2028-dem-nominee",
         "party": "DEM",
@@ -81,6 +94,14 @@ def candidate_key(name):
     return ALIASES.get(s, s)
 
 
+def rules_ok(rules, ev, venue):
+    """Every must_contain phrase has to appear, and no must_not_contain phrase."""
+    need = ev[f"{venue}_rules_must_contain"]
+    need = [need] if isinstance(need, str) else need
+    avoid = ev.get(f"{venue}_rules_must_not_contain", [])
+    return all(n in rules for n in need) and not any(a in rules for a in avoid)
+
+
 def to_float(v):
     if v in (None, ""):
         return None
@@ -110,7 +131,7 @@ def fetch_kalshi(ev):
         if m.get("status") != "active":
             continue
         rules = (m.get("rules_primary") or "").lower()
-        if ev["kalshi_rules_must_contain"] not in rules:
+        if not rules_ok(rules, ev, "kalshi"):
             raise ValueError(f"{m.get('ticker')} rules don't match "
                              f"{ev['party']} nomination: {rules[:120]}")
         label = (m.get("custom_strike") or {}).get("Candidate") or m.get("yes_sub_title")
@@ -139,7 +160,7 @@ def fetch_polymarket(ev):
         if m.get("closed") or not m.get("active"):
             continue
         rules = (m.get("description") or "").lower()
-        if ev["polymarket_rules_must_contain"] not in rules:
+        if not rules_ok(rules, ev, "polymarket"):
             raise ValueError(f"{m.get('slug')} rules don't match "
                              f"{ev['party']} nomination: {rules[:120]}")
         label = m.get("groupItemTitle") or m.get("question")
