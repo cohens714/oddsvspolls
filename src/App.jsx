@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import History from './History.jsx'
+import Nominees, { useTab, TabNav, NomineesHeader } from './Nominees.jsx'
 import { parseCsv, combine, forDisplay, DISPLAY_CEIL, DISPLAY_FLOOR }
   from './data.js'
 
@@ -45,6 +46,7 @@ function call(prob, race) {
 }
 
 export default function App() {
+  const tab = useTab()
   const [state, setState] = useState({ status: 'loading', races: [] })
 
   useEffect(() => {
@@ -89,7 +91,11 @@ export default function App() {
   return (
     <>
       <header>
-        <p className="eyebrow">oddsvspolls.com</p>
+        <div className="masthead">
+          <p className="eyebrow">oddsvspolls.com</p>
+          <TabNav tab={tab} />
+        </div>
+        {tab === 'nominees' ? <NomineesHeader /> : (<>
         <h1>Where the markets and the polls disagree</h1>
         <p className="lede">
           Prediction market prices for the 2026 Senate and governor races,
@@ -102,7 +108,10 @@ export default function App() {
             </>
           )}
         </p>
+        </>)}
       </header>
+
+      {tab === 'nominees' ? <Nominees /> : (<>
 
       <main>
         {state.status === 'loading' && <p className="note">Loading…</p>}
@@ -417,6 +426,7 @@ export default function App() {
           polls are included and flagged.
         </p>
       </footer>
+      </>)}
     </>
   )
 }
