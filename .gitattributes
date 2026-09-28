@@ -26,3 +26,4 @@ data/poll_averages.csv merge=union
 
 # Generated binary; never worth a textual merge.
 assets/og.png binary
+public/nominee_snapshots.csv merge=union
