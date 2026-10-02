@@ -79,6 +79,24 @@ def log_score(prob: np.ndarray, outcome: np.ndarray) -> float:
     return float(-np.mean(outcome * np.log(p) + (1 - outcome) * np.log(1 - p)))
 
 
+def auc(prob: np.ndarray, outcome: np.ndarray) -> float:
+    """Chance a randomly chosen race where the event happened was rated
+    higher than one where it did not (ties count half).
+
+    Depends on ranking only, so unlike Brier and log score it barely moves
+    when SIGMA_FINAL or VARIANCE_DOUBLING_DAYS change. If polls win on AUC
+    but lose on Brier, the polling information was good and the conversion
+    to probability was the weak link. Returns NaN if every outcome is the same.
+    """
+    prob = np.asarray(prob, dtype=float)
+    outcome = np.asarray(outcome).astype(bool)
+    n_pos, n_neg = int(outcome.sum()), int((~outcome).sum())
+    if n_pos == 0 or n_neg == 0:
+        return float("nan")
+    ranks = pd.Series(prob).rank(method="average").to_numpy()
+    return float((ranks[outcome].sum() - n_pos * (n_pos + 1) / 2) / (n_pos * n_neg))
+
+
 def brier_decomposition(
     prob: np.ndarray, outcome: np.ndarray, n_bins: int = 10
 ) -> dict:
@@ -188,6 +206,7 @@ def score_by_horizon(df: pd.DataFrame, bin_edges: list[int] | None = None) -> pd
             "n_races": chunk["race_id"].nunique(),
             "brier": brier(p, y),
             "log_score": log_score(p, y),
+            "auc": auc(p, y),
             "reliability": decomp["reliability"],
             "resolution": decomp["resolution"],
         })

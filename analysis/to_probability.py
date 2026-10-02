@@ -33,10 +33,12 @@ the eventual error in the poll margin. Two things drive sigma.
 
 These combine in quadrature, since they are independent sources of error.
 
-SIGMA_FINAL is the provisional number. It is set from published estimates of
-Senate polling error, and it should be replaced with a value fitted to
-historical races once the backtest exists. Until then this file, and the
-site, should say plainly that it is an assumption rather than a measurement.
+SIGMA_FINAL is fitted, not assumed. It was chosen by calibration testing
+against 379 Senate races in the 538 pollster-ratings archive (see the
+comment above SIGMA_FINAL and check_calibration.py). VARIANCE_DOUBLING_DAYS
+is still an assumption, because the archive only covers the final 21 days
+before each election. Both values are frozen for the 2026 cycle as of
+2026-10-02 and will not change until every 2026 race has resolved.
 """
 
 from __future__ import annotations
@@ -79,6 +81,9 @@ PROB_OUT = DATA / "poll_probabilities.csv"
 #
 # 4.5 is the best calibrated of the three, largest bucket miss 2 points,
 # and had the best worst-cycle score. Revisit after 2026 resolves.
+#
+# FROZEN for the 2026 cycle on 2026-10-02. Do not change until every 2026
+# race resolves. A refit after that is a 2028 parameter, not a 2026 one.
 SIGMA_FINAL = 4.5
 
 # Variance doubles this many days out. Captures that a poll in August tells
@@ -88,6 +93,9 @@ SIGMA_FINAL = 4.5
 # of the election, so it can measure election-eve error but says nothing
 # about how error grows at longer horizons. Nothing in this repository
 # constrains this number yet.
+#
+# FROZEN for the 2026 cycle on 2026-10-02, alongside SIGMA_FINAL.
+# Published as an assumption, with sensitivity results, in the methodology.
 VARIANCE_DOUBLING_DAYS = 120
 
 # Typical sample size of a single state poll, used to turn effective_n
