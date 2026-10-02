@@ -127,6 +127,7 @@ export default function Methodology() {
           All of the code and data behind this site is public on{' '}
           <a href={REPO_URL}>GitHub</a>.
         </p>
+        <p className="note">Methodology last updated October 2, 2026.</p>
       </section>
     </main>
   )
