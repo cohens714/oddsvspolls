@@ -673,3 +673,25 @@ footer p { margin: 0 0 0.7rem; }
   display: flex; justify-content: space-between; gap: 1rem;
   padding: 0.35rem 0; border-bottom: 1px solid var(--ink-faint);
 }
+
+/* poll list */
+.poll-list { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.7rem; }
+.poll-list summary { cursor: pointer; color: var(--ink-faint); width: fit-content; }
+.poll-list summary:hover { color: var(--ink-soft); }
+.poll-table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+.poll-table { border-collapse: collapse; width: 100%; }
+.poll-table th, .poll-table td {
+  text-align: left; vertical-align: top; padding: 0.3rem 0.6rem 0.3rem 0;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.25);
+}
+.poll-table th {
+  color: var(--ink-faint); font-weight: normal;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.poll-table .num { text-align: right; white-space: nowrap; }
+.poll-table .pt-date { white-space: nowrap; }
+.poll-table a { color: inherit; }
+.pt-flag { margin-left: 0.4rem; }
+.pt-sponsor { display: block; color: var(--ink-faint); }
+.poll-note { margin: 0.5rem 0 0; color: var(--ink-faint); line-height: 1.55; }
+@media (max-width: 560px) { .poll-table .pt-n { display: none; } }

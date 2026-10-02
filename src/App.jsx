@@ -3,6 +3,7 @@ import History from './History.jsx'
 import Nominees, { useTab, TabNav, NomineesHeader } from './Nominees.jsx'
 import Methodology, { MethodologyHeader } from './Methodology.jsx'
 import Scorecard, { ScorecardHeader } from './Scorecard.jsx'
+import PollList from './PollList.jsx'
 import { parseCsv, combine, forDisplay, DISPLAY_CEIL, DISPLAY_FLOOR }
   from './data.js'
 
@@ -57,12 +58,13 @@ export default function App() {
       loadCsv('/poll_probabilities.csv'),
       loadJson('/race_meta.json'),
       loadCsv('/poll_history.csv').catch(() => []),
+      loadJson('/poll_inputs.json'),
     ])
-      .then(([marketRows, pollRows, meta, historyRows]) => {
+      .then(([marketRows, pollRows, meta, historyRows, pollInputs]) => {
         const races = combine(marketRows, pollRows, meta, historyRows)
         const asOf = marketRows.reduce(
           (l, r) => (r.fetched_at > l ? r.fetched_at : l), '')
-        setState({ status: races.length ? 'ready' : 'empty', races, asOf })
+        setState({ status: races.length ? 'ready' : 'empty', races, asOf, pollInputs })
       })
       .catch((err) => setState({ status: 'error', races: [], error: err.message }))
   }, [])
@@ -332,6 +334,10 @@ export default function App() {
                         </span>
                       )}
                     </div>
+                    <PollList inputs={state.pollInputs?.races?.[race.race_id]}
+                              race={race}
+                              windowDays={state.pollInputs?.window_days}
+                              halfLifeDays={state.pollInputs?.half_life_days} />
                   </li>
                 )
               })}

@@ -54,6 +54,13 @@ jobs:
         working-directory: analysis
         run: python3 replay_polls.py
 
+      # The polls behind each current average, with their weight shares, so
+      # a reader can see why a number is what it is. Each race is checked
+      # against its published average and left out if it does not match.
+      - name: Publish poll inputs
+        working-directory: analysis
+        run: python3 poll_inputs.py
+
       # Cheap, and catches the case where a nominee changed in the config
       # but the site kept showing the old name.
       - name: Refresh race metadata
