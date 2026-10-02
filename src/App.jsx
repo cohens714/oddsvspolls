@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import History from './History.jsx'
 import Nominees, { useTab, TabNav, NomineesHeader } from './Nominees.jsx'
+import Methodology, { MethodologyHeader } from './Methodology.jsx'
 import { parseCsv, combine, forDisplay, DISPLAY_CEIL, DISPLAY_FLOOR }
   from './data.js'
 
@@ -95,7 +96,7 @@ export default function App() {
           <p className="eyebrow">oddsvspolls.com</p>
           <TabNav tab={tab} />
         </div>
-        {tab === 'nominees' ? <NomineesHeader /> : (<>
+        {tab === 'nominees' ? <NomineesHeader /> : tab === 'methodology' ? <MethodologyHeader /> : (<>
         <h1>Where the markets and the polls disagree</h1>
         <p className="lede">
           Prediction market prices for the 2026 Senate and governor races,
@@ -111,7 +112,7 @@ export default function App() {
         </>)}
       </header>
 
-      {tab === 'nominees' ? <Nominees /> : (<>
+      {tab === 'nominees' ? <Nominees /> : tab === 'methodology' ? <Methodology /> : (<>
 
       <main>
         {state.status === 'loading' && <p className="note">Loading…</p>}

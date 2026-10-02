@@ -648,3 +648,9 @@ footer p { margin: 0 0 0.7rem; }
 }
 
 .show-all:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+/* methodology page */
+.methodology { max-width: 44rem; }
+.methodology section { margin-bottom: 2rem; }
+.methodology h2 { margin-bottom: 0.5rem; }
+.methodology p { line-height: 1.6; }

@@ -22,10 +22,14 @@ function readTab() {
   return window.location.hash === '#nominees' ? 'nominees' : 'races'
 }
 
+function readTabAll() {
+  return window.location.hash === '#methodology' ? 'methodology' : readTab()
+}
+
 export function useTab() {
-  const [tab, setTab] = useState(readTab)
+  const [tab, setTab] = useState(readTabAll)
   useEffect(() => {
-    const onHash = () => { setTab(readTab()); window.scrollTo(0, 0) }
+    const onHash = () => { setTab(readTabAll()); window.scrollTo(0, 0) }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
@@ -39,6 +43,8 @@ export function TabNav({ tab }) {
          aria-current={tab === 'races' ? 'page' : undefined}>2026 races</a>
       <a href="#nominees" className={tab === 'nominees' ? 'tab tab-on' : 'tab'}
          aria-current={tab === 'nominees' ? 'page' : undefined}>2028 election</a>
+      <a href="#methodology" className={tab === 'methodology' ? 'tab tab-on' : 'tab'}
+         aria-current={tab === 'methodology' ? 'page' : undefined}>How it works</a>
     </nav>
   )
 }
