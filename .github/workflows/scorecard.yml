@@ -1,0 +1,98 @@
+name: Rebuild scorecard
+
+# Reruns the scorecard whenever race calls are entered in data/outcomes.csv,
+# so election-night work is just editing that file and pushing. The commit
+# this workflow makes triggers a Cloudflare deploy like any other push.
+#
+# scorecard.py refuses to run before the 6 p.m. Eastern cutoff on November 3
+# and exits with code 2. That is treated as a skip, not a failure, so editing
+# outcomes early does not produce a red X.
+#
+# Manual runs from the Actions tab default to a dry run: simulated outcomes,
+# today treated as election day, nothing committed. Use it to confirm the
+# scoring works in CI before it matters.
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/outcomes.csv
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run with simulated outcomes (commits nothing)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scorecard
+  cancel-in-progress: false
+
+jobs:
+  scorecard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The pipeline scripts are stdlib only; scoring is the exception.
+      - name: Install scoring dependencies
+        run: pip install pandas numpy
+
+      - name: Dry run
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        working-directory: analysis
+        run: python3 scorecard.py --dry-run
+
+      - name: Build scorecard
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        working-directory: analysis
+        run: |
+          status=0
+          python3 scorecard.py || status=$?
+          if [ "$status" = "2" ]; then
+            echo "Before the election-day cutoff; nothing to score yet."
+            exit 0
+          fi
+          exit "$status"
+
+      - name: Commit if anything changed
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        run: |
+          git config user.name  "oddsvspolls-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          if [ ! -f data/scorecard.json ]; then
+            echo "No scorecard written, nothing to commit."
+            exit 0
+          fi
+
+          # scorecard.json starts untracked, so stage first, then compare.
+          git add data/scorecard.json
+          if git diff --cached --quiet; then
+            echo "Scorecard unchanged, nothing to commit."
+            exit 0
+          fi
+
+          git commit -m "Scorecard update $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          # The market and poll workflows may have pushed while this ran.
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            sleep 5
+          done
+
+          echo "Push failed after 3 attempts." >&2
+          exit 1
