@@ -10,7 +10,7 @@
          title in a shared post. Leads with the comparison rather than the
          subject: "tracks elections" describes a category, "shows where two
          forecasts disagree" describes a reason to look. -->
-    <meta name="description" content="Prediction market prices for the 2026 Senate and governor races next to what the polling implies, updated daily. Every figure is a recorded observation with a timestamp, and the methodology is published." />
+    <meta name="description" content="2026 Senate and governor races: prediction market prices next to what the polls imply, updated daily, and a scorecard of which is more accurate." />
 
     <link rel="canonical" href="https://oddsvspolls.com/" />
 
@@ -46,6 +46,52 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- Structured data so the site can appear in Google Dataset Search. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "Odds vs Polls: 2026 prediction market and polling forecasts",
+      "description": "Daily prediction market prices from Polymarket and Kalshi alongside poll-implied win probabilities for the 2026 US Senate and governor races. Every observation is timestamped, the method for converting polls to probabilities is published and was frozen before the election, and both sources are scored for accuracy once races are called.",
+      "url": "https://oddsvspolls.com/",
+      "sameAs": "https://github.com/cohens714/oddsvspolls",
+      "keywords": [
+        "prediction markets",
+        "election polls",
+        "election forecasting",
+        "2026 midterms",
+        "Polymarket",
+        "Kalshi",
+        "Senate",
+        "governor",
+        "forecast accuracy"
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "Odds vs Polls",
+        "url": "https://oddsvspolls.com/"
+      },
+      "spatialCoverage": "United States",
+      "isAccessibleForFree": true,
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/csv",
+          "contentUrl": "https://oddsvspolls.com/snapshots.csv"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/csv",
+          "contentUrl": "https://oddsvspolls.com/poll_probabilities.csv"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/csv",
+          "contentUrl": "https://oddsvspolls.com/outcomes.csv"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
