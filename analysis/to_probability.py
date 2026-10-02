@@ -198,7 +198,7 @@ def sensitivity(rows):
     points across a plausible sigma range, the probability is an artifact of
     the assumption rather than a finding about the race.
     """
-    global SIGMA_FINAL
+    global SIGMA_FINAL, VARIANCE_DOUBLING_DAYS
     original = SIGMA_FINAL
     candidates = [4.0, 5.0, 6.0, 7.0, 8.0]
 
@@ -227,6 +227,29 @@ def sensitivity(rows):
         SIGMA_FINAL = original
         print(f"{race_id:<22} {margin:>+7.1f}  " + "  ".join(cells))
 
+    doubling = [60, 90, 120, 180, 240]
+    original_vdd = VARIANCE_DOUBLING_DAYS
+    print(f"\nVariance doubling days (sigma_final held at {SIGMA_FINAL})")
+    print(f"{'race':<22} {'days':>5}  " +
+          "  ".join(f"d={d:<4d}" for d in doubling))
+    print("-" * 68)
+    for race_id, r in sorted(latest.items()):
+        try:
+            margin = float(r["margin"])
+            days_out = float(r["days_out"])
+            eff = float(r["effective_n"] or 0)
+        except (TypeError, ValueError):
+            continue
+        cells = []
+        try:
+            for d in doubling:
+                VARIANCE_DOUBLING_DAYS = d
+                p, *_ = to_probability(margin, days_out, eff)
+                cells.append(f"{p * 100:5.1f}%")
+        finally:
+            VARIANCE_DOUBLING_DAYS = original_vdd
+        print(f"{race_id:<22} {days_out:>5.0f}  " + "  ".join(cells))
+
     print("\nA race whose probability swings widely across this range is")
     print("reporting your sigma assumption, not the polling. Say so on the")
     print("site rather than letting a reader assume otherwise.")
@@ -237,7 +260,26 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sensitivity", action="store_true",
                     help="show probabilities across a range of sigma")
+    ap.add_argument("--sigma-final", type=float,
+                    help="override SIGMA_FINAL (requires --out)")
+    ap.add_argument("--doubling-days", type=float,
+                    help="override VARIANCE_DOUBLING_DAYS (requires --out)")
+    ap.add_argument("--out",
+                    help="write probabilities here instead of the live file")
     args = ap.parse_args()
+
+    global SIGMA_FINAL, VARIANCE_DOUBLING_DAYS, PROB_OUT
+    overriding = args.sigma_final is not None or args.doubling_days is not None
+    if overriding and not args.out and not args.sensitivity:
+        print("Overrides change the frozen 2026 parameters. Pass --out so the "
+              "live file is not overwritten.", file=sys.stderr)
+        return 2
+    if args.sigma_final is not None:
+        SIGMA_FINAL = args.sigma_final
+    if args.doubling_days is not None:
+        VARIANCE_DOUBLING_DAYS = args.doubling_days
+    if args.out:
+        PROB_OUT = Path(args.out)
 
     rows = read_averages()
     if not rows:

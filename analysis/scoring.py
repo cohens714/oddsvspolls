@@ -174,6 +174,19 @@ def calibration_table(
     return pd.DataFrame(rows)
 
 
+def _finite_or_none(x: float):
+    """NaN is not valid JSON, so report a missing score as null."""
+    return None if x is None or not np.isfinite(x) else float(x)
+
+
+def office_of(race_id: str) -> str:
+    """Office from a race ID like 2026-senate-GA or 2026-gov-AZ."""
+    parts = str(race_id).lower().split("-")
+    token = parts[1] if len(parts) > 1 else ""
+    return {"senate": "senate", "sen": "senate",
+            "gov": "governor", "governor": "governor"}.get(token, "other")
+
+
 def score_by_horizon(df: pd.DataFrame, bin_edges: list[int] | None = None) -> pd.DataFrame:
     """Score each source within buckets of days-to-election.
 
@@ -206,7 +219,7 @@ def score_by_horizon(df: pd.DataFrame, bin_edges: list[int] | None = None) -> pd
             "n_races": chunk["race_id"].nunique(),
             "brier": brier(p, y),
             "log_score": log_score(p, y),
-            "auc": auc(p, y),
+            "auc": _finite_or_none(auc(p, y)),
             "reliability": decomp["reliability"],
             "resolution": decomp["resolution"],
         })
@@ -263,6 +276,11 @@ def paired_comparison(
 
     diffs = np.array(diffs)
     lo, hi = np.percentile(diffs, [2.5, 97.5])
+    if len(unique_cycles) < 2:
+        # With one cycle every bootstrap draw is the same data, so the
+        # interval collapses to a point and any difference would read as
+        # significant. Report no interval instead.
+        lo = hi = float("nan")
 
     return {
         "metric": metric,
@@ -271,13 +289,38 @@ def paired_comparison(
         f"{metric}_a": score_a,
         f"{metric}_b": score_b,
         "diff": score_a - score_b,
-        "ci_low": float(lo),
-        "ci_high": float(hi),
+        "ci_low": _finite_or_none(lo),
+        "ci_high": _finite_or_none(hi),
         "n_pairs": len(shared),
         "n_races": a.index.get_level_values("race_id").nunique(),
         "n_cycles": len(unique_cycles),
         "significant": bool(lo > 0 or hi < 0),
     }
+
+
+def score_by_office(df: pd.DataFrame, sources: tuple[str, str]) -> dict:
+    """Horizon scores and head-to-head comparisons for each office separately.
+
+    The polling sigma was fitted on Senate races and applied to governor races
+    too, so the governor results are where that choice would show up.
+    """
+    a, b = sources
+    offices = df["race_id"].map(office_of)
+    out = {}
+    for office in sorted(offices.unique()):
+        sub = df[offices == office]
+        h2h = {}
+        for m in ("brier", "log_score"):
+            try:
+                h2h[m] = paired_comparison(sub, a, b, metric=m)
+            except ValueError:
+                h2h[m] = None
+        out[office] = {
+            "n_races": int(sub["race_id"].nunique()),
+            "horizon_scores": score_by_horizon(sub).to_dict(orient="records"),
+            "head_to_head": h2h,
+        }
+    return out
 
 
 def build_report(df: pd.DataFrame, sources: tuple[str, str]) -> dict:
@@ -293,6 +336,7 @@ def build_report(df: pd.DataFrame, sources: tuple[str, str]) -> dict:
         "head_to_head": {
             m: paired_comparison(df, a, b, metric=m) for m in ("brier", "log_score")
         },
+        "by_office": score_by_office(df, sources),
         "coverage": {
             "n_races": int(df["race_id"].nunique()),
             "n_cycles": int(df["cycle"].nunique()),
