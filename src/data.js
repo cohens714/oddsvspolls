@@ -150,8 +150,16 @@ function latestPolls(rows) {
     const prob = num(row.prob)
     if (prob === null) continue
     const prev = byRace.get(row.race_id)
-    if (!prev || row.computed_at > prev.computed_at) {
+    // Latest by as_of_date, the day the average describes. computed_at
+    // cannot decide this on its own: to_probability rewrites every
+    // historical row in one run, so all of a race's rows share a single
+    // computed_at, and a strict ">" kept the FIRST row read, which is the
+    // OLDEST average. computed_at only breaks ties within the same day.
+    const asOf = row.as_of_date || ''
+    if (!prev || asOf > prev.as_of_date
+        || (asOf === prev.as_of_date && row.computed_at > prev.computed_at)) {
       byRace.set(row.race_id, {
+        as_of_date: asOf,
         computed_at: row.computed_at,
         prob,
         margin: num(row.margin),
