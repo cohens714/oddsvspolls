@@ -2,7 +2,7 @@ name: Update polls
 
 # Once a day. Polls arrive a few a week, so more frequent runs would burn
 # minutes for nothing. Markets move constantly and have their own workflow
-# at four times a day; the two cadences are deliberately different.
+# that runs hourly; the two cadences are deliberately different.
 #
 # This runs the whole poll chain in order, because each step reads the
 # previous step's output:
