@@ -79,8 +79,11 @@ def load():
                 except (KeyError, TypeError, ValueError):
                     continue
                 prev = polls.get(r["race_id"])
-                if not prev or r["computed_at"] > prev[1]:
-                    polls[r["race_id"]] = (prob, r["computed_at"])
+                # Latest by as_of_date. to_probability rewrites every row in
+                # one run, so computed_at is shared and alone kept the OLDEST.
+                key = (r.get("as_of_date", ""), r["computed_at"])
+                if not prev or key > prev[1]:
+                    polls[r["race_id"]] = (prob, key)
 
     meta_file = DATA / "race_meta.json"
     if meta_file.exists():
