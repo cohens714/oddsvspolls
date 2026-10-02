@@ -22,8 +22,11 @@ function readTab() {
   return window.location.hash === '#nominees' ? 'nominees' : 'races'
 }
 
+const EXTRA_TABS = ['methodology', 'scorecard']
+
 function readTabAll() {
-  return window.location.hash === '#methodology' ? 'methodology' : readTab()
+  const h = window.location.hash.slice(1)
+  return EXTRA_TABS.includes(h) ? h : readTab()
 }
 
 export function useTab() {
@@ -41,6 +44,8 @@ export function TabNav({ tab }) {
     <nav className="tabs" aria-label="Sections">
       <a href="#races" className={tab === 'races' ? 'tab tab-on' : 'tab'}
          aria-current={tab === 'races' ? 'page' : undefined}>2026 races</a>
+      <a href="#scorecard" className={tab === 'scorecard' ? 'tab tab-on' : 'tab'}
+         aria-current={tab === 'scorecard' ? 'page' : undefined}>Scorecard</a>
       <a href="#nominees" className={tab === 'nominees' ? 'tab tab-on' : 'tab'}
          aria-current={tab === 'nominees' ? 'page' : undefined}>2028 election</a>
       <a href="#methodology" className={tab === 'methodology' ? 'tab tab-on' : 'tab'}

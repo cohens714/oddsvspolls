@@ -654,3 +654,22 @@ footer p { margin: 0 0 0.7rem; }
 .methodology section { margin-bottom: 2rem; }
 .methodology h2 { margin-bottom: 0.5rem; }
 .methodology p { line-height: 1.6; }
+
+/* scorecard page */
+.tabs { flex-wrap: wrap; row-gap: 0.4rem; }
+.scorecard { max-width: 44rem; }
+.scorecard section { margin-bottom: 2rem; }
+.scorecard h2 { margin-bottom: 0.5rem; }
+.scorecard p { line-height: 1.6; }
+.tracker { display: flex; flex-wrap: wrap; gap: 2rem; margin: 0.5rem 0 1rem; }
+.tracker > div { display: flex; flex-direction: column; }
+.tracker-num { font-family: var(--mono); font-size: 1.8rem; color: var(--ink); }
+.tracker-label {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.called-list { list-style: none; padding: 0; margin: 0; }
+.called-list li {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.35rem 0; border-bottom: 1px solid var(--ink-faint);
+}

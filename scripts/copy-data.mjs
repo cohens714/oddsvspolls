@@ -45,6 +45,8 @@ const FILES = [
   ['data/race_meta.json', '{}'],
   ['data/poll_history.csv',
    'race_id,as_of_date,days_out,margin,prob,sigma,n_polls,effective_n,n_partisan'],
+  ['data/outcomes.csv', 'race_id,winner,called_date,status,note'],
+  ['data/scorecard.json', '{}'],
 ]
 
 for (const [rel, header] of FILES) {
