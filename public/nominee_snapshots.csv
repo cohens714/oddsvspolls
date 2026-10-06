@@ -3533,3 +3533,144 @@ ts_utc,event_id,venue,candidate_key,candidate_label,venue_id,yes_bid,yes_ask,las
 2026-10-06T06:30:08Z,2028-rep-nominee,polymarket,thomas massie,Thomas Massie,will-thomas-massie-win-the-2028-republican-presidential-nomination,0.0070,0.0080,0.0080,0.0075,mid
 2026-10-06T06:30:08Z,2028-rep-nominee,polymarket,candace owens,Candace Owens,will-candace-owens-win-the-2028-republican-presidential-nomination,0.0020,0.0030,0.0020,0.0025,mid
 2026-10-06T06:30:08Z,2028-rep-nominee,polymarket,tom cotton,Tom Cotton,will-tom-cotton-win-the-2028-republican-presidential-nomination,0.0040,0.0070,0.0040,0.0055,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,gavin newsom,Gavin Newsom,KXPRESPERSON-28-GNEWS,0.0850,0.0870,0.0870,0.0860,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,alexandria ocasio cortez,Alexandria Ocasio-Cortez,KXPRESPERSON-28-AOCA,0.0970,0.1000,0.1000,0.0985,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,pete buttigieg,Pete Buttigieg,KXPRESPERSON-28-PBUT,0.0290,0.0300,0.0300,0.0295,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,josh shapiro,Josh Shapiro,KXPRESPERSON-28-JSHA,0.0270,0.0280,0.0280,0.0275,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,kamala harris,Kamala Harris,KXPRESPERSON-28-KHAR,0.0420,0.0430,0.0420,0.0425,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,wes moore,Wes Moore,KXPRESPERSON-28-WMOO,0.0130,0.0160,0.0160,0.0145,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,gretchen whitmer,Gretchen Whitmer,KXPRESPERSON-28-GWHI,0.0050,0.0060,0.0060,0.0055,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,andy beshear,Andy Beshear,KXPRESPERSON-28-ABES,0.0330,0.0340,0.0340,0.0335,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,j b pritzker,J.B. Pritzker,KXPRESPERSON-28-JPRI,0.0090,0.0100,0.0100,0.0095,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,jd vance,J.D. Vance,KXPRESPERSON-28-JVAN,0.1900,0.2000,0.1900,0.1950,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,tulsi gabbard,Tulsi Gabbard,KXPRESPERSON-28-TGAB,0.0040,0.0060,0.0060,0.0050,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,donald trump,Donald J. Trump,KXPRESPERSON-28-DTRU,0.0280,0.0290,0.0280,0.0285,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,marco rubio,Marco Rubio,KXPRESPERSON-28-MRUB,0.0760,0.0840,0.0840,0.0800,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,donald trump jr,Donald J. Trump Jr.,KXPRESPERSON-28-DTRUJR,0.0080,0.0110,0.0120,0.0095,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,ron desantis,Ron DeSantis,KXPRESPERSON-28-RDES,0.0280,0.0290,0.0300,0.0285,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,jamie dimon,Jamie Dimon,KXPRESPERSON-28-JDIM,0.0060,0.0080,0.0080,0.0070,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,jon ossoff,Jon Ossoff,KXPRESPERSON-28-JOSS,0.1100,0.1200,0.1200,0.1150,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,mark kelly,Mark Kelly,KXPRESPERSON-28-MKEL,0.0280,0.0300,0.0300,0.0290,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,tucker carlson,Tucker Carlson,KXPRESPERSON-28-TCAR,0.0100,0.0110,0.0110,0.0105,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,thomas massie,Thomas Massie,KXPRESPERSON-28-TMAS,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-president,kalshi,rahm emanuel,Rahm Emanuel,KXPRESPERSON-28-REMA,0.0100,0.0200,0.0200,0.0150,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,james talarico,James Talarico,KXPRESPERSON-28-JTAL,0.0100,0.0200,0.0100,0.0150,mid
+2026-10-06T18:27:41Z,2028-president,kalshi,hunter biden,Hunter Biden,KXPRESPERSON-28-HBID,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-president,kalshi,ro khanna,Ro Khanna,KXPRESPERSON-28-RKHA,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-president,kalshi,ted cruz,Ted Cruz,KXPRESPERSON-28-TCRU,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-president,polymarket,jd vance,JD Vance,will-jd-vance-win-the-2028-us-presidential-election,0.2000,0.2020,0.2010,0.2010,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,gavin newsom,Gavin Newsom,will-gavin-newsom-win-the-2028-us-presidential-election,0.0800,0.0810,0.0810,0.0805,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,alexandria ocasio cortez,Alexandria Ocasio-Cortez,will-alexandria-ocasio-cortez-win-the-2028-us-presidential-election,0.1410,0.1420,0.1420,0.1415,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,pete buttigieg,Pete Buttigieg,will-pete-buttigieg-win-the-2028-us-presidential-election,0.0270,0.0280,0.0270,0.0275,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,josh shapiro,Josh Shapiro,will-josh-shapiro-win-the-2028-us-presidential-election,0.0300,0.0310,0.0300,0.0305,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,marco rubio,Marco Rubio,will-marco-rubio-win-the-2028-us-presidential-election,0.0890,0.0900,0.0900,0.0895,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,wes moore,Wes Moore,will-wes-moore-win-the-2028-us-presidential-election,0.0090,0.0100,0.0090,0.0095,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,gretchen whitmer,Gretchen Whitmer,will-gretchen-whitmer-win-the-2028-us-presidential-election,0.0030,0.0040,0.0030,0.0035,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,andy beshear,Andy Beshear,will-andy-beshear-win-the-2028-us-presidential-election,0.0150,0.0170,0.0170,0.0160,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,kamala harris,Kamala Harris,will-kamala-harris-win-the-2028-us-presidential-election,0.0430,0.0450,0.0450,0.0440,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,jb pritzker,JB Pritzker,will-jb-pritzker-win-the-2028-us-presidential-election,0.0050,0.0060,0.0060,0.0055,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,tulsi gabbard,Tulsi Gabbard,will-tulsi-gabbard-win-the-2028-us-presidential-election,0.0010,0.0020,0.0010,0.0015,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,donald trump,Donald Trump,will-donald-trump-win-the-2028-us-presidential-election,0.0120,0.0130,0.0130,0.0125,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,donald trump jr,Donald Trump Jr.,will-donald-trump-jr-win-the-2028-us-presidential-election,0.0040,0.0050,0.0040,0.0045,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,ron desantis,Ron DeSantis,will-ron-desantis-win-the-2028-us-presidential-election,0.0160,0.0190,0.0190,0.0175,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,dwayne johnson,Dwayne 'The Rock' Johnson,will-dwayne-the-rock-johnson-win-the-2028-us-presidential-election,0.0170,0.0180,0.0180,0.0175,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,tucker carlson,Tucker Carlson,will-tucker-carlson-win-the-2028-us-presidential-election,0.0170,0.0180,0.0170,0.0175,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,jamie dimon,Jamie Dimon,will-jamie-dimon-win-the-2028-us-presidential-election,0.0040,0.0050,0.0050,0.0045,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,ro khanna,Ro Khanna,will-ro-khanna-win-the-2028-us-presidential-election,0.0080,0.0100,0.0080,0.0090,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,thomas massie,Thomas Massie,will-thomas-massie-win-the-2028-us-presidential-election,0.0090,0.0100,0.0100,0.0095,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,jon ossoff,Jon Ossoff,will-jon-ossoff-win-the-2028-us-presidential-election,0.1040,0.1050,0.1040,0.1045,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,james talarico,James Talarico,will-james-talarico-win-the-2028-us-presidential-election,0.0120,0.0130,0.0130,0.0125,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,mark kelly,Mark Kelly,will-person-ad-win-the-2028-us-presidential-election,0.0130,0.0140,0.0130,0.0135,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,ted cruz,Ted Cruz,will-ted-cruz-win-the-2028-us-presidential-election,0.0050,0.0060,0.0050,0.0055,mid
+2026-10-06T18:27:41Z,2028-president,polymarket,rahm emanuel,Rahm Emanuel,will-rahm-emanuel-win-the-2028-us-presidential-election,0.0060,0.0070,0.0060,0.0065,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,james talarico,James Talarico,KXPRESNOMD-28-JTAL,0.0170,0.0280,0.0290,0.0225,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,ro khanna,Ro Khanna,KXPRESNOMD-28-RKHA,0.0180,0.0190,0.0190,0.0185,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,chris murphy,Chris Murphy,KXPRESNOMD-28-CMUR,0.0050,0.0060,0.0060,0.0055,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,kamala harris,Kamala Harris,KXPRESNOMD-28-KH,0.0840,0.0850,0.0850,0.0845,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,gavin newsom,Gavin Newsom,KXPRESNOMD-28-GN,0.1300,0.1400,0.1300,0.1350,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,gretchen whitmer,Gretchen Whitmer,KXPRESNOMD-28-GW,0.0050,0.0060,0.0050,0.0055,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,josh shapiro,Josh Shapiro,KXPRESNOMD-28-JS,0.0460,0.0470,0.0470,0.0465,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,alexandria ocasio cortez,Alexandria Ocasio-Cortez,KXPRESNOMD-28-AOC,0.1300,0.1400,0.1400,0.1350,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,mark cuban,Mark Cuban,KXPRESNOMD-28-MC,0.0060,0.0070,0.0070,0.0065,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,pete buttigieg,Pete Buttigieg,KXPRESNOMD-28-PB,0.0500,0.0510,0.0510,0.0505,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,wes moore,Wes Moore,KXPRESNOMD-28-WM,0.0210,0.0220,0.0220,0.0215,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,andy beshear,Andy Beshear,KXPRESNOMD-28-AB,0.0540,0.0580,0.0590,0.0560,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,j b pritzker,J.B. Pritzker,KXPRESNOMD-28-JBP,0.0200,0.0210,0.0210,0.0205,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,raphael warnock,Raphael Warnock,KXPRESNOMD-28-RW,0.0070,0.0080,0.0080,0.0075,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,michelle obama,Michelle Obama,KXPRESNOMD-28-MO,0.0200,0.0250,0.0250,0.0225,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,mark kelly,Mark Kelly,KXPRESNOMD-28-MK,0.0400,0.0420,0.0420,0.0410,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,rahm emanuel,Rahm Emanuel,KXPRESNOMD-28-REMA,0.0280,0.0300,0.0320,0.0290,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,jon stewart,Jon Stewart,KXPRESNOMD-28-JSTE,0.0030,0.0050,0.0050,0.0040,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,cory booker,Cory Booker,KXPRESNOMD-28-CBOO,0.0070,0.0080,0.0080,0.0075,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,bernie sanders,Bernie Sanders,KXPRESNOMD-28-BS,0.0030,0.0040,0.0040,0.0035,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,jon ossoff,Jon Ossoff,KXPRESNOMD-28-JOSS,0.1600,0.1700,0.1700,0.1650,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,dwayne johnson,Dwayne Johnson,KXPRESNOMD-28-DJOH,0.0010,0.0020,0.0010,0.0015,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,mitch landrieu,Mitch Landrieu,KXPRESNOMD-28-MLAN,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,abdul el sayed,Abdul El-Sayed,KXPRESNOMD-28-AELS,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,shawn fain,Shawn Fain,KXPRESNOMD-28-SFAI,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-dem-nominee,kalshi,chris van hollen,Chris Van Hollen,KXPRESNOMD-28-CHOL,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,gavin newsom,Gavin Newsom,will-gavin-newsom-win-the-2028-democratic-presidential-nomination-568,0.1570,0.1600,0.1550,0.1585,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,alexandria ocasio cortez,Alexandria Ocasio-Cortez,will-alexandria-ocasio-cortez-win-the-2028-democratic-presidential-nomination-653,0.1790,0.1800,0.1800,0.1795,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,pete buttigieg,Pete Buttigieg,will-pete-buttigieg-win-the-2028-democratic-presidential-nomination-687,0.0500,0.0510,0.0510,0.0505,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,josh shapiro,Josh Shapiro,will-josh-shapiro-win-the-2028-democratic-presidential-nomination-977,0.0610,0.0670,0.0670,0.0640,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,wes moore,Wes Moore,will-wes-moore-win-the-2028-democratic-presidential-nomination-714,0.0200,0.0210,0.0200,0.0205,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,kamala harris,Kamala Harris,will-kamala-harris-win-the-2028-democratic-presidential-nomination-641,0.0710,0.0730,0.0700,0.0720,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,gretchen whitmer,Gretchen Whitmer,will-gretchen-whitmer-win-the-2028-democratic-presidential-nomination-676,0.0070,0.0100,0.0090,0.0085,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,andy beshear,Andy Beshear,will-andy-beshear-win-the-2028-democratic-presidential-nomination-832,0.0290,0.0350,0.0350,0.0320,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,jon ossoff,Jon Ossoff,will-jon-ossoff-win-the-2028-democratic-presidential-nomination-885,0.1490,0.1500,0.1490,0.1495,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,mark cuban,Mark Cuban,will-mark-cuban-win-the-2028-democratic-presidential-nomination-329,0.0030,0.0050,0.0030,0.0040,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,j b pritzker,J.B. Pritzker,will-jb-pritzker-win-the-2028-democratic-presidential-nomination-288,0.0120,0.0130,0.0120,0.0125,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,raphael warnock,Raphael Warnock,will-raphael-warnock-win-the-2028-democratic-presidential-nomination-914,0.0050,0.0060,0.0060,0.0055,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,cory booker,Cory Booker,will-corey-booker-win-the-2028-democratic-presidential-nomination-125,0.0060,0.0070,0.0060,0.0065,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,michelle obama,Michelle Obama,will-michelle-obama-win-the-2028-democratic-presidential-nomination-777,0.0020,0.0030,0.0030,0.0025,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,mark kelly,Mark Kelly,will-mark-kelly-win-the-2028-democratic-presidential-nomination-479,0.0250,0.0260,0.0270,0.0255,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,rahm emanuel,Rahm Emanuel,will-rahm-emanuel-win-the-2028-democratic-presidential-nomination-299,0.0180,0.0190,0.0180,0.0185,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,jon stewart,Jon Stewart,will-jon-stewart-win-the-2028-democratic-presidential-nomination-518,0.0100,0.0140,0.0110,0.0120,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,bernie sanders,Bernie Sanders,will-bernie-sanders-win-the-2028-democratic-presidential-nomination-879,0.0080,0.0090,0.0090,0.0085,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,chelsea clinton,Chelsea Clinton,will-chelsea-clinton-win-the-2028-democratic-presidential-nomination,0.0060,0.0080,0.0090,0.0070,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,dwayne johnson,Dwayne 'The Rock' Johnson,will-dwayne-the-rock-johnson-win-the-2028-democratic-presidential-nomination,0.0110,0.0120,0.0110,0.0115,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,chris murphy,Chris Murphy,will-chris-murphy-win-the-2028-democratic-presidential-nomination,0.0030,0.0040,0.0040,0.0035,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,ro khanna,Ro Khanna,will-ro-khanna-win-the-2028-democratic-presidential-nomination,0.0130,0.0150,0.0120,0.0140,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,james talarico,James Talarico,will-james-talarico-win-the-2028-democratic-presidential-nomination,0.0300,0.0310,0.0310,0.0305,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,chris van hollen,Chris Van Hollen,will-chris-van-hollen-win-the-2028-democratic-presidential-nomination,0.0010,0.0020,0.0010,0.0015,mid
+2026-10-06T18:27:41Z,2028-dem-nominee,polymarket,mitch landrieu,Mitch Landrieu,will-mitch-landrieu-win-the-2028-democratic-presidential-nomination,0.0010,0.0020,0.0020,0.0015,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,thomas massie,Thomas Massie,KXPRESNOMR-28-TMAS,0.0080,0.0120,0.0120,0.0100,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,sarah huckabee sanders,Sarah Huckabee Sanders,KXPRESNOMR-28-SHS,0.0040,0.0070,0.0070,0.0055,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,greg abbott,Greg Abbott,KXPRESNOMR-28-GA,0.0050,0.0060,0.0060,0.0055,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,jd vance,J.D. Vance,KXPRESNOMR-28-JDV,0.4300,0.4400,0.4400,0.4350,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,ron desantis,Ron DeSantis,KXPRESNOMR-28-RDS,0.0410,0.0430,0.0410,0.0420,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,glenn youngkin,Glenn Youngkin,KXPRESNOMR-28-GY,0.0090,0.0110,0.0110,0.0100,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,donald trump,Donald J. Trump,KXPRESNOMR-28-DJT,0.0190,0.0230,0.0190,0.0210,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,donald trump jr,Donald J. Trump Jr.,KXPRESNOMR-28-DJTJR,0.0230,0.0280,0.0230,0.0255,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,brian kemp,Brian Kemp,KXPRESNOMR-28-BK,0.0110,0.0170,0.0170,0.0140,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,josh hawley,Josh Hawley,KXPRESNOMR-28-JH,0.0060,0.0090,0.0090,0.0075,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,ted cruz,Ted Cruz,KXPRESNOMR-28-TC,0.0210,0.0220,0.0210,0.0215,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,katie britt,Katie Britt,KXPRESNOMR-28-KB,0.0040,0.0060,0.0070,0.0050,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,marco rubio,Marco Rubio,KXPRESNOMR-28-MR,0.1700,0.1800,0.1800,0.1750,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,tucker carlson,Tucker Carlson,KXPRESNOMR-28-TCAR,0.0300,0.0310,0.0320,0.0305,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,marjorie taylor greene,Marjorie Taylor Greene,KXPRESNOMR-28-MTG,0.0070,0.0080,0.0080,0.0075,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,rand paul,Rand Paul,KXPRESNOMR-28-RPAU,0.0060,0.0070,0.0070,0.0065,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,ivanka trump,Ivanka Trump,KXPRESNOMR-28-ITRU,0.0110,0.0130,0.0130,0.0120,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,lara trump,Lara Trump,KXPRESNOMR-28-LTRU,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,spencer pratt,Spencer Pratt,KXPRESNOMR-28-SPRA,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,jeff bezos,Jeff Bezos,KXPRESNOMR-28-JBZ,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,candace owens,Candace Owens,KXPRESNOMR-28-COWE,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-rep-nominee,kalshi,chris christie,Chris Christie,KXPRESNOMR-28-CCHR,0.0000,0.0100,0.0100,0.0100,last
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,donald trump,Donald Trump,will-donald-trump-win-the-2028-republican-presidential-nomination,0.0190,0.0200,0.0210,0.0195,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,jd vance,J.D. Vance,will-jd-vance-win-the-2028-republican-presidential-nomination,0.4900,0.4960,0.4910,0.4930,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,marco rubio,Marco Rubio,will-marco-rubio-win-the-2028-republican-presidential-nomination,0.1510,0.1520,0.1510,0.1515,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,glenn youngkin,Glenn Youngkin,will-glenn-youngkin-win-the-2028-republican-presidential-nomination,0.0030,0.0040,0.0030,0.0035,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,donald trump jr,Donald Trump Jr.,will-donald-trump-jr-win-the-2028-republican-presidential-nomination,0.0160,0.0170,0.0160,0.0165,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,ron desantis,Ron DeSantis,will-ron-desantis-win-the-2028-republican-presidential-nomination,0.0260,0.0270,0.0270,0.0265,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,sarah huckabee sanders,Sarah Huckabee Sanders,will-sarah-huckabee-sanders-win-the-2028-republican-presidential-nomination,,0.0010,0.0010,0.0010,last
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,greg abbott,Greg Abbott,will-greg-abbott-win-the-2028-republican-presidential-nomination,0.0010,0.0020,0.0020,0.0015,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,brian kemp,Brian Kemp,will-brian-kemp-win-the-2028-republican-presidential-nomination,0.0030,0.0040,0.0040,0.0035,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,josh hawley,Josh Hawley,will-josh-hawley-win-the-2028-republican-presidential-nomination,0.0030,0.0040,0.0030,0.0035,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,ted cruz,Ted Cruz,will-ted-cruz-win-the-2028-republican-presidential-nomination,0.0240,0.0250,0.0240,0.0245,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,katie britt,Katie Britt,will-katie-britt-win-the-2028-republican-presidential-nomination,0.0020,0.0030,0.0020,0.0025,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,tucker carlson,Tucker Carlson,will-tucker-carlson-win-the-2028-republican-presidential-nomination,0.0310,0.0320,0.0310,0.0315,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,ivanka trump,Ivanka Trump,will-ivanka-trump-win-the-2028-republican-presidential-nomination,0.0080,0.0100,0.0100,0.0090,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,rand paul,Rand Paul,will-rand-paul-win-the-2028-republican-presidential-nomination,0.0020,0.0030,0.0030,0.0025,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,marjorie taylor greene,Marjorie Taylor Greene,will-marjorie-taylor-greene-win-the-2028-republican-presidential-nomination,0.0030,0.0040,0.0030,0.0035,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,thomas massie,Thomas Massie,will-thomas-massie-win-the-2028-republican-presidential-nomination,0.0070,0.0080,0.0080,0.0075,mid
+2026-10-06T18:27:41Z,2028-rep-nominee,polymarket,candace owens,Candace Owens,will-candace-owens-win-the-2028-republican-presidential-nomination,0.0020,0.0030,0.0020,0.0025,mid
