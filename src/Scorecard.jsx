@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Results from './Results.jsx'
 
 const FREEZE_URL = 'https://github.com/cohens714/oddsvspolls/commit/46fe190'
 const NO_STORE = { cache: 'no-store' }
@@ -118,7 +119,9 @@ export default function Scorecard() {
         )}
       </section>
 
-      <section>
+      <Results />
+
+      <section className="scorecard-preview">
         <h2>What the scorecard will show</h2>
         <p>
           How accurate each source was depending on how far out the forecast

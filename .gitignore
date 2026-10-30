@@ -10,3 +10,6 @@ public/poll_probabilities.csv
 public/poll_history.csv
 public/race_meta.json
 !public/_headers
+public/outcomes.csv
+public/scorecard.json
+public/poll_inputs.json

@@ -695,3 +695,37 @@ footer p { margin: 0 0 0.7rem; }
 .pt-sponsor { display: block; color: var(--ink-faint); }
 .poll-note { margin: 0.5rem 0 0; color: var(--ink-faint); line-height: 1.55; }
 @media (max-width: 560px) { .poll-table .pt-n { display: none; } }
+
+/* scorecard results (install_scorecard_results.py) */
+.results h3 { margin: 1.5rem 0 0.4rem; font-size: 1.05rem; }
+.results .verdict p { margin: 0.2rem 0 0.6rem; }
+.note-inline { font-size: 0.85rem; color: var(--ink-soft); }
+.dry-banner {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--flag);
+  border: 1px dashed var(--flag); padding: 0.5rem 0.75rem; border-radius: 4px;
+}
+.table-wrap { overflow-x: auto; }
+.results-table {
+  width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0.25rem 0;
+}
+.results-table th {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--ink-faint); font-weight: normal;
+  text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--rule-strong);
+}
+.results-table td {
+  padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--rule); white-space: nowrap;
+}
+.results-table .num { text-align: right; font-family: var(--mono); }
+.results-table .better { font-weight: 700; color: var(--ink); }
+.results-table .miss { color: var(--flag); font-weight: 700; }
+.results-table .n { color: var(--ink-faint); font-size: 0.75rem; }
+/* Once results exist, the "what the scorecard will show" promise is redundant. */
+.scorecard:has(.results) .scorecard-preview { display: none; }
+@media (max-width: 560px) {
+  .results-table { font-size: 0.74rem; }
+  .results-table th { font-size: 0.6rem; letter-spacing: 0.02em; white-space: normal; }
+  .results-table th, .results-table td { padding: 0.3rem 0.25rem; }
+  .results-table td:first-child, .results-table td:nth-child(2) { white-space: normal; }
+  .results-table .n { display: none; }
+}
