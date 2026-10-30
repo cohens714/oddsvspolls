@@ -1,0 +1,107 @@
+name: Record race calls
+
+# Hourly at :30, offset from the :00 snapshot. auto_calls.py checks every
+# pending race for a settled market and writes the call into
+# data/outcomes.csv. Before polls close on Nov 3 it exits immediately.
+#
+# Its own workflow on purpose: if a venue's API is down, retries must not eat
+# into the snapshot job's timeout and cost an hour of price data.
+#
+# A push made with the workflow token does not trigger other workflows, so
+# the scorecard rebuild is started explicitly with a dispatch. That keeps the
+# rebuild inside the scorecard workflow's own concurrency group, alongside
+# rebuilds triggered by manual call_race.py pushes.
+#
+# Conflicts (venues disagree, or a settled market disagrees with a call
+# already recorded) are never written. They go to a single "race-call" issue.
+on:
+  schedule:
+    - cron: "30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: calls
+  cancel-in-progress: false
+
+jobs:
+  calls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check settled markets
+        id: calls
+        working-directory: analysis
+        run: python3 auto_calls.py --report "$RUNNER_TEMP/conflicts.md"
+
+      - name: Commit and push new calls
+        if: ${{ steps.calls.outputs.calls != '' && steps.calls.outputs.calls != '0' }}
+        run: |
+          git config user.name  "oddsvspolls-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/outcomes.csv
+          if git diff --cached --quiet; then
+            echo "outcomes.csv unchanged"; exit 0
+          fi
+          git commit -m "Auto race calls $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Push failed after 3 attempts." >&2
+          exit 1
+
+      - name: Rebuild the scorecard
+        if: ${{ steps.calls.outputs.calls != '' && steps.calls.outputs.calls != '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run scorecard.yml --repo "$GITHUB_REPOSITORY" --ref main -f dry_run=false
+
+      - name: Report conflicts
+        if: ${{ steps.calls.outputs.conflicts != '' && steps.calls.outputs.conflicts != '0' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const path = process.env.RUNNER_TEMP + '/conflicts.md'
+            if (!fs.existsSync(path)) return
+            const body = fs.readFileSync(path, 'utf8')
+            const { owner, repo } = context.repo
+            const open = await github.rest.issues.listForRepo({
+              owner, repo, state: 'open', labels: 'race-call',
+            })
+            if (!open.data.length) {
+              await github.rest.issues.create({
+                owner, repo, title: 'Race call conflict', body, labels: ['race-call'],
+              })
+              return
+            }
+            // Hourly runs see the same conflict until someone fixes it.
+            // Only comment when the list actually changes.
+            const issue = open.data[0]
+            const comments = await github.rest.issues.listComments({
+              owner, repo, issue_number: issue.number, per_page: 100,
+            })
+            const last = comments.data.length
+              ? comments.data[comments.data.length - 1].body : issue.body
+            if (last.trim() !== body.trim()) {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: issue.number, body,
+              })
+            }
