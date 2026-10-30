@@ -13,7 +13,13 @@ name: Snapshot markets
 # observation time.
 on:
   schedule:
-    - cron: "0 * * * *"
+    # Off the top of the hour, where GitHub drops most scheduled runs.
+    # Three a hour so one dropped run is covered by the next.
+    - cron: "7,27,47 * * * *"
+    # Election day, 8 a.m. to 6:59 p.m. Eastern (UTC times): every 10
+    # minutes so the last reading before the 6 p.m. cutoff is fresh.
+    # Harmless to leave in afterwards; it only matches Nov 3.
+    - cron: "3,13,23,33,43,53 13-23 3 11 *"
   workflow_dispatch:
 
 permissions:

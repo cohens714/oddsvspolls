@@ -16,7 +16,7 @@ name: Record race calls
 # already recorded) are never written. They go to a single "race-call" issue.
 on:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "13,43 * * * *"
   workflow_dispatch:
 
 permissions:
