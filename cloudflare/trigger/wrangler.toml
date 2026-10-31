@@ -1,0 +1,11 @@
+name = "oddsvspolls-trigger"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# UTC. Keep in sync with SCHEDULE in src/index.js.
+[triggers]
+crons = [
+  "7,27,47 * * * *",
+  "13,43 * * * *",
+  "3,13,23,33,43,53 13-23 3 11 *",
+]
