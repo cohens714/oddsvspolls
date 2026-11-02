@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-02T20:29:04+00:00",
+ "generated_at": "2026-11-02T20:51:39+00:00",
  "window_days": 45,
  "half_life_days": 14,
  "races": {
@@ -3379,8 +3379,8 @@
   },
   "2026-senate-IA": {
    "as_of": "2026-11-02",
-   "margin": -0.13,
-   "n_polls": 22,
+   "margin": -0.22,
+   "n_polls": 23,
    "polls": [
     {
      "pollster": "The New York Times/Siena University",
@@ -3394,7 +3394,21 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-ia-poll-toplines.html",
-     "weight_share": 0.0967
+     "weight_share": 0.0876
+    },
+    {
+     "pollster": "Rasmussen Reports",
+     "sponsors": "",
+     "start_date": "2026-10-27",
+     "end_date": "2026-10-31",
+     "sample_size": 901,
+     "population": "lv",
+     "dem_pct": 46.0,
+     "rep_pct": 47.0,
+     "margin": -1.0,
+     "partisan": "REP",
+     "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
+     "weight_share": 0.0943
     },
     {
      "pollster": "GrayHouse",
@@ -3408,7 +3422,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.grayhouse.com/post/grayhouse-poll-hinson-leads-in-iowa-by-2",
-     "weight_share": 0.085
+     "weight_share": 0.077
     },
     {
      "pollster": "YouGov",
@@ -3422,7 +3436,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.1216
+     "weight_share": 0.1102
     },
     {
      "pollster": "co/efficient",
@@ -3436,7 +3450,7 @@
      "margin": -2.0,
      "partisan": "REP",
      "url": "https://battlegrounds.coefficient.org/ia/",
-     "weight_share": 0.0954
+     "weight_share": 0.0864
     },
     {
      "pollster": "Echelon Insights",
@@ -3450,7 +3464,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://netchoice.org/netchoice-echelon-insights-poll-voters-rank-ai-regulation-far-behind-cost-of-living-want-one-national-ai-standard/",
-     "weight_share": 0.0468
+     "weight_share": 0.0424
     },
     {
      "pollster": "InsiderAdvantage",
@@ -3464,7 +3478,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://insideradvantage.com/insideradvantage-senate-surveys-mi-el-sayed-47-rogers-46-ia-hinson-47-turek-45-oh-brown-47-husted-44/",
-     "weight_share": 0.0769
+     "weight_share": 0.0697
     },
     {
      "pollster": "co/efficient",
@@ -3478,7 +3492,7 @@
      "margin": -3.0,
      "partisan": "REP",
      "url": "https://battlegrounds.coefficient.org/ia/",
-     "weight_share": 0.0562
+     "weight_share": 0.0509
     },
     {
      "pollster": "Trafalgar Group",
@@ -3492,7 +3506,7 @@
      "margin": -2.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0519
+     "weight_share": 0.047
     },
     {
      "pollster": "New River Strategies/GS Strategy Group",
@@ -3506,7 +3520,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://www.cookpolitical.com/analysis/survey-research/battleground-district-project/senate-battleground-district-project-october?utm_medium=email_action&utm_source=customer.io",
-     "weight_share": 0.0349
+     "weight_share": 0.0316
     },
     {
      "pollster": "YouGov",
@@ -3520,7 +3534,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261006_lv.pdf",
-     "weight_share": 0.0524
+     "weight_share": 0.0475
     },
     {
      "pollster": "National Public Affairs",
@@ -3534,7 +3548,7 @@
      "margin": -3.0,
      "partisan": "",
      "url": "https://backend.natpublicaffairs.com/media/Iowa_General_Election_Memo_101526.3.pdf",
-     "weight_share": 0.0352
+     "weight_share": 0.0319
     },
     {
      "pollster": "Marist University",
@@ -3548,7 +3562,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-october-2026/",
-     "weight_share": 0.0427
+     "weight_share": 0.0387
     },
     {
      "pollster": "Emerson College",
@@ -3562,7 +3576,7 @@
      "margin": -1.6,
      "partisan": "",
      "url": "https://docs.google.com/spreadsheets/d/1mKToIlrAwY0ehEA60PVFemP5WjwxsTxN/edit?rtpof=true&sd=true",
-     "weight_share": 0.0256
+     "weight_share": 0.0232
     },
     {
      "pollster": "CNN/SSRS",
@@ -3576,7 +3590,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.cnn.com/2026/10/08/politics/cnn-polls-ohio-iowa-senate-governor-midterms",
-     "weight_share": 0.0271
+     "weight_share": 0.0245
     },
     {
      "pollster": "Suffolk University",
@@ -3590,7 +3604,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0204
+     "weight_share": 0.0184
     },
     {
      "pollster": "New York Times/Siena University",
@@ -3604,7 +3618,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0193
+     "weight_share": 0.0175
     },
     {
      "pollster": "Rasmussen Reports",
@@ -3618,7 +3632,7 @@
      "margin": 4.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0242
+     "weight_share": 0.0219
     },
     {
      "pollster": "Quantus Insights",
@@ -3632,7 +3646,7 @@
      "margin": -1.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0193
+     "weight_share": 0.0175
     },
     {
      "pollster": "Beacon Research/Shaw & Co. Research",
@@ -3646,7 +3660,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://www.foxnews.com/politics/fox-news-poll-turek-hinson-close-iowa-senate-race",
-     "weight_share": 0.0215
+     "weight_share": 0.0195
     },
     {
      "pollster": "InsiderAdvantage",
@@ -3660,7 +3674,7 @@
      "margin": 1.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0183
+     "weight_share": 0.0166
     },
     {
      "pollster": "Marist University",
@@ -3674,7 +3688,7 @@
      "margin": 8.0,
      "partisan": "",
      "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-september-2026/",
-     "weight_share": 0.0148
+     "weight_share": 0.0134
     },
     {
      "pollster": "Trafalgar Group",
@@ -3688,7 +3702,7 @@
      "margin": -2.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0136
+     "weight_share": 0.0123
     }
    ]
   },
