@@ -21,6 +21,24 @@ export const SCHEDULE = {
   '3,13,23,33,43,53 13-23 3 11 *': ['snapshot.yml'],
 }
 
+// Workflows that only need to run a few times a day ride on an existing
+// cron instead of using another of the free plan's 5 trigger slots.
+// [cron, UTC hours, minute] -> extra workflows started at those times.
+export const PIGGYBACK = [
+  // Polls: GitHub was starting the daily run 5 to 6 hours late and on
+  // Nov 2 not at all. 12:13 and 18:13 UTC; rerunning is idempotent.
+  ['13,43 * * * *', [12, 18], 13, ['polls.yml']],
+]
+
+export function workflowsFor(cron, scheduledTime) {
+  const t = new Date(scheduledTime ?? Date.now())
+  const extra = PIGGYBACK
+    .filter(([c, hours, minute]) => c === cron
+      && hours.includes(t.getUTCHours()) && t.getUTCMinutes() === minute)
+    .flatMap(([, , , w]) => w)
+  return [...(SCHEDULE[cron] ?? []), ...extra]
+}
+
 export async function dispatch(workflow, token, fetchImpl = fetch) {
   const res = await fetchImpl(
     `https://api.github.com/repos/${REPO}/actions/workflows/${workflow}/dispatches`,
@@ -45,7 +63,7 @@ export async function dispatch(workflow, token, fetchImpl = fetch) {
 
 export default {
   async scheduled(event, env, ctx) {
-    const workflows = SCHEDULE[event.cron] ?? []
+    const workflows = workflowsFor(event.cron, event.scheduledTime)
     if (!workflows.length) {
       console.log(`no workflows mapped to cron "${event.cron}"`)
       return
@@ -66,7 +84,8 @@ export default {
   async fetch() {
     return new Response(
       'oddsvspolls trigger: starts GitHub workflows on a schedule.\n'
-      + Object.entries(SCHEDULE).map(([c, w]) => `  ${c}  ->  ${w.join(', ')}`).join('\n') + '\n',
+      + Object.entries(SCHEDULE).map(([c, w]) => `  ${c}  ->  ${w.join(', ')}`).join('\n') + '\n'
+      + PIGGYBACK.map(([c, h, m, w]) => `  ${c} at ${h.map((x) => `${x}:${String(m).padStart(2, '0')}`).join(', ')} UTC  ->  also ${w.join(', ')}`).join('\n') + '\n',
       { headers: { 'content-type': 'text/plain' } })
   },
 }
