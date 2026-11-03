@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T12:14:16+00:00",
+ "generated_at": "2026-11-03T18:14:23+00:00",
  "window_days": 45,
  "half_life_days": 14,
  "races": {
@@ -355,8 +355,8 @@
   },
   "2026-gov-FL": {
    "as_of": "2026-11-03",
-   "margin": -3.7,
-   "n_polls": 26,
+   "margin": -3.9,
+   "n_polls": 27,
    "polls": [
     {
      "pollster": "Research Co.",
@@ -370,7 +370,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0521
+     "weight_share": 0.049
     },
     {
      "pollster": "RedBox Research",
@@ -384,7 +384,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://afightworthhaving.com/polling/2026/florida",
-     "weight_share": 0.0862
+     "weight_share": 0.081
     },
     {
      "pollster": "ActiVote",
@@ -398,7 +398,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0445
+     "weight_share": 0.0418
     },
     {
      "pollster": "Big Data Poll",
@@ -412,7 +412,7 @@
      "margin": -3.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0692
+     "weight_share": 0.065
     },
     {
      "pollster": "Stetson University",
@@ -426,7 +426,7 @@
      "margin": -6.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0618
+     "weight_share": 0.0581
     },
     {
      "pollster": "InsiderAdvantage",
@@ -440,7 +440,21 @@
      "margin": -4.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0698
+     "weight_share": 0.0656
+    },
+    {
+     "pollster": "Targoz Market Research",
+     "sponsors": "",
+     "start_date": "2026-10-26",
+     "end_date": "2026-10-29",
+     "sample_size": 1014,
+     "population": "lv",
+     "dem_pct": 43.0,
+     "rep_pct": 50.0,
+     "margin": -7.0,
+     "partisan": "",
+     "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
+     "weight_share": 0.0603
     },
     {
      "pollster": "Political Matrix/The Listener Group",
@@ -454,7 +468,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0429
+     "weight_share": 0.0403
     },
     {
      "pollster": "St. Pete Polls",
@@ -468,7 +482,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0553
+     "weight_share": 0.0519
     },
     {
      "pollster": "New York Times/Siena University",
@@ -482,7 +496,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0471
+     "weight_share": 0.0443
     },
     {
      "pollster": "RedBox Research",
@@ -496,7 +510,7 @@
      "margin": -5.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.058
+     "weight_share": 0.0545
     },
     {
      "pollster": "Echelon Insights",
@@ -510,7 +524,7 @@
      "margin": -6.0,
      "partisan": "",
      "url": "https://netchoice.org/netchoice-echelon-insights-poll-voters-rank-ai-regulation-far-behind-cost-of-living-want-one-national-ai-standard/",
-     "weight_share": 0.034
+     "weight_share": 0.0319
     },
     {
      "pollster": "Workbench Strategy",
@@ -524,7 +538,7 @@
      "margin": 2.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0403
+     "weight_share": 0.0379
     },
     {
      "pollster": "co/efficient",
@@ -538,7 +552,7 @@
      "margin": -9.0,
      "partisan": "REP",
      "url": "https://battlegrounds.coefficient.org/fl/",
-     "weight_share": 0.0411
+     "weight_share": 0.0386
     },
     {
      "pollster": "University of North Florida",
@@ -552,7 +566,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://static1.squarespace.com/static/6994d571bce3436c60d86870/t/6ad8a5ec13c20404a1f8052b/1792583148294/UNF+PORL+FALL+Statewide+2026+FLLV+-+Press+Release+1021+EMBARGO.pdf",
-     "weight_share": 0.0456
+     "weight_share": 0.0429
     },
     {
      "pollster": "ActiVote",
@@ -566,7 +580,7 @@
      "margin": -3.4,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/fl-governor/",
-     "weight_share": 0.0246
+     "weight_share": 0.0231
     },
     {
      "pollster": "YouGov",
@@ -580,7 +594,7 @@
      "margin": -8.0,
      "partisan": "",
      "url": "https://www.univision.com/noticias/politica/republicans-lead-florida-as-most-latino-voters-say-immigration-enforcement-has-gone-too-far",
-     "weight_share": 0.0289
+     "weight_share": 0.0272
     },
     {
      "pollster": "Fabrizio, Lee & Associates",
@@ -594,7 +608,7 @@
      "margin": -6.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0286
+     "weight_share": 0.0269
     },
     {
      "pollster": "MDW Communications",
@@ -608,7 +622,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.mdwcomm.com/media/florida-statewide-poll-october-2026.html",
-     "weight_share": 0.0305
+     "weight_share": 0.0286
     },
     {
      "pollster": "Change Research",
@@ -622,7 +636,7 @@
      "margin": 0.0,
      "partisan": "DEM",
      "url": "https://changeresearch.com/research/2026/2026-10-12-florida-aapor-methodology-statement",
-     "weight_share": 0.0239
+     "weight_share": 0.0224
     },
     {
      "pollster": "Stetson University",
@@ -636,7 +650,7 @@
      "margin": -11.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.02
+     "weight_share": 0.0188
     },
     {
      "pollster": "St. Pete Polls",
@@ -650,7 +664,7 @@
      "margin": 0.0,
      "partisan": "",
      "url": "https://floridapolitics.com/archives/823921-new-st-pete-polls-survey-has-ashley-moody-at-47-angie-nixon-at-45-and-the-senate-race-still-inside-the-margin-of-error/",
-     "weight_share": 0.0196
+     "weight_share": 0.0184
     },
     {
      "pollster": "YouGov",
@@ -664,7 +678,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0238
+     "weight_share": 0.0224
     },
     {
      "pollster": "Targoz Market Research",
@@ -678,7 +692,7 @@
      "margin": -10.0,
      "partisan": "",
      "url": "https://jmipoll.com",
-     "weight_share": 0.0171
+     "weight_share": 0.0161
     },
     {
      "pollster": "Mason-Dixon",
@@ -692,7 +706,7 @@
      "margin": -7.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Florida_gubernatorial_election",
-     "weight_share": 0.0126
+     "weight_share": 0.0118
     },
     {
      "pollster": "Change Research",
@@ -706,7 +720,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://changeresearch.com/research/2026/2026-09-28-florida-aapor-methodology-statement",
-     "weight_share": 0.0135
+     "weight_share": 0.0127
     },
     {
      "pollster": "Stetson University Center for Public Opinion Research",
@@ -720,7 +734,7 @@
      "margin": -12.0,
      "partisan": "",
      "url": "https://www.stetson.edu/artsci/cpor/media/cpor-sept.-2026-poll-final.pdf",
-     "weight_share": 0.0088
+     "weight_share": 0.0083
     }
    ]
   },
