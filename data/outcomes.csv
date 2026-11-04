@@ -13,18 +13,18 @@ race_id,winner,called_date,status,note
 2026-gov-NY,dem,2026-11-03,called,auto: kalshi settled
 2026-gov-OH,dem,2026-11-03,called,auto: kalshi settled
 2026-gov-PA,dem,2027-11-03,called,auto: kalshi settled
-2026-gov-TX,,,pending,
-2026-gov-WI,,,pending,
+2026-gov-TX,dem,2026-11-03,called,auto: kalshi settled
+2026-gov-WI,dem,2026-11-03,called,auto: kalshi settled
 2026-senate-AK,,,pending,
 2026-senate-GA,dem,2027-11-03,called,auto: kalshi settled
 2026-senate-IA,,,pending,
-2026-senate-KS,,,pending,
+2026-senate-KS,dem,2027-11-03,called,auto: kalshi settled
 2026-senate-ME,,,pending,
 2026-senate-MI,,,pending,
 2026-senate-MN,,,pending,
 2026-senate-NC,dem,2027-11-03,called,auto: kalshi settled
 2026-senate-NH,dem,2027-11-03,called,auto: kalshi settled
-2026-senate-OH,,,pending,
+2026-senate-OH,dem,2027-11-03,called,auto: kalshi settled
 2026-senate-SC,dem,2027-11-03,called,auto: kalshi settled
 2026-senate-TX,dem,2027-11-03,called,auto: kalshi settled
 2026-senate-control,,,pending,
