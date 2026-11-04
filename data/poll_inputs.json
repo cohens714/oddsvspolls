@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-04T12:14:06+00:00",
+ "generated_at": "2026-11-04T18:14:03+00:00",
  "window_days": 45,
  "half_life_days": 14,
  "races": {
@@ -901,8 +901,8 @@
   },
   "2026-gov-IL": {
    "as_of": "2026-11-04",
-   "margin": 19.19,
-   "n_polls": 4,
+   "margin": 19.74,
+   "n_polls": 5,
    "polls": [
     {
      "pollster": "Research Co.",
@@ -916,7 +916,7 @@
      "margin": 21.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Illinois_gubernatorial_election",
-     "weight_share": 0.38
+     "weight_share": 0.3056
     },
     {
      "pollster": "ActiVote",
@@ -930,7 +930,21 @@
      "margin": 18.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Illinois_gubernatorial_election",
-     "weight_share": 0.3245
+     "weight_share": 0.2609
+    },
+    {
+     "pollster": "University of Illinois Springfield",
+     "sponsors": "",
+     "start_date": "2026-10-01",
+     "end_date": "2026-10-22",
+     "sample_size": 550,
+     "population": "lv",
+     "dem_pct": 56.0,
+     "rep_pct": 34.0,
+     "margin": 22.0,
+     "partisan": "",
+     "url": "https://en.wikipedia.org/wiki/2026_Illinois_gubernatorial_election",
+     "weight_share": 0.1959
     },
     {
      "pollster": "ActiVote",
@@ -944,7 +958,7 @@
      "margin": 17.4,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/il-governor/",
-     "weight_share": 0.2078
+     "weight_share": 0.1671
     },
     {
      "pollster": "Public Policy Polling",
@@ -958,7 +972,7 @@
      "margin": 20.0,
      "partisan": "DEM",
      "url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
-     "weight_share": 0.0876
+     "weight_share": 0.0705
     }
    ]
   },
