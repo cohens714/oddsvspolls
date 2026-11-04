@@ -3,7 +3,7 @@ race_id,winner,called_date,status,note
 2026-gov-CA,,,pending,
 2026-gov-FL,,,pending,
 2026-gov-GA,,,pending,
-2026-gov-IL,,,pending,
+2026-gov-IL,dem,2026-11-03,called,auto: kalshi settled
 2026-gov-ME,,,pending,
 2026-gov-MI,,,pending,
 2026-gov-MN,,,pending,
@@ -12,11 +12,11 @@ race_id,winner,called_date,status,note
 2026-gov-NV,,,pending,
 2026-gov-NY,,,pending,
 2026-gov-OH,,,pending,
-2026-gov-PA,,,pending,
+2026-gov-PA,dem,2027-11-03,called,auto: kalshi settled
 2026-gov-TX,,,pending,
 2026-gov-WI,,,pending,
 2026-senate-AK,,,pending,
-2026-senate-GA,,,pending,
+2026-senate-GA,dem,2027-11-03,called,auto: kalshi settled
 2026-senate-IA,,,pending,
 2026-senate-KS,,,pending,
 2026-senate-ME,,,pending,
