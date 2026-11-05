@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-11-04T18:45:13+00:00",
+ "generated_at": "2026-11-05T12:14:12+00:00",
  "window_days": 45,
  "half_life_days": 14,
  "races": {
   "2026-gov-AZ": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 7.12,
    "n_polls": 11,
    "polls": [
@@ -165,9 +165,9 @@
    ]
   },
   "2026-gov-CA": {
-   "as_of": "2026-11-04",
-   "margin": 23.05,
-   "n_polls": 13,
+   "as_of": "2026-11-05",
+   "margin": 23.02,
+   "n_polls": 11,
    "polls": [
     {
      "pollster": "ActiVote",
@@ -181,7 +181,7 @@
      "margin": 26.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_California_gubernatorial_election",
-     "weight_share": 0.1085
+     "weight_share": 0.1139
     },
     {
      "pollster": "UC Berkeley Institute of Governmental Studies",
@@ -195,7 +195,7 @@
      "margin": 27.0,
      "partisan": "",
      "url": "https://www.latimes.com/california/story/2026-10-30/becerra-widens-lead-in-governors-race-as-voter-focus-shifts-to-trump-new-poll-shows",
-     "weight_share": 0.1549
+     "weight_share": 0.1626
     },
     {
      "pollster": "SurveyUSA",
@@ -209,7 +209,7 @@
      "margin": 22.0,
      "partisan": "",
      "url": "https://results.surveyusa.com/client/PollReport.aspx?g=b118a915-559d-4669-b870-8a3eae933903",
-     "weight_share": 0.1085
+     "weight_share": 0.1138
     },
     {
      "pollster": "M3 Strategies",
@@ -223,7 +223,7 @@
      "margin": 23.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_California_gubernatorial_election",
-     "weight_share": 0.0807
+     "weight_share": 0.0847
     },
     {
      "pollster": "PPIC",
@@ -237,7 +237,7 @@
      "margin": 24.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_California_gubernatorial_election",
-     "weight_share": 0.1145
+     "weight_share": 0.1202
     },
     {
      "pollster": "McLaughlin & Associates",
@@ -251,7 +251,7 @@
      "margin": 16.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_California_gubernatorial_election",
-     "weight_share": 0.089
+     "weight_share": 0.0934
     },
     {
      "pollster": "Emerson College",
@@ -265,7 +265,7 @@
      "margin": 28.0,
      "partisan": "",
      "url": "https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/",
-     "weight_share": 0.0947
+     "weight_share": 0.0994
     },
     {
      "pollster": "ActiVote",
@@ -279,7 +279,7 @@
      "margin": 26.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_California_gubernatorial_election",
-     "weight_share": 0.0516
+     "weight_share": 0.0542
     },
     {
      "pollster": "University of California Berkeley Jack Citrin Center for Public Opinion Research/Verasight/TrueDot",
@@ -293,7 +293,7 @@
      "margin": 20.0,
      "partisan": "",
      "url": "https://www.politico.com/newsletters/california-playbook/2026/10/21/ramans-apology-and-polling-on-newsom-01128744",
-     "weight_share": 0.0705
+     "weight_share": 0.074
     },
     {
      "pollster": "Manhattan Institute",
@@ -307,7 +307,7 @@
      "margin": 18.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_California_gubernatorial_election",
-     "weight_share": 0.0389
+     "weight_share": 0.0408
     },
     {
      "pollster": "Independent Voter Project",
@@ -321,40 +321,12 @@
      "margin": 10.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_California_gubernatorial_election",
-     "weight_share": 0.041
-    },
-    {
-     "pollster": "UC Berkeley Institute of Governmental Studies",
-     "sponsors": "Los Angeles Times",
-     "start_date": "2026-09-15",
-     "end_date": "2026-09-20",
-     "sample_size": 4512,
-     "population": "lv",
-     "dem_pct": 58.0,
-     "rep_pct": 33.0,
-     "margin": 25.0,
-     "partisan": "",
-     "url": "https://www.latimes.com/california/story/2026-09-24/high-cost-of-living-tops-voter-concerns-becerra-remains-front-runner-in-governors-race-new-poll-shows",
-     "weight_share": 0.0276
-    },
-    {
-     "pollster": "SurveyUSA",
-     "sponsors": "KGTV (San Diego)|The San Diego Union Tribune",
-     "start_date": "2026-09-15",
-     "end_date": "2026-09-20",
-     "sample_size": 742,
-     "population": "lv",
-     "dem_pct": 55.0,
-     "rep_pct": 33.0,
-     "margin": 22.0,
-     "partisan": "",
-     "url": "https://www.10news.com/americavotes/poll-xavier-becerra-leads-california-gubernatorial-race-in-statewide-survey",
-     "weight_share": 0.0194
+     "weight_share": 0.043
     }
    ]
   },
   "2026-gov-FL": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": -3.9,
    "n_polls": 27,
    "polls": [
@@ -739,7 +711,7 @@
    ]
   },
   "2026-gov-GA": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": -0.12,
    "n_polls": 11,
    "polls": [
@@ -900,7 +872,7 @@
    ]
   },
   "2026-gov-IL": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 19.74,
    "n_polls": 5,
    "polls": [
@@ -977,7 +949,7 @@
    ]
   },
   "2026-gov-ME": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 9.92,
    "n_polls": 19,
    "polls": [
@@ -1250,9 +1222,9 @@
    ]
   },
   "2026-gov-MI": {
-   "as_of": "2026-11-04",
-   "margin": 8.18,
-   "n_polls": 25,
+   "as_of": "2026-11-05",
+   "margin": 8.11,
+   "n_polls": 24,
    "polls": [
     {
      "pollster": "AtlasIntel",
@@ -1266,7 +1238,7 @@
      "margin": 8.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0932
+     "weight_share": 0.0939
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -1280,7 +1252,7 @@
      "margin": 13.0,
      "partisan": "",
      "url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-mi-poll-toplines.html",
-     "weight_share": 0.0817
+     "weight_share": 0.0823
     },
     {
      "pollster": "Concord Public Opinion Partners",
@@ -1294,7 +1266,7 @@
      "margin": 9.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.058
+     "weight_share": 0.0584
     },
     {
      "pollster": "Emerson College",
@@ -1308,7 +1280,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0575
+     "weight_share": 0.0579
     },
     {
      "pollster": "Research Co.",
@@ -1322,7 +1294,7 @@
      "margin": 12.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0545
+     "weight_share": 0.0549
     },
     {
      "pollster": "YouGov",
@@ -1336,7 +1308,7 @@
      "margin": 6.0,
      "partisan": "",
      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20261026_lv.pdf",
-     "weight_share": 0.0858
+     "weight_share": 0.0864
     },
     {
      "pollster": "Rasmussen Reports",
@@ -1350,7 +1322,7 @@
      "margin": 10.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0605
+     "weight_share": 0.0609
     },
     {
      "pollster": "Guidant Polling and Strategy",
@@ -1364,7 +1336,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://x.com/burgessev/status/2107923538392776875?s=20",
-     "weight_share": 0.0567
+     "weight_share": 0.0571
     },
     {
      "pollster": "CNN/SSRS",
@@ -1378,7 +1350,7 @@
      "margin": 12.0,
      "partisan": "",
      "url": "https://www.cnn.com/2026/10/29/politics/cnn-polls-michigan-maine-texas-kansas-senate-races-midterms-vis",
-     "weight_share": 0.0556
+     "weight_share": 0.056
     },
     {
      "pollster": "Mitchell Research & Communications",
@@ -1392,7 +1364,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://www.cbsnews.com/detroit/news/jocelyn-benson-john-james-october-michigan-gubernatorial-poll/",
-     "weight_share": 0.0506
+     "weight_share": 0.051
     },
     {
      "pollster": "Data for Progress",
@@ -1406,7 +1378,7 @@
      "margin": 4.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0453
+     "weight_share": 0.0456
     },
     {
      "pollster": "Michigan State University Department of Political Science/Verasight",
@@ -1420,7 +1392,7 @@
      "margin": 9.4,
      "partisan": "",
      "url": "https://polisci.msu.edu/news-events/news/smidt-poll102926.html",
-     "weight_share": 0.0612
+     "weight_share": 0.0616
     },
     {
      "pollster": "Glengariff Group, Inc.",
@@ -1434,7 +1406,7 @@
      "margin": 6.9,
      "partisan": "",
      "url": "https://www.detroitnews.com/story/news/politics/2026/10/27/jocelyn-bensons-lead-over-john-james-grows-in-michigan-governor-race/92441176007/",
-     "weight_share": 0.0384
+     "weight_share": 0.0386
     },
     {
      "pollster": "Michigan State University Institute for Public Policy and Social Research/YouGov",
@@ -1448,7 +1420,7 @@
      "margin": 12.4,
      "partisan": "",
      "url": "https://ippsr.msu.edu/news/msu-poll-shows-benson-large-lead-while-el-sayed-roger-race-tight",
-     "weight_share": 0.039
+     "weight_share": 0.0393
     },
     {
      "pollster": "Marist University",
@@ -1462,7 +1434,7 @@
      "margin": 6.0,
      "partisan": "",
      "url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-october-2026/",
-     "weight_share": 0.0315
+     "weight_share": 0.0317
     },
     {
      "pollster": "YouGov",
@@ -1476,7 +1448,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0249
+     "weight_share": 0.0251
     },
     {
      "pollster": "Mitchell Research & Communications",
@@ -1490,7 +1462,7 @@
      "margin": 7.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0145
+     "weight_share": 0.0146
     },
     {
      "pollster": "Z to A Research",
@@ -1504,7 +1476,7 @@
      "margin": 10.0,
      "partisan": "DEM",
      "url": "https://x.com/rbrtraining/status/2108302504446337272",
-     "weight_share": 0.0122
+     "weight_share": 0.0123
     },
     {
      "pollster": "Beacon Research/Shaw & Co. Research",
@@ -1518,7 +1490,7 @@
      "margin": 9.0,
      "partisan": "",
      "url": "https://www.foxnews.com/politics/fox-news-poll-michigan-voters-split-between-el-sayed-rogers",
-     "weight_share": 0.0153
+     "weight_share": 0.0154
     },
     {
      "pollster": "Marist University",
@@ -1532,7 +1504,7 @@
      "margin": 12.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.016
+     "weight_share": 0.0161
     },
     {
      "pollster": "Guidant Polling & Strategy",
@@ -1546,7 +1518,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election",
-     "weight_share": 0.0128
+     "weight_share": 0.0129
     },
     {
      "pollster": "co/efficient",
@@ -1560,7 +1532,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://battlegrounds.coefficient.org/mi/",
-     "weight_share": 0.0108
+     "weight_share": 0.0109
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -1574,7 +1546,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://www.nytimes.com/interactive/2026/09/25/polls/times-siena-poll-mi-crosstabs.html",
-     "weight_share": 0.0087
+     "weight_share": 0.0088
     },
     {
      "pollster": "Cygnal/Beacon Research",
@@ -1589,25 +1561,11 @@
      "partisan": "",
      "url": "https://enjoyer.com/michigan-poll-fall-2026/",
      "weight_share": 0.0083
-    },
-    {
-     "pollster": "Suffolk University",
-     "sponsors": "",
-     "start_date": "2026-09-16",
-     "end_date": "2026-09-20",
-     "sample_size": 500,
-     "population": "lv",
-     "dem_pct": 51.0,
-     "rep_pct": 34.0,
-     "margin": 17.0,
-     "partisan": "",
-     "url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-September-22-2026-Michigan-Governor-and-US-Senate-Statewide-and-Bellwether",
-     "weight_share": 0.0072
     }
    ]
   },
   "2026-gov-MN": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 11.14,
    "n_polls": 9,
    "polls": [
@@ -1740,7 +1698,7 @@
    ]
   },
   "2026-gov-NH": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": -6.6,
    "n_polls": 11,
    "polls": [
@@ -1901,7 +1859,7 @@
    ]
   },
   "2026-gov-NM": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 6.87,
    "n_polls": 3,
    "polls": [
@@ -1950,7 +1908,7 @@
    ]
   },
   "2026-gov-NV": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 1.66,
    "n_polls": 6,
    "polls": [
@@ -2041,9 +1999,9 @@
    ]
   },
   "2026-gov-NY": {
-   "as_of": "2026-11-04",
-   "margin": 12.57,
-   "n_polls": 11,
+   "as_of": "2026-11-05",
+   "margin": 12.37,
+   "n_polls": 10,
    "polls": [
     {
      "pollster": "Research Co.",
@@ -2057,7 +2015,7 @@
      "margin": 9.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.1638
+     "weight_share": 0.169
     },
     {
      "pollster": "Marist University",
@@ -2071,7 +2029,7 @@
      "margin": 11.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.1337
+     "weight_share": 0.138
     },
     {
      "pollster": "ActiVote",
@@ -2085,7 +2043,7 @@
      "margin": 18.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.0989
+     "weight_share": 0.102
     },
     {
      "pollster": "Siena University",
@@ -2099,7 +2057,7 @@
      "margin": 14.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.1337
+     "weight_share": 0.1379
     },
     {
      "pollster": "Quinnipiac University",
@@ -2113,7 +2071,7 @@
      "margin": 14.0,
      "partisan": "",
      "url": "https://www.nytimes.com/2026/10/21/nyregion/poll-hochul-blakeman-governor.html",
-     "weight_share": 0.1386
+     "weight_share": 0.143
     },
     {
      "pollster": "OnMessage Inc.",
@@ -2127,7 +2085,7 @@
      "margin": 4.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.0674
+     "weight_share": 0.0695
     },
     {
      "pollster": "Beacon Research",
@@ -2141,7 +2099,7 @@
      "margin": 22.0,
      "partisan": "",
      "url": "https://www.politico.com/newsletters/new-york-playbook/2026/10/15/mamdanis-mia-from-gop-attack-ads-01119739",
-     "weight_share": 0.061
+     "weight_share": 0.063
     },
     {
      "pollster": "Emerson College",
@@ -2155,7 +2113,7 @@
      "margin": 12.7,
      "partisan": "",
      "url": "https://emersoncollegepolling.com/new-york-2026-poll-governor-hochul-leads-blakeman-by-12/?utm_source=substack&utm_medium=email",
-     "weight_share": 0.0608
+     "weight_share": 0.0628
     },
     {
      "pollster": "Marist University",
@@ -2169,7 +2127,7 @@
      "margin": 11.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.0712
+     "weight_share": 0.0735
     },
     {
      "pollster": "co/efficient",
@@ -2183,26 +2141,12 @@
      "margin": 7.0,
      "partisan": "REP",
      "url": "https://nypost.com/2026/10/05/us-news/more-than-half-of-new-york-voters-concerned-about-rise-of-socialism-poll/",
-     "weight_share": 0.04
-    },
-    {
-     "pollster": "Quinnipiac University",
-     "sponsors": "",
-     "start_date": "2026-09-17",
-     "end_date": "2026-09-20",
-     "sample_size": 1026,
-     "population": "lv",
-     "dem_pct": 58.0,
-     "rep_pct": 39.0,
-     "margin": 19.0,
-     "partisan": "",
-     "url": "https://poll.qu.edu/poll-release?releaseid=3967",
-     "weight_share": 0.0309
+     "weight_share": 0.0413
     }
    ]
   },
   "2026-gov-OH": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 4.26,
    "n_polls": 25,
    "polls": [
@@ -2559,7 +2503,7 @@
    ]
   },
   "2026-gov-PA": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 23.96,
    "n_polls": 9,
    "polls": [
@@ -2692,9 +2636,9 @@
    ]
   },
   "2026-gov-TX": {
-   "as_of": "2026-11-04",
-   "margin": -1.72,
-   "n_polls": 36,
+   "as_of": "2026-11-05",
+   "margin": -1.75,
+   "n_polls": 35,
    "polls": [
     {
      "pollster": "Research Co.",
@@ -2708,7 +2652,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.04
+     "weight_share": 0.0403
     },
     {
      "pollster": "AtlasIntel",
@@ -2722,7 +2666,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0694
+     "weight_share": 0.07
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -2736,7 +2680,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-tx-poll-toplines.html",
-     "weight_share": 0.0625
+     "weight_share": 0.063
     },
     {
      "pollster": "Emerson College",
@@ -2750,7 +2694,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0401
+     "weight_share": 0.0404
     },
     {
      "pollster": "Kreate Strategies",
@@ -2764,7 +2708,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0487
+     "weight_share": 0.0491
     },
     {
      "pollster": "YouGov",
@@ -2778,7 +2722,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_tx_20261026_lv.pdf",
-     "weight_share": 0.0599
+     "weight_share": 0.0603
     },
     {
      "pollster": "ActiVote",
@@ -2792,7 +2736,7 @@
      "margin": -4.2,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/tx-governor/",
-     "weight_share": 0.0309
+     "weight_share": 0.0311
     },
     {
      "pollster": "Quantus Insights",
@@ -2806,7 +2750,7 @@
      "margin": -5.3,
      "partisan": "",
      "url": "https://quantusinsights.org/polling/f/texas-survey-paxton-up-one-abbott-ahead-by-five",
-     "weight_share": 0.0514
+     "weight_share": 0.0518
     },
     {
      "pollster": "CNN/SSRS",
@@ -2820,7 +2764,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.cnn.com/2026/10/29/politics/cnn-polls-michigan-maine-texas-kansas-senate-races-midterms-vis",
-     "weight_share": 0.0425
+     "weight_share": 0.0428
     },
     {
      "pollster": "YouGov Blue",
@@ -2834,7 +2778,7 @@
      "margin": 3.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0421
+     "weight_share": 0.0424
     },
     {
      "pollster": "Data for Progress",
@@ -2848,7 +2792,7 @@
      "margin": -1.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0355
+     "weight_share": 0.0358
     },
     {
      "pollster": "Texas Southern University Barbara Jordan Public Policy Research and Survey Center",
@@ -2862,7 +2806,7 @@
      "margin": -3.0,
      "partisan": "",
      "url": "https://www.jordanresearchcenter.org/publications/tsuoct2026-txelections-statewide2026",
-     "weight_share": 0.0491
+     "weight_share": 0.0495
     },
     {
      "pollster": "YouGov",
@@ -2876,7 +2820,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.univision.com/noticias/politica/poll-univision-texas-latinos",
-     "weight_share": 0.0329
+     "weight_share": 0.0331
     },
     {
      "pollster": "ActiVote",
@@ -2890,7 +2834,7 @@
      "margin": -5.0,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/tx-governor/",
-     "weight_share": 0.0208
+     "weight_share": 0.021
     },
     {
      "pollster": "VoteHub/Verasight",
@@ -2904,7 +2848,7 @@
      "margin": -1.3,
      "partisan": "",
      "url": "https://votehub.com/2026/10/23/votehub-verasight-poll-surveys-texass-u-s-senate-and-gubernatorial-races/",
-     "weight_share": 0.0243
+     "weight_share": 0.0244
     },
     {
      "pollster": "Beacon Research/Shaw & Co. Research",
@@ -2918,7 +2862,7 @@
      "margin": -5.0,
      "partisan": "",
      "url": "https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish",
-     "weight_share": 0.0352
+     "weight_share": 0.0355
     },
     {
      "pollster": "Emerson College",
@@ -2932,7 +2876,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://emersoncollegepolling.com/texas-2026-poll-toss-up/",
-     "weight_share": 0.0298
+     "weight_share": 0.03
     },
     {
      "pollster": "Slingshot Strategies",
@@ -2946,7 +2890,7 @@
      "margin": -3.0,
      "partisan": "",
      "url": "https://texaspublicopinionresearch.substack.com/p/october-poll-in-texas-general-election",
-     "weight_share": 0.0279
+     "weight_share": 0.0281
     },
     {
      "pollster": "Pollfinity",
@@ -2960,7 +2904,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://www.pollfinity.com/polls/tx-governor-senate-2026-oct",
-     "weight_share": 0.0149
+     "weight_share": 0.0151
     },
     {
      "pollster": "CBS News/YouGov",
@@ -2974,7 +2918,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0314
+     "weight_share": 0.0316
     },
     {
      "pollster": "University of Houston",
@@ -2988,7 +2932,7 @@
      "margin": -3.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0285
+     "weight_share": 0.0287
     },
     {
      "pollster": "ActiVote",
@@ -3002,7 +2946,7 @@
      "margin": -1.8,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/tx-governor/",
-     "weight_share": 0.0147
+     "weight_share": 0.0148
     },
     {
      "pollster": "New River Strategies/GS Strategy Group",
@@ -3016,7 +2960,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.cookpolitical.com/analysis/survey-research/battleground-district-project/senate-battleground-district-project-october?utm_medium=email_action&utm_source=customer.io",
-     "weight_share": 0.0214
+     "weight_share": 0.0216
     },
     {
      "pollster": "Marist University",
@@ -3030,7 +2974,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0155
+     "weight_share": 0.0156
     },
     {
      "pollster": "GBAO",
@@ -3044,7 +2988,7 @@
      "margin": 2.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0155
+     "weight_share": 0.0156
     },
     {
      "pollster": "ReconMR/Siena University",
@@ -3058,7 +3002,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://reconmr.com/wp-content/uploads/2026/10/TXP004-October-Press-Release.pdf",
-     "weight_share": 0.0136
+     "weight_share": 0.0137
     },
     {
      "pollster": "YouGov",
@@ -3072,7 +3016,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0182
+     "weight_share": 0.0184
     },
     {
      "pollster": "University of Texas/Texas Politics Project",
@@ -3086,7 +3030,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0138
+     "weight_share": 0.0139
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -3100,7 +3044,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://sri.siena.edu/2026/10/04/nytimes-siena-poll-of-likely-voters-gubernatorial-races-2/",
-     "weight_share": 0.009
+     "weight_share": 0.0091
     },
     {
      "pollster": "Beacon Research/Shaw & Co. Research",
@@ -3114,7 +3058,7 @@
      "margin": -5.0,
      "partisan": "",
      "url": "https://www.foxnews.com/politics/fox-news-poll-its-lone-star-senate-showdown-between-talarico-paxton",
-     "weight_share": 0.0099
+     "weight_share": 0.01
     },
     {
      "pollster": "University of Massachusetts Lowell Center for Public Opinion/YouGov",
@@ -3128,7 +3072,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://www.uml.edu/news/press-releases/2026/10092026-texas-poll.aspx",
-     "weight_share": 0.0097
+     "weight_share": 0.0098
     },
     {
      "pollster": "Guidant Polling and Strategy",
@@ -3142,7 +3086,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://x.com/burgessev/status/2107923538392776875?s=20",
-     "weight_share": 0.0094
+     "weight_share": 0.0095
     },
     {
      "pollster": "Big Data Poll",
@@ -3170,7 +3114,7 @@
      "margin": -5.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.008
+     "weight_share": 0.0081
     },
     {
      "pollster": "Slingshot Strategies",
@@ -3185,25 +3129,11 @@
      "partisan": "",
      "url": "https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662",
      "weight_share": 0.0079
-    },
-    {
-     "pollster": "Marist University",
-     "sponsors": "",
-     "start_date": "2026-09-17",
-     "end_date": "2026-09-20",
-     "sample_size": 1139,
-     "population": "rv",
-     "dem_pct": 49.0,
-     "rep_pct": 46.0,
-     "margin": 3.0,
-     "partisan": "",
-     "url": "https://en.wikipedia.org/wiki/2026_Texas_gubernatorial_election",
-     "weight_share": 0.0076
     }
    ]
   },
   "2026-gov-WI": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 4.59,
    "n_polls": 6,
    "polls": [
@@ -3294,7 +3224,7 @@
    ]
   },
   "2026-senate-AK": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 2.1,
    "n_polls": 12,
    "polls": [
@@ -3469,7 +3399,7 @@
    ]
   },
   "2026-senate-GA": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 8.8,
    "n_polls": 10,
    "polls": [
@@ -3616,9 +3546,9 @@
    ]
   },
   "2026-senate-IA": {
-   "as_of": "2026-11-04",
-   "margin": 0.35,
-   "n_polls": 23,
+   "as_of": "2026-11-05",
+   "margin": 0.26,
+   "n_polls": 22,
    "polls": [
     {
      "pollster": "AtlasIntel",
@@ -3632,7 +3562,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.1045
+     "weight_share": 0.1057
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -3646,7 +3576,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-ia-poll-toplines.html",
-     "weight_share": 0.0794
+     "weight_share": 0.0804
     },
     {
      "pollster": "Rasmussen Reports",
@@ -3660,7 +3590,7 @@
      "margin": -1.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0855
+     "weight_share": 0.0865
     },
     {
      "pollster": "GrayHouse",
@@ -3674,7 +3604,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.grayhouse.com/post/grayhouse-poll-hinson-leads-in-iowa-by-2",
-     "weight_share": 0.0698
+     "weight_share": 0.0707
     },
     {
      "pollster": "YouGov",
@@ -3688,7 +3618,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0999
+     "weight_share": 0.1011
     },
     {
      "pollster": "co/efficient",
@@ -3702,7 +3632,7 @@
      "margin": -2.0,
      "partisan": "REP",
      "url": "https://battlegrounds.coefficient.org/ia/",
-     "weight_share": 0.0784
+     "weight_share": 0.0793
     },
     {
      "pollster": "Echelon Insights",
@@ -3716,7 +3646,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://netchoice.org/netchoice-echelon-insights-poll-voters-rank-ai-regulation-far-behind-cost-of-living-want-one-national-ai-standard/",
-     "weight_share": 0.0385
+     "weight_share": 0.0389
     },
     {
      "pollster": "InsiderAdvantage",
@@ -3730,7 +3660,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://insideradvantage.com/insideradvantage-senate-surveys-mi-el-sayed-47-rogers-46-ia-hinson-47-turek-45-oh-brown-47-husted-44/",
-     "weight_share": 0.0632
+     "weight_share": 0.0639
     },
     {
      "pollster": "co/efficient",
@@ -3744,7 +3674,7 @@
      "margin": -3.0,
      "partisan": "REP",
      "url": "https://battlegrounds.coefficient.org/ia/",
-     "weight_share": 0.0462
+     "weight_share": 0.0467
     },
     {
      "pollster": "Trafalgar Group",
@@ -3758,7 +3688,7 @@
      "margin": -2.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0426
+     "weight_share": 0.0432
     },
     {
      "pollster": "New River Strategies/GS Strategy Group",
@@ -3772,7 +3702,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://www.cookpolitical.com/analysis/survey-research/battleground-district-project/senate-battleground-district-project-october?utm_medium=email_action&utm_source=customer.io",
-     "weight_share": 0.0287
+     "weight_share": 0.029
     },
     {
      "pollster": "YouGov",
@@ -3786,7 +3716,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261006_lv.pdf",
-     "weight_share": 0.043
+     "weight_share": 0.0436
     },
     {
      "pollster": "National Public Affairs",
@@ -3800,7 +3730,7 @@
      "margin": -3.0,
      "partisan": "",
      "url": "https://backend.natpublicaffairs.com/media/Iowa_General_Election_Memo_101526.3.pdf",
-     "weight_share": 0.0289
+     "weight_share": 0.0293
     },
     {
      "pollster": "Marist University",
@@ -3814,7 +3744,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-october-2026/",
-     "weight_share": 0.0351
+     "weight_share": 0.0355
     },
     {
      "pollster": "Emerson College",
@@ -3828,7 +3758,7 @@
      "margin": -1.6,
      "partisan": "",
      "url": "https://docs.google.com/spreadsheets/d/1mKToIlrAwY0ehEA60PVFemP5WjwxsTxN/edit?rtpof=true&sd=true",
-     "weight_share": 0.0211
+     "weight_share": 0.0213
     },
     {
      "pollster": "CNN/SSRS",
@@ -3842,7 +3772,7 @@
      "margin": -2.0,
      "partisan": "",
      "url": "https://www.cnn.com/2026/10/08/politics/cnn-polls-ohio-iowa-senate-governor-midterms",
-     "weight_share": 0.0222
+     "weight_share": 0.0225
     },
     {
      "pollster": "Suffolk University",
@@ -3856,7 +3786,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0167
+     "weight_share": 0.0169
     },
     {
      "pollster": "New York Times/Siena University",
@@ -3870,7 +3800,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0159
+     "weight_share": 0.0161
     },
     {
      "pollster": "Rasmussen Reports",
@@ -3884,7 +3814,7 @@
      "margin": 4.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0199
+     "weight_share": 0.0201
     },
     {
      "pollster": "Quantus Insights",
@@ -3898,7 +3828,7 @@
      "margin": -1.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.0159
+     "weight_share": 0.0161
     },
     {
      "pollster": "Beacon Research/Shaw & Co. Research",
@@ -3912,7 +3842,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://www.foxnews.com/politics/fox-news-poll-turek-hinson-close-iowa-senate-race",
-     "weight_share": 0.0176
+     "weight_share": 0.0179
     },
     {
      "pollster": "InsiderAdvantage",
@@ -3926,26 +3856,12 @@
      "margin": 1.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa",
-     "weight_share": 0.015
-    },
-    {
-     "pollster": "Marist University",
-     "sponsors": "",
-     "start_date": "2026-09-17",
-     "end_date": "2026-09-20",
-     "sample_size": 1050,
-     "population": "rv",
-     "dem_pct": 50.0,
-     "rep_pct": 42.0,
-     "margin": 8.0,
-     "partisan": "",
-     "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-september-2026/",
-     "weight_share": 0.0121
+     "weight_share": 0.0152
     }
    ]
   },
   "2026-senate-KS": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 3.79,
    "n_polls": 15,
    "polls": [
@@ -4162,7 +4078,7 @@
    ]
   },
   "2026-senate-ME": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 3.7,
    "n_polls": 27,
    "polls": [
@@ -4547,9 +4463,9 @@
    ]
   },
   "2026-senate-MI": {
-   "as_of": "2026-11-04",
-   "margin": 4.71,
-   "n_polls": 37,
+   "as_of": "2026-11-05",
+   "margin": 4.7,
+   "n_polls": 36,
    "polls": [
     {
      "pollster": "John Zogby Strategies",
@@ -4563,7 +4479,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0599
+     "weight_share": 0.0602
     },
     {
      "pollster": "AtlasIntel",
@@ -4577,7 +4493,7 @@
      "margin": 8.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0654
+     "weight_share": 0.0657
     },
     {
      "pollster": "Trafalgar Group",
@@ -4591,7 +4507,7 @@
      "margin": 1.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0594
+     "weight_share": 0.0597
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -4605,7 +4521,7 @@
      "margin": 11.0,
      "partisan": "",
      "url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-mi-poll-toplines.html",
-     "weight_share": 0.0573
+     "weight_share": 0.0576
     },
     {
      "pollster": "Concord Public Opinion Partners",
@@ -4619,7 +4535,7 @@
      "margin": 10.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0407
+     "weight_share": 0.0409
     },
     {
      "pollster": "Emerson College",
@@ -4633,7 +4549,7 @@
      "margin": 6.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0403
+     "weight_share": 0.0405
     },
     {
      "pollster": "Research Co.",
@@ -4647,7 +4563,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0382
+     "weight_share": 0.0384
     },
     {
      "pollster": "YouGov",
@@ -4661,7 +4577,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20261026_lv.pdf",
-     "weight_share": 0.0602
+     "weight_share": 0.0605
     },
     {
      "pollster": "Rasmussen Reports",
@@ -4675,7 +4591,7 @@
      "margin": 5.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0424
+     "weight_share": 0.0426
     },
     {
      "pollster": "Upswing Research",
@@ -4689,7 +4605,7 @@
      "margin": 5.0,
      "partisan": "DEM",
      "url": "https://x.com/joshorton/status/2115883461076545615?a=RFp0CZRkuV44JoFJOZQ&s=20",
-     "weight_share": 0.0332
+     "weight_share": 0.0334
     },
     {
      "pollster": "CNN/SSRS",
@@ -4703,7 +4619,7 @@
      "margin": 7.0,
      "partisan": "",
      "url": "https://www.cnn.com/2026/10/29/politics/cnn-polls-michigan-maine-texas-kansas-senate-races-midterms-vis",
-     "weight_share": 0.039
+     "weight_share": 0.0392
     },
     {
      "pollster": "Mitchell Research & Communications",
@@ -4717,7 +4633,7 @@
      "margin": 7.0,
      "partisan": "",
      "url": "https://www.cbsnews.com/detroit/news/el-sayed-widens-lead-rogers-michigan-senate-poll/",
-     "weight_share": 0.0355
+     "weight_share": 0.0357
     },
     {
      "pollster": "Data for Progress",
@@ -4731,7 +4647,7 @@
      "margin": 4.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0318
+     "weight_share": 0.0319
     },
     {
      "pollster": "RedBox Research",
@@ -4745,7 +4661,7 @@
      "margin": 5.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0447
+     "weight_share": 0.0449
     },
     {
      "pollster": "Michigan State University Department of Political Science/Verasight",
@@ -4759,7 +4675,7 @@
      "margin": 7.4,
      "partisan": "",
      "url": "https://polisci.msu.edu/news-events/news/smidt-poll102926.html",
-     "weight_share": 0.0429
+     "weight_share": 0.0431
     },
     {
      "pollster": "InsiderAdvantage",
@@ -4773,7 +4689,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://insideradvantage.com/insideradvantage-senate-surveys-mi-el-sayed-47-rogers-46-ia-hinson-47-turek-45-oh-brown-47-husted-44/",
-     "weight_share": 0.038
+     "weight_share": 0.0382
     },
     {
      "pollster": "Glengariff Group, Inc.",
@@ -4787,7 +4703,7 @@
      "margin": 6.3,
      "partisan": "",
      "url": "https://www.detroitnews.com/story/news/politics/2026/10/27/jocelyn-bensons-lead-over-john-james-grows-in-michigan-governor-race/92441176007/",
-     "weight_share": 0.0269
+     "weight_share": 0.027
     },
     {
      "pollster": "Michigan State University Institute for Public Policy and Social Research/YouGov",
@@ -4801,7 +4717,7 @@
      "margin": 2.5,
      "partisan": "",
      "url": "https://ippsr.msu.edu/news/msu-poll-shows-benson-large-lead-while-el-sayed-roger-race-tight",
-     "weight_share": 0.0274
+     "weight_share": 0.0275
     },
     {
      "pollster": "Marist University",
@@ -4815,7 +4731,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-october-2026/",
-     "weight_share": 0.0221
+     "weight_share": 0.0222
     },
     {
      "pollster": "Rasmussen Reports",
@@ -4829,7 +4745,7 @@
      "margin": 2.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0209
+     "weight_share": 0.021
     },
     {
      "pollster": "InsiderAdvantage",
@@ -4843,7 +4759,7 @@
      "margin": 2.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.021
+     "weight_share": 0.0211
     },
     {
      "pollster": "The Tyson Group",
@@ -4871,7 +4787,7 @@
      "margin": 1.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0137
+     "weight_share": 0.0138
     },
     {
      "pollster": "YouGov",
@@ -4885,7 +4801,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0174
+     "weight_share": 0.0175
     },
     {
      "pollster": "Mitchell Research & Communications",
@@ -4899,7 +4815,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://wwmt.com/news/michigan-politics/mitchell-poll-michigan-us-senate-election-abdul-el-sayed-mike-rogers-politics-government-vote-polls-state",
-     "weight_share": 0.0101
+     "weight_share": 0.0102
     },
     {
      "pollster": "Z to A Research",
@@ -4913,7 +4829,7 @@
      "margin": 7.0,
      "partisan": "DEM",
      "url": "https://x.com/rbrtraining/status/2108302504446337272",
-     "weight_share": 0.0085
+     "weight_share": 0.0086
     },
     {
      "pollster": "Trafalgar Group",
@@ -4941,7 +4857,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://www.foxnews.com/politics/fox-news-poll-michigan-voters-split-between-el-sayed-rogers",
-     "weight_share": 0.0107
+     "weight_share": 0.0108
     },
     {
      "pollster": "Marist University",
@@ -4955,7 +4871,7 @@
      "margin": 7.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0112
+     "weight_share": 0.0113
     },
     {
      "pollster": "Guidant Polling and Strategy",
@@ -4969,7 +4885,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://x.com/burgessev/status/2107923538392776875?s=20",
-     "weight_share": 0.009
+     "weight_share": 0.0091
     },
     {
      "pollster": "The Tyson Group",
@@ -4997,7 +4913,7 @@
      "margin": 5.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.0071
+     "weight_share": 0.0072
     },
     {
      "pollster": "co/efficient",
@@ -5025,7 +4941,7 @@
      "margin": 4.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
-     "weight_share": 0.007
+     "weight_share": 0.0071
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -5054,25 +4970,11 @@
      "partisan": "",
      "url": "https://enjoyer.com/michigan-poll-fall-2026/",
      "weight_share": 0.0058
-    },
-    {
-     "pollster": "Suffolk University",
-     "sponsors": "",
-     "start_date": "2026-09-16",
-     "end_date": "2026-09-20",
-     "sample_size": 500,
-     "population": "lv",
-     "dem_pct": 47.0,
-     "rep_pct": 40.0,
-     "margin": 7.0,
-     "partisan": "",
-     "url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-September-22-2026-Michigan-Governor-and-US-Senate-Statewide-and-Bellwether",
-     "weight_share": 0.005
     }
    ]
   },
   "2026-senate-MN": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 5.11,
    "n_polls": 16,
    "polls": [
@@ -5303,9 +5205,9 @@
    ]
   },
   "2026-senate-NC": {
-   "as_of": "2026-11-04",
-   "margin": 10.83,
-   "n_polls": 17,
+   "as_of": "2026-11-05",
+   "margin": 10.84,
+   "n_polls": 15,
    "polls": [
     {
      "pollster": "AtlasIntel",
@@ -5319,7 +5221,7 @@
      "margin": 14.9,
      "partisan": "",
      "url": "https://pollstergraph.com/poll/exclusive-atlas-us-nc-20261101-senate",
-     "weight_share": 0.1585
+     "weight_share": 0.1643
     },
     {
      "pollster": "YouGov",
@@ -5333,7 +5235,7 @@
      "margin": 11.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_North_Carolina",
-     "weight_share": 0.1385
+     "weight_share": 0.1436
     },
     {
      "pollster": "East Carolina University",
@@ -5347,7 +5249,7 @@
      "margin": 9.0,
      "partisan": "",
      "url": "https://surveyresearch-ecu.reportablenews.com/pr/ecu-poll-cooper-leads-whatley-by-9-points-as-election-day-nears",
-     "weight_share": 0.1154
+     "weight_share": 0.1196
     },
     {
      "pollster": "Quantus Insights",
@@ -5361,7 +5263,7 @@
      "margin": 8.6,
      "partisan": "",
      "url": "https://quantusinsights.org/polling/f/north-carolina-senate-cooper-holds-a-9-point-lead-over-whatley",
-     "weight_share": 0.0788
+     "weight_share": 0.0817
     },
     {
      "pollster": "RedBox Research",
@@ -5375,7 +5277,7 @@
      "margin": 7.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_North_Carolina",
-     "weight_share": 0.1029
+     "weight_share": 0.1067
     },
     {
      "pollster": "High Point University Survey Research Center",
@@ -5389,7 +5291,7 @@
      "margin": 14.0,
      "partisan": "",
      "url": "https://www.highpoint.edu/blog/2026/10/hpu-yougov-poll-north-carolina-likely-voters-weigh-in-on-u-s-senate-race-and-more/",
-     "weight_share": 0.057
+     "weight_share": 0.0591
     },
     {
      "pollster": "Harper Polling",
@@ -5403,7 +5305,7 @@
      "margin": 10.0,
      "partisan": "",
      "url": "https://www.carolinajournal.com/polls/october-2026-coopers-lead-over-whatley-narrows-to-10-points-in-nc-senate-race/",
-     "weight_share": 0.0561
+     "weight_share": 0.0582
     },
     {
      "pollster": "ActiVote",
@@ -5417,7 +5319,7 @@
      "margin": 13.8,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/nc-u-s-senate/",
-     "weight_share": 0.0458
+     "weight_share": 0.0475
     },
     {
      "pollster": "SurveyUSA",
@@ -5431,7 +5333,7 @@
      "margin": 14.0,
      "partisan": "",
      "url": "https://results.surveyusa.com/client/PollReport.aspx?g=0a876c84-9a95-4995-9218-82b1015f5d77",
-     "weight_share": 0.0372
+     "weight_share": 0.0386
     },
     {
      "pollster": "Trafalgar Group",
@@ -5445,7 +5347,7 @@
      "margin": 8.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_North_Carolina",
-     "weight_share": 0.0461
+     "weight_share": 0.0478
     },
     {
      "pollster": "Elon University/YouGov",
@@ -5459,7 +5361,7 @@
      "margin": 13.0,
      "partisan": "",
      "url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
-     "weight_share": 0.03
+     "weight_share": 0.031
     },
     {
      "pollster": "Change Research",
@@ -5473,7 +5375,7 @@
      "margin": 10.0,
      "partisan": "DEM",
      "url": "https://carolinaforward.org/news/the-october-2026-carolina-forward-poll/?emci=e7b29264-2cc4-f111-bf5b-000d3a4fbe83&emdi=beb3dd17-f1c6-f111-bf5b-000d3a4fbe83&ceid=27194997",
-     "weight_share": 0.0347
+     "weight_share": 0.0359
     },
     {
      "pollster": "East Carolina University",
@@ -5487,7 +5389,7 @@
      "margin": 7.0,
      "partisan": "",
      "url": "https://surveyresearch-ecu.reportablenews.com/pr/ecu-poll-cooper-s-lead-holds-at-7-points",
-     "weight_share": 0.0281
+     "weight_share": 0.0291
     },
     {
      "pollster": "Big Data Poll",
@@ -5501,7 +5403,7 @@
      "margin": 12.0,
      "partisan": "",
      "url": "https://www.bigdatapoll.com/blog/tar-heel-state-poll-roy-cooper-holds-solid-lead-over-michael-whatley-for-us-senate-in-north-carolina/",
-     "weight_share": 0.0205
+     "weight_share": 0.0213
     },
     {
      "pollster": "Quantus Insights",
@@ -5515,40 +5417,12 @@
      "margin": 5.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_North_Carolina",
-     "weight_share": 0.015
-    },
-    {
-     "pollster": "Fabrizio Ward/Impact Research",
-     "sponsors": "",
-     "start_date": "2026-09-17",
-     "end_date": "2026-09-20",
-     "sample_size": 1806,
-     "population": "lv",
-     "dem_pct": 53.0,
-     "rep_pct": 42.0,
-     "margin": 11.0,
-     "partisan": "DEM",
-     "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_North_Carolina",
-     "weight_share": 0.0201
-    },
-    {
-     "pollster": "Opinion Diagnostics",
-     "sponsors": "",
-     "start_date": "2026-09-17",
-     "end_date": "2026-09-20",
-     "sample_size": 857,
-     "population": "lv",
-     "dem_pct": 51.0,
-     "rep_pct": 41.0,
-     "margin": 10.0,
-     "partisan": "",
-     "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_North_Carolina",
-     "weight_share": 0.0152
+     "weight_share": 0.0155
     }
    ]
   },
   "2026-senate-NH": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 7.72,
    "n_polls": 13,
    "polls": [
@@ -5737,7 +5611,7 @@
    ]
   },
   "2026-senate-OH": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": 2.67,
    "n_polls": 32,
    "polls": [
@@ -6192,7 +6066,7 @@
    ]
   },
   "2026-senate-SC": {
-   "as_of": "2026-11-04",
+   "as_of": "2026-11-05",
    "margin": -1.22,
    "n_polls": 13,
    "polls": [
@@ -6381,9 +6255,9 @@
    ]
   },
   "2026-senate-TX": {
-   "as_of": "2026-11-04",
-   "margin": 3.1,
-   "n_polls": 44,
+   "as_of": "2026-11-05",
+   "margin": 3.08,
+   "n_polls": 43,
    "polls": [
     {
      "pollster": "Research Co.",
@@ -6397,7 +6271,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0327
+     "weight_share": 0.0329
     },
     {
      "pollster": "AtlasIntel",
@@ -6411,7 +6285,7 @@
      "margin": 6.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0568
+     "weight_share": 0.0572
     },
     {
      "pollster": "The New York Times/Siena University",
@@ -6425,7 +6299,7 @@
      "margin": 7.0,
      "partisan": "",
      "url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-tx-poll-toplines.html",
-     "weight_share": 0.0512
+     "weight_share": 0.0515
     },
     {
      "pollster": "Trafalgar Group",
@@ -6439,7 +6313,7 @@
      "margin": 0.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0484
+     "weight_share": 0.0487
     },
     {
      "pollster": "Emerson College",
@@ -6453,7 +6327,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0328
+     "weight_share": 0.033
     },
     {
      "pollster": "Kreate Strategies",
@@ -6467,7 +6341,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0399
+     "weight_share": 0.0401
     },
     {
      "pollster": "YouGov",
@@ -6481,7 +6355,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.049
+     "weight_share": 0.0493
     },
     {
      "pollster": "Quantus Insights",
@@ -6495,7 +6369,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://quantusinsights.org/polling/f/texas-survey-paxton-up-one-abbott-ahead-by-five",
-     "weight_share": 0.0421
+     "weight_share": 0.0423
     },
     {
      "pollster": "ActiVote",
@@ -6509,7 +6383,7 @@
      "margin": 4.2,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/tx-u-s-senate/",
-     "weight_share": 0.0241
+     "weight_share": 0.0242
     },
     {
      "pollster": "CNN/SSRS",
@@ -6523,7 +6397,7 @@
      "margin": 6.0,
      "partisan": "",
      "url": "https://www.cnn.com/2026/10/29/politics/cnn-polls-michigan-maine-texas-kansas-senate-races-midterms-vis",
-     "weight_share": 0.0348
+     "weight_share": 0.035
     },
     {
      "pollster": "A2 Insights",
@@ -6537,7 +6411,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://drive.google.com/file/d/1UACnmnM84Dd1hU0l6iqHNgXkyh5oCelO/view",
-     "weight_share": 0.0288
+     "weight_share": 0.029
     },
     {
      "pollster": "YouGov Blue",
@@ -6551,7 +6425,7 @@
      "margin": 8.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0345
+     "weight_share": 0.0347
     },
     {
      "pollster": "Data for Progress",
@@ -6565,7 +6439,7 @@
      "margin": 4.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0291
+     "weight_share": 0.0293
     },
     {
      "pollster": "Texas Southern University Barbara Jordan Public Policy Research and Survey Center",
@@ -6579,7 +6453,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://www.jordanresearchcenter.org/publications/tsuoct2026-txelections-statewide2026",
-     "weight_share": 0.0402
+     "weight_share": 0.0404
     },
     {
      "pollster": "YouGov",
@@ -6593,7 +6467,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://www.univision.com/noticias/politica/poll-univision-texas-latinos",
-     "weight_share": 0.0269
+     "weight_share": 0.0271
     },
     {
      "pollster": "Rasmussen Reports",
@@ -6607,7 +6481,7 @@
      "margin": 0.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0264
+     "weight_share": 0.0266
     },
     {
      "pollster": "ActiVote",
@@ -6621,7 +6495,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/tx-u-s-senate/",
-     "weight_share": 0.017
+     "weight_share": 0.0171
     },
     {
      "pollster": "VoteHub/Verasight",
@@ -6635,7 +6509,7 @@
      "margin": 2.4,
      "partisan": "",
      "url": "https://votehub.com/2026/10/23/votehub-verasight-poll-surveys-texass-u-s-senate-and-gubernatorial-races/",
-     "weight_share": 0.0199
+     "weight_share": 0.02
     },
     {
      "pollster": "Beacon Research/Shaw & Co. Research",
@@ -6649,7 +6523,7 @@
      "margin": 0.0,
      "partisan": "",
      "url": "https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish",
-     "weight_share": 0.0288
+     "weight_share": 0.029
     },
     {
      "pollster": "Emerson College",
@@ -6663,7 +6537,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://emersoncollegepolling.com/texas-2026-poll-toss-up/",
-     "weight_share": 0.0244
+     "weight_share": 0.0245
     },
     {
      "pollster": "Slingshot Strategies",
@@ -6677,7 +6551,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://texaspublicopinionresearch.substack.com/p/october-poll-in-texas-general-election",
-     "weight_share": 0.0228
+     "weight_share": 0.023
     },
     {
      "pollster": "Pollfinity",
@@ -6691,7 +6565,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://www.pollfinity.com/polls/tx-governor-senate-2026-oct",
-     "weight_share": 0.0122
+     "weight_share": 0.0123
     },
     {
      "pollster": "CBS News/YouGov",
@@ -6705,7 +6579,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0257
+     "weight_share": 0.0258
     },
     {
      "pollster": "Cor Strategies",
@@ -6719,7 +6593,7 @@
      "margin": 4.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0237
+     "weight_share": 0.0239
     },
     {
      "pollster": "University of Houston",
@@ -6733,7 +6607,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0233
+     "weight_share": 0.0235
     },
     {
      "pollster": "InsiderAdvantage",
@@ -6747,7 +6621,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://insideradvantage.com/insideradvantage-senate-surveys-texas-paxton-49-talarico-48-kansas-marshall-48-hamilton-47-maine-jackson-49-collins-47/",
-     "weight_share": 0.0209
+     "weight_share": 0.021
     },
     {
      "pollster": "ActiVote",
@@ -6761,7 +6635,7 @@
      "margin": 3.8,
      "partisan": "",
      "url": "https://www.activote.net/polls/2026/tx-u-s-senate/2026-10-14/",
-     "weight_share": 0.012
+     "weight_share": 0.0121
     },
     {
      "pollster": "New River Strategies/GS Strategy Group",
@@ -6775,7 +6649,7 @@
      "margin": 5.0,
      "partisan": "",
      "url": "https://www.cookpolitical.com/analysis/survey-research/battleground-district-project/senate-battleground-district-project-october?utm_medium=email_action&utm_source=customer.io",
-     "weight_share": 0.0175
+     "weight_share": 0.0176
     },
     {
      "pollster": "Quantus Insights",
@@ -6789,7 +6663,7 @@
      "margin": -0.5,
      "partisan": "",
      "url": "https://quantusinsights.org/polling/f/texas-senate-paxton-and-talarico-in-a-near-tie",
-     "weight_share": 0.0152
+     "weight_share": 0.0153
     },
     {
      "pollster": "Marist University",
@@ -6803,7 +6677,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0127
+     "weight_share": 0.0128
     },
     {
      "pollster": "Trafalgar Group",
@@ -6817,7 +6691,7 @@
      "margin": 3.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0147
+     "weight_share": 0.0148
     },
     {
      "pollster": "ReconMR/Siena University",
@@ -6831,7 +6705,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://reconmr.com/wp-content/uploads/2026/10/TXP004-October-Press-Release.pdf",
-     "weight_share": 0.0111
+     "weight_share": 0.0112
     },
     {
      "pollster": "YouGov",
@@ -6845,7 +6719,7 @@
      "margin": 6.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0149
+     "weight_share": 0.015
     },
     {
      "pollster": "University of Texas/Texas Politics Project",
@@ -6859,7 +6733,7 @@
      "margin": 3.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0113
+     "weight_share": 0.0114
     },
     {
      "pollster": "New York Times/Siena University",
@@ -6887,7 +6761,7 @@
      "margin": 1.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0096
+     "weight_share": 0.0097
     },
     {
      "pollster": "Beacon Research/Shaw & Co. Research",
@@ -6915,7 +6789,7 @@
      "margin": 0.0,
      "partisan": "",
      "url": "https://www.uml.edu/news/press-releases/2026/10092026-texas-poll.aspx",
-     "weight_share": 0.0079
+     "weight_share": 0.008
     },
     {
      "pollster": "Guidant Polling and Strategy",
@@ -6929,7 +6803,7 @@
      "margin": 2.4,
      "partisan": "",
      "url": "https://x.com/burgessev/status/2107923538392776875?s=20",
-     "weight_share": 0.0077
+     "weight_share": 0.0078
     },
     {
      "pollster": "Pulse Decision Science",
@@ -6943,7 +6817,7 @@
      "margin": -3.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0073
+     "weight_share": 0.0074
     },
     {
      "pollster": "Big Data Poll",
@@ -6957,7 +6831,7 @@
      "margin": 2.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0065
+     "weight_share": 0.0066
     },
     {
      "pollster": "Stratus Intelligence",
@@ -6971,7 +6845,7 @@
      "margin": 0.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0065
+     "weight_share": 0.0066
     },
     {
      "pollster": "Slingshot Strategies",
@@ -6985,21 +6859,7 @@
      "margin": 4.0,
      "partisan": "",
      "url": "https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662",
-     "weight_share": 0.0064
-    },
-    {
-     "pollster": "Marist University",
-     "sponsors": "",
-     "start_date": "2026-09-17",
-     "end_date": "2026-09-20",
-     "sample_size": 1139,
-     "population": "rv",
-     "dem_pct": 50.0,
-     "rep_pct": 44.0,
-     "margin": 6.0,
-     "partisan": "",
-     "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas",
-     "weight_share": 0.0062
+     "weight_share": 0.0065
     }
    ]
   }
