@@ -72123,3 +72123,60 @@ fetched_at,snapshot_date,race_id,cycle,venue,yes_side,prob,days_out,raw_price,in
 2026-11-08T09:07:45+00:00,2026-11-08,2026-gov-NY,2026,kalshi,DEM,0.998,-5,0.998,False,,1608399.63,,
 2026-11-08T09:07:45+00:00,2026-11-08,2026-gov-CA,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
 2026-11-08T09:07:45+00:00,2026-11-08,2026-gov-CA,2026,kalshi,DEM,0.994,-5,0.994,False,,4358033.41,,
+2026-11-08T09:27:36+00:00,2026-11-08,2026-senate-control,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:36+00:00,2026-11-08,2026-house-control,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:36+00:00,2026-11-08,2026-senate-GA,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:36+00:00,2026-11-08,2026-senate-GA,2026,kalshi,DEM,0.998,-5,0.998,False,,1243841.54,,
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-MI,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-MI,2026,kalshi,DEM,0.99,-5,0.99,False,,976950.9,,
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-NC,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-NC,2026,kalshi,DEM,0.998,-5,0.998,False,,1882670.96,,
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-ME,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-ME,2026,kalshi,DEM,0.999,-5,0.999,False,,5078886.86,,
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-OH,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-OH,2026,kalshi,DEM,0.998,-5,0.998,False,,4332922.4,,
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-TX,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-TX,2026,kalshi,DEM,0.997,-5,0.997,False,,30773429.3,,
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-IA,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:37+00:00,2026-11-08,2026-senate-IA,2026,kalshi,DEM,0.94,-5,0.94,False,,16726.32,,
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-NH,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-NH,2026,kalshi,DEM,0.999,-5,0.999,False,,613328.45,,
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-MN,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-MN,2026,kalshi,DEM,0.999,-5,0.999,False,,2332146.83,,
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-AK,2026,polymarket,DEM,0.9855,-5,0.9855,False,4797852.349751,367505.15268,0.001,
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-AK,2026,kalshi,DEM,0.9735,-5,0.9735,False,,5072634.68,0.001,
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-KS,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-KS,2026,kalshi,DEM,0.999,-5,0.999,False,,3620939.58,,
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-SC,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:38+00:00,2026-11-08,2026-senate-SC,2026,kalshi,DEM,0.998,-5,0.998,False,,3507547.23,,
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-GA,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-GA,2026,kalshi,DEM,0.998,-5,0.998,False,,1486285.08,,
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-AZ,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-AZ,2026,kalshi,DEM,0.998,-5,0.998,False,,669745.97,,
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-NV,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-NV,2026,kalshi,DEM,0.999,-5,0.999,False,,1571366.87,,
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-WI,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-WI,2026,kalshi,DEM,0.986,-5,0.986,False,,428831.38,,
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-PA,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-PA,2026,kalshi,DEM,0.999,-5,0.999,False,,572964.99,,
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-MI,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:39+00:00,2026-11-08,2026-gov-MI,2026,kalshi,DEM,0.999,-5,0.999,False,,221404.95,,
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-ME,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-ME,2026,kalshi,DEM,0.997,-5,0.997,False,,89716.2,,
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-NH,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-OH,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-OH,2026,kalshi,DEM,0.998,-5,0.998,False,,3049814.08,,
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-TX,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-TX,2026,kalshi,DEM,0.997,-5,0.997,False,,11677504.96,,
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-FL,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-FL,2026,kalshi,DEM,0.002,-5,0.002,False,,5737495.94,,
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-MN,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-MN,2026,kalshi,DEM,0.995,-5,0.995,False,,425671.86,,
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-NM,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:40+00:00,2026-11-08,2026-gov-NM,2026,kalshi,DEM,0.999,-5,0.999,False,,149668.42,,
+2026-11-08T09:27:41+00:00,2026-11-08,2026-gov-IL,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:41+00:00,2026-11-08,2026-gov-IL,2026,kalshi,DEM,0.995,-5,0.995,False,,260554.2,,
+2026-11-08T09:27:41+00:00,2026-11-08,2026-gov-NY,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:41+00:00,2026-11-08,2026-gov-NY,2026,kalshi,DEM,0.998,-5,0.998,False,,1608399.63,,
+2026-11-08T09:27:41+00:00,2026-11-08,2026-gov-CA,2026,polymarket,DEM,,-5,,,,,,ValueError: no market returned for slug
+2026-11-08T09:27:41+00:00,2026-11-08,2026-gov-CA,2026,kalshi,DEM,0.994,-5,0.994,False,,4358033.41,,
