@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-11-09T21:33:21+00:00",
+ "generated_at": "2026-11-10T12:14:14+00:00",
  "window_days": 45,
  "half_life_days": 14,
  "races": {
   "2026-gov-AZ": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 7.12,
    "n_polls": 11,
    "polls": [
@@ -165,7 +165,7 @@
    ]
   },
   "2026-gov-CA": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 23.02,
    "n_polls": 11,
    "polls": [
@@ -326,7 +326,7 @@
    ]
   },
   "2026-gov-FL": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": -3.83,
    "n_polls": 26,
    "polls": [
@@ -697,7 +697,7 @@
    ]
   },
   "2026-gov-GA": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": -0.04,
    "n_polls": 9,
    "polls": [
@@ -830,7 +830,7 @@
    ]
   },
   "2026-gov-IL": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 19.74,
    "n_polls": 5,
    "polls": [
@@ -907,7 +907,7 @@
    ]
   },
   "2026-gov-ME": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 9.88,
    "n_polls": 16,
    "polls": [
@@ -1138,7 +1138,7 @@
    ]
   },
   "2026-gov-MI": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 8.21,
    "n_polls": 21,
    "polls": [
@@ -1439,7 +1439,7 @@
    ]
   },
   "2026-gov-MN": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 11.14,
    "n_polls": 9,
    "polls": [
@@ -1572,7 +1572,7 @@
    ]
   },
   "2026-gov-NH": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": -6.59,
    "n_polls": 9,
    "polls": [
@@ -1705,7 +1705,7 @@
    ]
   },
   "2026-gov-NM": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 6.87,
    "n_polls": 3,
    "polls": [
@@ -1754,7 +1754,7 @@
    ]
   },
   "2026-gov-NV": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 1.66,
    "n_polls": 6,
    "polls": [
@@ -1845,9 +1845,9 @@
    ]
   },
   "2026-gov-NY": {
-   "as_of": "2026-11-09",
-   "margin": 12.37,
-   "n_polls": 10,
+   "as_of": "2026-11-10",
+   "margin": 12.6,
+   "n_polls": 9,
    "polls": [
     {
      "pollster": "Research Co.",
@@ -1861,7 +1861,7 @@
      "margin": 9.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.169
+     "weight_share": 0.1763
     },
     {
      "pollster": "Marist University",
@@ -1875,7 +1875,7 @@
      "margin": 11.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.138
+     "weight_share": 0.1439
     },
     {
      "pollster": "ActiVote",
@@ -1889,7 +1889,7 @@
      "margin": 18.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.102
+     "weight_share": 0.1064
     },
     {
      "pollster": "Siena University",
@@ -1903,7 +1903,7 @@
      "margin": 14.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.1379
+     "weight_share": 0.1439
     },
     {
      "pollster": "Quinnipiac University",
@@ -1917,7 +1917,7 @@
      "margin": 14.0,
      "partisan": "",
      "url": "https://www.nytimes.com/2026/10/21/nyregion/poll-hochul-blakeman-governor.html",
-     "weight_share": 0.143
+     "weight_share": 0.1491
     },
     {
      "pollster": "OnMessage Inc.",
@@ -1931,7 +1931,7 @@
      "margin": 4.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.0695
+     "weight_share": 0.0725
     },
     {
      "pollster": "Beacon Research",
@@ -1945,7 +1945,7 @@
      "margin": 22.0,
      "partisan": "",
      "url": "https://www.politico.com/newsletters/new-york-playbook/2026/10/15/mamdanis-mia-from-gop-attack-ads-01119739",
-     "weight_share": 0.063
+     "weight_share": 0.0657
     },
     {
      "pollster": "Emerson College",
@@ -1959,7 +1959,7 @@
      "margin": 12.7,
      "partisan": "",
      "url": "https://emersoncollegepolling.com/new-york-2026-poll-governor-hochul-leads-blakeman-by-12/?utm_source=substack&utm_medium=email",
-     "weight_share": 0.0628
+     "weight_share": 0.0655
     },
     {
      "pollster": "Marist University",
@@ -1973,26 +1973,12 @@
      "margin": 11.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
-     "weight_share": 0.0735
-    },
-    {
-     "pollster": "co/efficient",
-     "sponsors": "Coalition to Protect Nassau Taxpayers",
-     "start_date": "2026-09-23",
-     "end_date": "2026-09-25",
-     "sample_size": 1046,
-     "population": "lv",
-     "dem_pct": 48.0,
-     "rep_pct": 41.0,
-     "margin": 7.0,
-     "partisan": "REP",
-     "url": "https://nypost.com/2026/10/05/us-news/more-than-half-of-new-york-voters-concerned-about-rise-of-socialism-poll/",
-     "weight_share": 0.0413
+     "weight_share": 0.0766
     }
    ]
   },
   "2026-gov-OH": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 4.26,
    "n_polls": 25,
    "polls": [
@@ -2349,7 +2335,7 @@
    ]
   },
   "2026-gov-PA": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 24.0,
    "n_polls": 7,
    "polls": [
@@ -2454,7 +2440,7 @@
    ]
   },
   "2026-gov-TX": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": -1.71,
    "n_polls": 33,
    "polls": [
@@ -2923,7 +2909,7 @@
    ]
   },
   "2026-gov-WI": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 4.67,
    "n_polls": 5,
    "polls": [
@@ -3000,7 +2986,7 @@
    ]
   },
   "2026-senate-AK": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 2.19,
    "n_polls": 11,
    "polls": [
@@ -3161,7 +3147,7 @@
    ]
   },
   "2026-senate-GA": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 8.78,
    "n_polls": 8,
    "polls": [
@@ -3280,7 +3266,7 @@
    ]
   },
   "2026-senate-IA": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 0.24,
    "n_polls": 21,
    "polls": [
@@ -3581,7 +3567,7 @@
    ]
   },
   "2026-senate-KS": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 3.81,
    "n_polls": 14,
    "polls": [
@@ -3784,7 +3770,7 @@
    ]
   },
   "2026-senate-ME": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 3.81,
    "n_polls": 23,
    "polls": [
@@ -4113,7 +4099,7 @@
    ]
   },
   "2026-senate-MI": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 4.73,
    "n_polls": 31,
    "polls": [
@@ -4554,7 +4540,7 @@
    ]
   },
   "2026-senate-MN": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 5.11,
    "n_polls": 16,
    "polls": [
@@ -4785,7 +4771,7 @@
    ]
   },
   "2026-senate-NC": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 10.93,
    "n_polls": 14,
    "polls": [
@@ -4988,7 +4974,7 @@
    ]
   },
   "2026-senate-NH": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 7.76,
    "n_polls": 11,
    "polls": [
@@ -5149,7 +5135,7 @@
    ]
   },
   "2026-senate-OH": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 2.68,
    "n_polls": 30,
    "polls": [
@@ -5576,9 +5562,9 @@
    ]
   },
   "2026-senate-SC": {
-   "as_of": "2026-11-09",
-   "margin": -1.22,
-   "n_polls": 13,
+   "as_of": "2026-11-10",
+   "margin": -1.23,
+   "n_polls": 12,
    "polls": [
     {
      "pollster": "Trafalgar Group",
@@ -5592,7 +5578,7 @@
      "margin": -2.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.1367
+     "weight_share": 0.1398
     },
     {
      "pollster": "Rasmussen Reports",
@@ -5606,7 +5592,7 @@
      "margin": -3.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.1263
+     "weight_share": 0.1291
     },
     {
      "pollster": "Resonance Media Services",
@@ -5620,7 +5606,7 @@
      "margin": 1.6,
      "partisan": "",
      "url": "https://www.fitsnews.com/wp-content/uploads/securepdfs/2026/11/Resonance-final-SC-Poll-Memo-11-02-2026.pdf",
-     "weight_share": 0.0918
+     "weight_share": 0.0939
     },
     {
      "pollster": "Patinkin Research Strategies",
@@ -5634,7 +5620,7 @@
      "margin": 5.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.0798
+     "weight_share": 0.0816
     },
     {
      "pollster": "New York Times/Siena University",
@@ -5648,7 +5634,7 @@
      "margin": 0.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.0818
+     "weight_share": 0.0836
     },
     {
      "pollster": "Targoz Market Research",
@@ -5662,7 +5648,7 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://www.foxcarolina.com/2026/10/26/new-poll-shows-neck-and-neck-senate-race-double-digit-lead-governor-sc-midterms/",
-     "weight_share": 0.0876
+     "weight_share": 0.0895
     },
     {
      "pollster": "The Citadel",
@@ -5676,7 +5662,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.0873
+     "weight_share": 0.0893
     },
     {
      "pollster": "East Carolina University",
@@ -5690,7 +5676,7 @@
      "margin": -4.0,
      "partisan": "",
      "url": "https://surveyresearch-ecu.reportablenews.com/pr/ecu-poll-finds-graham-leading-andrews-by-four-points",
-     "weight_share": 0.0861
+     "weight_share": 0.088
     },
     {
      "pollster": "Impact Research",
@@ -5704,7 +5690,7 @@
      "margin": 1.0,
      "partisan": "DEM",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.0679
+     "weight_share": 0.0694
     },
     {
      "pollster": "Trafalgar Group",
@@ -5718,7 +5704,7 @@
      "margin": -3.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.0685
+     "weight_share": 0.07
     },
     {
      "pollster": "Rasmussen Reports",
@@ -5732,7 +5718,7 @@
      "margin": -4.0,
      "partisan": "REP",
      "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.0365
+     "weight_share": 0.0373
     },
     {
      "pollster": "InsiderAdvantage",
@@ -5746,26 +5732,12 @@
      "margin": -1.0,
      "partisan": "",
      "url": "https://insideradvantage.com/insideradvantage-south-carolina-senate-graham-leads-by-one-point/",
-     "weight_share": 0.028
-    },
-    {
-     "pollster": "Trafalgar Group",
-     "sponsors": "",
-     "start_date": "2026-09-23",
-     "end_date": "2026-09-25",
-     "sample_size": 1087,
-     "population": "lv",
-     "dem_pct": 42.0,
-     "rep_pct": 43.0,
-     "margin": -1.0,
-     "partisan": "REP",
-     "url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina",
-     "weight_share": 0.0218
+     "weight_share": 0.0286
     }
    ]
   },
   "2026-senate-TX": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-10",
    "margin": 3.1,
    "n_polls": 41,
    "polls": [
